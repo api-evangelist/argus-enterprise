@@ -1,0 +1,46 @@
+name: Argus Enterprise
+description: APIs and integration points for Argus Enterprise platform
+url: https://www.argusenterprise.com
+created: '2024-01-15'
+modified: '2024-01-15'
+apis:
+- name: Argus Enterprise Core API
+  description: Core API for accessing Argus Enterprise functionality including data management, analytics, and reporting
+  baseURL: https://api.argusenterprise.com/v1
+  humanURL: https://www.argusenterprise.com/api
+  properties:
+  - type: Documentation
+    url: https://docs.argusenterprise.com/api/v1
+  - type: OpenAPI
+    url: https://api.argusenterprise.com/v1/openapi.json
+  - type: Authentication
+    url: https://docs.argusenterprise.com/api/authentication
+  contact:
+  - FN: Argus API Support
+    email: api-support@argusenterprise.com
+    url: https://support.argusenterprise.com
+  tags:
+  - Enterprise
+  - Analytics
+  - Data Management
+  - Reporting
+- name: Argus Webhook API
+  description: Webhook service for real-time event notifications and integrations
+  baseURL: https://webhooks.argusenterprise.com/v1
+  humanURL: https://www.argusenterprise.com/webhooks
+  properties:
+  - type: Documentation
+    url: https://docs.argusenterprise.com/webhooks
+  - type: Schema
+    url: https://webhooks.argusenterprise.com/v1/schema
+  tags:
+  - Webhooks
+  - Events
+  - Real-time
+maintainers:
+- FN: Argus Enterprise Platform Team
+  email: platform@argusenterprise.com
+tags:
+- Enterprise Software
+- Business Intelligence
+- API
