@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.argusenterprise.com/schemas/argus-enterprise/portfolio.json",
+  "title": "Argus Enterprise Portfolio",
+  "description": "Represents a commercial real estate portfolio in the ARGUS Enterprise platform, used to organize and manage groups of properties under a unified investment strategy.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique portfolio identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Portfolio name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Portfolio description"
+    },
+    "strategy": {
+      "type": "string",
+      "enum": ["Core", "CorePlus", "ValueAdd", "Opportunistic"],
+      "description": "Investment strategy classification"
+    },
+    "totalProperties": {
+      "type": "integer",
+      "description": "Number of properties in the portfolio"
+    },
+    "totalMarketValue": {
+      "type": "number",
+      "description": "Aggregate market value of all properties"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code (ISO 4217)",
+      "default": "USD"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Record creation timestamp"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Record last update timestamp"
+    }
+  },
+  "required": ["name"]
+}

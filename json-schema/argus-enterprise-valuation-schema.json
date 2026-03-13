@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.argusenterprise.com/schemas/argus-enterprise/valuation.json",
+  "title": "Argus Enterprise Valuation",
+  "description": "Represents a property valuation in the ARGUS Enterprise platform, capturing DCF analysis, direct capitalization, or comparable sales methodology results including key financial metrics.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique valuation identifier"
+    },
+    "propertyId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Associated property identifier"
+    },
+    "valuationDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of valuation"
+    },
+    "methodology": {
+      "type": "string",
+      "enum": ["DCF", "DirectCapitalization", "ComparableSales"],
+      "description": "Valuation methodology used"
+    },
+    "marketValue": {
+      "type": "number",
+      "description": "Estimated market value"
+    },
+    "capRate": {
+      "type": "number",
+      "description": "Capitalization rate (percentage)"
+    },
+    "discountRate": {
+      "type": "number",
+      "description": "Discount rate used in DCF analysis (percentage)"
+    },
+    "terminalCapRate": {
+      "type": "number",
+      "description": "Terminal capitalization rate for DCF analysis (percentage)"
+    },
+    "analysisStartDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Start date of the analysis period"
+    },
+    "analysisEndDate": {
+      "type": "string",
+      "format": "date",
+      "description": "End date of the analysis period"
+    },
+    "netOperatingIncome": {
+      "type": "number",
+      "description": "Stabilized net operating income"
+    },
+    "netPresentValue": {
+      "type": "number",
+      "description": "Net present value from DCF analysis"
+    },
+    "internalRateOfReturn": {
+      "type": "number",
+      "description": "Internal rate of return (percentage)"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code (ISO 4217)",
+      "default": "USD"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional notes or assumptions"
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "Username of the creator"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Record creation timestamp"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Record last update timestamp"
+    }
+  },
+  "required": ["valuationDate", "methodology"]
+}

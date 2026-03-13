@@ -1,11 +1,26 @@
 name: Argus Enterprise
-description: APIs and integration points for Argus Enterprise platform
+description: >-
+  APIs and integration points for the ARGUS Enterprise commercial real estate
+  investment management and valuation platform by Altus Group
+image: https://www.altusgroup.com/wp-content/uploads/argus-logo.png
 url: https://www.argusenterprise.com
 created: '2024-01-15'
-modified: '2024-01-15'
+modified: '2026-03-04'
+specificationVersion: '0.18'
+tags:
+- Enterprise Software
+- Business Intelligence
+- Commercial Real Estate
+- Valuation
+- API
 apis:
 - name: Argus Enterprise Core API
-  description: Core API for accessing Argus Enterprise functionality including data management, analytics, and reporting
+  description: >-
+    Core REST API for the ARGUS Enterprise platform providing programmatic
+    access to commercial real estate investment management capabilities
+    including property data, portfolio management, cash flow projections,
+    valuations, tenants, leases, and reporting.
+  image: https://www.altusgroup.com/wp-content/uploads/argus-logo.png
   baseURL: https://api.argusenterprise.com/v1
   humanURL: https://www.argusenterprise.com/api
   properties:
@@ -15,6 +30,8 @@ apis:
     url: https://api.argusenterprise.com/v1/openapi.json
   - type: Authentication
     url: https://docs.argusenterprise.com/api/authentication
+  - type: OpenAPI
+    url: openapi/argus-enterprise-core-openapi.yml
   contact:
   - FN: Argus API Support
     email: api-support@argusenterprise.com
@@ -24,8 +41,16 @@ apis:
   - Analytics
   - Data Management
   - Reporting
+  - Properties
+  - Valuations
+  - Leases
+  - Portfolios
 - name: Argus Webhook API
-  description: Webhook service for real-time event notifications and integrations
+  description: >-
+    Webhook service for the ARGUS Enterprise platform enabling real-time
+    event notifications for property changes, valuation updates, lease
+    events, portfolio modifications, and report completions.
+  image: https://www.altusgroup.com/wp-content/uploads/argus-logo.png
   baseURL: https://webhooks.argusenterprise.com/v1
   humanURL: https://www.argusenterprise.com/webhooks
   properties:
@@ -33,14 +58,37 @@ apis:
     url: https://docs.argusenterprise.com/webhooks
   - type: Schema
     url: https://webhooks.argusenterprise.com/v1/schema
+  - type: OpenAPI
+    url: openapi/argus-enterprise-webhooks-openapi.yml
   tags:
   - Webhooks
   - Events
   - Real-time
+common:
+- type: Portal
+  url: https://www.argusenterprise.com/api
+- type: Documentation
+  url: https://docs.argusenterprise.com
+- type: Authentication
+  url: https://docs.argusenterprise.com/api/authentication
+- type: Support
+  url: https://support.argusenterprise.com
+- type: Terms of Service
+  url: https://www.altusgroup.com/terms-of-use
+- type: Privacy Policy
+  url: https://www.altusgroup.com/privacy-policy
+- type: Website
+  url: https://www.altusgroup.com
+- type: JSON-LD
+  url: json-ld/argus-enterprise-context.jsonld
+- type: JSONSchema
+  url: json-schema/argus-enterprise-property-schema.json
+- type: JSONSchema
+  url: json-schema/argus-enterprise-valuation-schema.json
+- type: JSONSchema
+  url: json-schema/argus-enterprise-lease-schema.json
+- type: JSONSchema
+  url: json-schema/argus-enterprise-portfolio-schema.json
 maintainers:
-- FN: Argus Enterprise Platform Team
-  email: platform@argusenterprise.com
-tags:
-- Enterprise Software
-- Business Intelligence
-- API
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,1807 @@
+openapi: 3.1.0
+info:
+  title: Argus Enterprise Core API
+  description: >-
+    Core REST API for the ARGUS Enterprise platform by Altus Group, providing
+    programmatic access to commercial real estate investment management
+    capabilities including property data, portfolio management, cash flow
+    projections, valuations, tenants, leases, and reporting. ARGUS Enterprise
+    is an industry-standard platform for commercial real estate valuation and
+    asset management used by investors, appraisers, and portfolio managers.
+  version: '1.0'
+  contact:
+    name: Argus API Support
+    email: api-support@argusenterprise.com
+    url: https://support.argusenterprise.com
+  termsOfService: https://www.altusgroup.com/terms-of-use
+externalDocs:
+  description: Argus Enterprise API Documentation
+  url: https://docs.argusenterprise.com/api/v1
+servers:
+  - url: https://api.argusenterprise.com/v1
+    description: Argus Enterprise Production
+tags:
+  - name: Authentication
+    description: OAuth 2.0 token operations for API access
+  - name: Properties
+    description: Manage commercial real estate properties and assets
+  - name: Portfolios
+    description: Organize and manage property portfolios
+  - name: Valuations
+    description: Property valuations and appraisal data
+  - name: Cash Flows
+    description: Cash flow projections and analysis
+  - name: Tenants
+    description: Tenant records and contact information
+  - name: Leases
+    description: Lease agreements and terms
+  - name: Reports
+    description: Generate and retrieve analytical reports
+  - name: Users
+    description: User management and access control
+security:
+  - bearerAuth: []
+paths:
+  /auth/token:
+    post:
+      operationId: getAccessToken
+      summary: Obtain access token
+      description: >-
+        Authenticate using OAuth 2.0 Client Credentials grant to obtain a
+        bearer token for accessing Argus Enterprise APIs.
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - grant_type
+                - client_id
+                - client_secret
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                    - client_credentials
+                  description: OAuth 2.0 grant type
+                client_id:
+                  type: string
+                  description: API client identifier
+                client_secret:
+                  type: string
+                  description: API client secret
+      responses:
+        '200':
+          description: Access token returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '401':
+          description: Invalid credentials
+      security: []
+  /properties:
+    get:
+      operationId: listProperties
+      summary: List properties
+      description: >-
+        Retrieve a paginated list of commercial real estate properties
+        accessible to the authenticated user, with optional filtering by
+        portfolio, property type, and status.
+      tags:
+        - Properties
+      parameters:
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/pageSizeParam'
+        - name: portfolioId
+          in: query
+          description: Filter by portfolio identifier
+          schema:
+            type: string
+            format: uuid
+        - name: propertyType
+          in: query
+          description: Filter by property type
+          schema:
+            type: string
+            enum:
+              - Office
+              - Retail
+              - Industrial
+              - Multifamily
+              - Mixed-Use
+              - Hotel
+              - Land
+              - Other
+        - name: status
+          in: query
+          description: Filter by property status
+          schema:
+            type: string
+            enum:
+              - Active
+              - Pending
+              - Archived
+      responses:
+        '200':
+          description: Properties retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyList'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    post:
+      operationId: createProperty
+      summary: Create a property
+      description: Create a new commercial real estate property record in the system.
+      tags:
+        - Properties
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PropertyInput'
+      responses:
+        '201':
+          description: Property created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Property'
+        '400':
+          description: Invalid property data
+        '401':
+          description: Unauthorized
+  /properties/{propertyId}:
+    get:
+      operationId: getProperty
+      summary: Get a property
+      description: Retrieve detailed information about a specific property.
+      tags:
+        - Properties
+      parameters:
+        - $ref: '#/components/parameters/propertyId'
+      responses:
+        '200':
+          description: Property retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Property'
+        '404':
+          description: Property not found
+    put:
+      operationId: updateProperty
+      summary: Update a property
+      description: Update an existing property record with new information.
+      tags:
+        - Properties
+      parameters:
+        - $ref: '#/components/parameters/propertyId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PropertyInput'
+      responses:
+        '200':
+          description: Property updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Property'
+        '400':
+          description: Invalid property data
+        '404':
+          description: Property not found
+    delete:
+      operationId: deleteProperty
+      summary: Delete a property
+      description: Delete a property record. This action cannot be undone.
+      tags:
+        - Properties
+      parameters:
+        - $ref: '#/components/parameters/propertyId'
+      responses:
+        '204':
+          description: Property deleted successfully
+        '404':
+          description: Property not found
+  /properties/{propertyId}/valuations:
+    get:
+      operationId: listPropertyValuations
+      summary: List property valuations
+      description: >-
+        Retrieve all valuations associated with a specific property, including
+        DCF analysis results, capitalization rates, and market value estimates.
+      tags:
+        - Valuations
+      parameters:
+        - $ref: '#/components/parameters/propertyId'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/pageSizeParam'
+      responses:
+        '200':
+          description: Valuations retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValuationList'
+        '404':
+          description: Property not found
+    post:
+      operationId: createPropertyValuation
+      summary: Create a property valuation
+      description: >-
+        Create a new valuation for a property using DCF analysis, direct
+        capitalization, or comparable sales methodology.
+      tags:
+        - Valuations
+      parameters:
+        - $ref: '#/components/parameters/propertyId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValuationInput'
+      responses:
+        '201':
+          description: Valuation created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Valuation'
+        '400':
+          description: Invalid valuation data
+        '404':
+          description: Property not found
+  /properties/{propertyId}/cashflows:
+    get:
+      operationId: listPropertyCashFlows
+      summary: List property cash flows
+      description: >-
+        Retrieve projected cash flows for a property over the analysis period,
+        including income streams, operating expenses, capital expenditures,
+        and net operating income.
+      tags:
+        - Cash Flows
+      parameters:
+        - $ref: '#/components/parameters/propertyId'
+        - name: startDate
+          in: query
+          description: Start date for cash flow projections
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          description: End date for cash flow projections
+          schema:
+            type: string
+            format: date
+        - name: frequency
+          in: query
+          description: Cash flow reporting frequency
+          schema:
+            type: string
+            enum:
+              - Monthly
+              - Quarterly
+              - Annual
+      responses:
+        '200':
+          description: Cash flows retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CashFlowProjection'
+        '404':
+          description: Property not found
+  /properties/{propertyId}/leases:
+    get:
+      operationId: listPropertyLeases
+      summary: List property leases
+      description: >-
+        Retrieve all lease agreements associated with a property, including
+        tenant details, rent schedules, and lease terms.
+      tags:
+        - Leases
+      parameters:
+        - $ref: '#/components/parameters/propertyId'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/pageSizeParam'
+        - name: status
+          in: query
+          description: Filter by lease status
+          schema:
+            type: string
+            enum:
+              - Active
+              - Expired
+              - Pending
+      responses:
+        '200':
+          description: Leases retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaseList'
+        '404':
+          description: Property not found
+    post:
+      operationId: createPropertyLease
+      summary: Create a lease
+      description: Create a new lease agreement for a property.
+      tags:
+        - Leases
+      parameters:
+        - $ref: '#/components/parameters/propertyId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeaseInput'
+      responses:
+        '201':
+          description: Lease created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Lease'
+        '400':
+          description: Invalid lease data
+        '404':
+          description: Property not found
+  /properties/{propertyId}/leases/{leaseId}:
+    get:
+      operationId: getPropertyLease
+      summary: Get a lease
+      description: Retrieve detailed information about a specific lease.
+      tags:
+        - Leases
+      parameters:
+        - $ref: '#/components/parameters/propertyId'
+        - $ref: '#/components/parameters/leaseId'
+      responses:
+        '200':
+          description: Lease retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Lease'
+        '404':
+          description: Lease not found
+    put:
+      operationId: updatePropertyLease
+      summary: Update a lease
+      description: Update an existing lease agreement.
+      tags:
+        - Leases
+      parameters:
+        - $ref: '#/components/parameters/propertyId'
+        - $ref: '#/components/parameters/leaseId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeaseInput'
+      responses:
+        '200':
+          description: Lease updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Lease'
+        '400':
+          description: Invalid lease data
+        '404':
+          description: Lease not found
+    delete:
+      operationId: deletePropertyLease
+      summary: Delete a lease
+      description: Delete a lease record. This action cannot be undone.
+      tags:
+        - Leases
+      parameters:
+        - $ref: '#/components/parameters/propertyId'
+        - $ref: '#/components/parameters/leaseId'
+      responses:
+        '204':
+          description: Lease deleted successfully
+        '404':
+          description: Lease not found
+  /portfolios:
+    get:
+      operationId: listPortfolios
+      summary: List portfolios
+      description: >-
+        Retrieve a paginated list of property portfolios accessible to the
+        authenticated user.
+      tags:
+        - Portfolios
+      parameters:
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/pageSizeParam'
+      responses:
+        '200':
+          description: Portfolios retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortfolioList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createPortfolio
+      summary: Create a portfolio
+      description: Create a new property portfolio for organizing assets.
+      tags:
+        - Portfolios
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PortfolioInput'
+      responses:
+        '201':
+          description: Portfolio created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Portfolio'
+        '400':
+          description: Invalid portfolio data
+  /portfolios/{portfolioId}:
+    get:
+      operationId: getPortfolio
+      summary: Get a portfolio
+      description: Retrieve detailed information about a specific portfolio.
+      tags:
+        - Portfolios
+      parameters:
+        - $ref: '#/components/parameters/portfolioId'
+      responses:
+        '200':
+          description: Portfolio retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Portfolio'
+        '404':
+          description: Portfolio not found
+    put:
+      operationId: updatePortfolio
+      summary: Update a portfolio
+      description: Update an existing portfolio.
+      tags:
+        - Portfolios
+      parameters:
+        - $ref: '#/components/parameters/portfolioId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PortfolioInput'
+      responses:
+        '200':
+          description: Portfolio updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Portfolio'
+        '400':
+          description: Invalid portfolio data
+        '404':
+          description: Portfolio not found
+    delete:
+      operationId: deletePortfolio
+      summary: Delete a portfolio
+      description: Delete a portfolio. Properties within the portfolio are not deleted.
+      tags:
+        - Portfolios
+      parameters:
+        - $ref: '#/components/parameters/portfolioId'
+      responses:
+        '204':
+          description: Portfolio deleted successfully
+        '404':
+          description: Portfolio not found
+  /portfolios/{portfolioId}/properties:
+    get:
+      operationId: listPortfolioProperties
+      summary: List portfolio properties
+      description: Retrieve all properties belonging to a specific portfolio.
+      tags:
+        - Portfolios
+      parameters:
+        - $ref: '#/components/parameters/portfolioId'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/pageSizeParam'
+      responses:
+        '200':
+          description: Properties retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyList'
+        '404':
+          description: Portfolio not found
+  /tenants:
+    get:
+      operationId: listTenants
+      summary: List tenants
+      description: >-
+        Retrieve a paginated list of tenants across all properties accessible
+        to the authenticated user.
+      tags:
+        - Tenants
+      parameters:
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/pageSizeParam'
+        - name: search
+          in: query
+          description: Search tenants by name
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tenants retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createTenant
+      summary: Create a tenant
+      description: Create a new tenant record.
+      tags:
+        - Tenants
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TenantInput'
+      responses:
+        '201':
+          description: Tenant created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+        '400':
+          description: Invalid tenant data
+  /tenants/{tenantId}:
+    get:
+      operationId: getTenant
+      summary: Get a tenant
+      description: Retrieve detailed information about a specific tenant.
+      tags:
+        - Tenants
+      parameters:
+        - $ref: '#/components/parameters/tenantId'
+      responses:
+        '200':
+          description: Tenant retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+        '404':
+          description: Tenant not found
+    put:
+      operationId: updateTenant
+      summary: Update a tenant
+      description: Update an existing tenant record.
+      tags:
+        - Tenants
+      parameters:
+        - $ref: '#/components/parameters/tenantId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TenantInput'
+      responses:
+        '200':
+          description: Tenant updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+        '400':
+          description: Invalid tenant data
+        '404':
+          description: Tenant not found
+  /valuations:
+    get:
+      operationId: listValuations
+      summary: List all valuations
+      description: >-
+        Retrieve a paginated list of all valuations across properties,
+        with optional filtering by valuation date range and methodology.
+      tags:
+        - Valuations
+      parameters:
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/pageSizeParam'
+        - name: methodology
+          in: query
+          description: Filter by valuation methodology
+          schema:
+            type: string
+            enum:
+              - DCF
+              - DirectCapitalization
+              - ComparableSales
+        - name: valuationDateFrom
+          in: query
+          description: Filter valuations from this date
+          schema:
+            type: string
+            format: date
+        - name: valuationDateTo
+          in: query
+          description: Filter valuations up to this date
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Valuations retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValuationList'
+        '401':
+          description: Unauthorized
+  /reports:
+    get:
+      operationId: listReports
+      summary: List reports
+      description: >-
+        Retrieve a list of available reports, including property-level,
+        portfolio-level, and custom analytics reports.
+      tags:
+        - Reports
+      parameters:
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/pageSizeParam'
+        - name: reportType
+          in: query
+          description: Filter by report type
+          schema:
+            type: string
+            enum:
+              - PropertySummary
+              - PortfolioSummary
+              - CashFlowAnalysis
+              - ValuationSummary
+              - LeaseExpiry
+              - TenantRoll
+              - CapitalExpenditure
+      responses:
+        '200':
+          description: Reports retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportList'
+    post:
+      operationId: generateReport
+      summary: Generate a report
+      description: >-
+        Generate a new analytical report based on specified parameters
+        including report type, date range, and target properties or portfolios.
+      tags:
+        - Reports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportRequest'
+      responses:
+        '202':
+          description: Report generation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+        '400':
+          description: Invalid report request
+  /reports/{reportId}:
+    get:
+      operationId: getReport
+      summary: Get a report
+      description: >-
+        Retrieve the status and results of a previously generated report.
+      tags:
+        - Reports
+      parameters:
+        - $ref: '#/components/parameters/reportId'
+      responses:
+        '200':
+          description: Report retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+        '404':
+          description: Report not found
+  /reports/{reportId}/download:
+    get:
+      operationId: downloadReport
+      summary: Download a report
+      description: Download the report output file in the specified format.
+      tags:
+        - Reports
+      parameters:
+        - $ref: '#/components/parameters/reportId'
+        - name: format
+          in: query
+          description: Output format for the report
+          schema:
+            type: string
+            enum:
+              - PDF
+              - Excel
+              - CSV
+            default: PDF
+      responses:
+        '200':
+          description: Report file
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+              schema:
+                type: string
+                format: binary
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Report not found
+  /users:
+    get:
+      operationId: listUsers
+      summary: List users
+      description: >-
+        Retrieve a list of users in the Argus Enterprise instance. Requires
+        administrator permissions.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/pageSizeParam'
+      responses:
+        '200':
+          description: Users retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserList'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden - requires admin access
+  /users/{userId}:
+    get:
+      operationId: getUser
+      summary: Get a user
+      description: Retrieve information about a specific user.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/userId'
+      responses:
+        '200':
+          description: User retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        OAuth 2.0 Bearer token obtained from the /auth/token endpoint
+        using client credentials.
+  parameters:
+    propertyId:
+      name: propertyId
+      in: path
+      required: true
+      description: Unique identifier of the property
+      schema:
+        type: string
+        format: uuid
+    portfolioId:
+      name: portfolioId
+      in: path
+      required: true
+      description: Unique identifier of the portfolio
+      schema:
+        type: string
+        format: uuid
+    leaseId:
+      name: leaseId
+      in: path
+      required: true
+      description: Unique identifier of the lease
+      schema:
+        type: string
+        format: uuid
+    tenantId:
+      name: tenantId
+      in: path
+      required: true
+      description: Unique identifier of the tenant
+      schema:
+        type: string
+        format: uuid
+    reportId:
+      name: reportId
+      in: path
+      required: true
+      description: Unique identifier of the report
+      schema:
+        type: string
+        format: uuid
+    userId:
+      name: userId
+      in: path
+      required: true
+      description: Unique identifier of the user
+      schema:
+        type: string
+        format: uuid
+    pageParam:
+      name: page
+      in: query
+      description: Page number for pagination
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    pageSizeParam:
+      name: pageSize
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+  schemas:
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: Bearer token for API authentication
+        token_type:
+          type: string
+          enum:
+            - Bearer
+        expires_in:
+          type: integer
+          description: Token validity duration in seconds
+        scope:
+          type: string
+          description: Granted scopes
+    Property:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique property identifier
+        name:
+          type: string
+          description: Property name
+        propertyType:
+          type: string
+          enum:
+            - Office
+            - Retail
+            - Industrial
+            - Multifamily
+            - Mixed-Use
+            - Hotel
+            - Land
+            - Other
+          description: Type of commercial real estate property
+        status:
+          type: string
+          enum:
+            - Active
+            - Pending
+            - Archived
+          description: Current property status
+        address:
+          $ref: '#/components/schemas/Address'
+        grossArea:
+          type: number
+          format: double
+          description: Gross leasable area in square feet
+        netLeasableArea:
+          type: number
+          format: double
+          description: Net leasable area in square feet
+        yearBuilt:
+          type: integer
+          description: Year the property was built
+        numberOfUnits:
+          type: integer
+          description: Number of leasable units or suites
+        purchasePrice:
+          type: number
+          format: double
+          description: Original purchase price
+        purchaseDate:
+          type: string
+          format: date
+          description: Date of property acquisition
+        currentMarketValue:
+          type: number
+          format: double
+          description: Current estimated market value
+        occupancyRate:
+          type: number
+          format: double
+          description: Current occupancy rate as a percentage
+        portfolioId:
+          type: string
+          format: uuid
+          description: Identifier of the parent portfolio
+        createdAt:
+          type: string
+          format: date-time
+          description: Record creation timestamp
+        updatedAt:
+          type: string
+          format: date-time
+          description: Record last update timestamp
+    PropertyInput:
+      type: object
+      required:
+        - name
+        - propertyType
+        - address
+      properties:
+        name:
+          type: string
+          description: Property name
+        propertyType:
+          type: string
+          enum:
+            - Office
+            - Retail
+            - Industrial
+            - Multifamily
+            - Mixed-Use
+            - Hotel
+            - Land
+            - Other
+        status:
+          type: string
+          enum:
+            - Active
+            - Pending
+            - Archived
+          default: Active
+        address:
+          $ref: '#/components/schemas/Address'
+        grossArea:
+          type: number
+          format: double
+        netLeasableArea:
+          type: number
+          format: double
+        yearBuilt:
+          type: integer
+        numberOfUnits:
+          type: integer
+        purchasePrice:
+          type: number
+          format: double
+        purchaseDate:
+          type: string
+          format: date
+        portfolioId:
+          type: string
+          format: uuid
+    PropertyList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Property'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+          description: Street address
+        city:
+          type: string
+          description: City
+        state:
+          type: string
+          description: State or province
+        postalCode:
+          type: string
+          description: Postal or ZIP code
+        country:
+          type: string
+          description: Country code (ISO 3166-1 alpha-2)
+    Portfolio:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique portfolio identifier
+        name:
+          type: string
+          description: Portfolio name
+        description:
+          type: string
+          description: Portfolio description
+        strategy:
+          type: string
+          enum:
+            - Core
+            - CorePlus
+            - ValueAdd
+            - Opportunistic
+          description: Investment strategy classification
+        totalProperties:
+          type: integer
+          description: Number of properties in the portfolio
+        totalMarketValue:
+          type: number
+          format: double
+          description: Aggregate market value of all properties
+        currency:
+          type: string
+          description: Currency code (ISO 4217)
+          default: USD
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    PortfolioInput:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        strategy:
+          type: string
+          enum:
+            - Core
+            - CorePlus
+            - ValueAdd
+            - Opportunistic
+        currency:
+          type: string
+          default: USD
+    PortfolioList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Portfolio'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Valuation:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique valuation identifier
+        propertyId:
+          type: string
+          format: uuid
+          description: Associated property identifier
+        valuationDate:
+          type: string
+          format: date
+          description: Date of valuation
+        methodology:
+          type: string
+          enum:
+            - DCF
+            - DirectCapitalization
+            - ComparableSales
+          description: Valuation methodology used
+        marketValue:
+          type: number
+          format: double
+          description: Estimated market value
+        capRate:
+          type: number
+          format: double
+          description: Capitalization rate (percentage)
+        discountRate:
+          type: number
+          format: double
+          description: Discount rate used in DCF analysis (percentage)
+        terminalCapRate:
+          type: number
+          format: double
+          description: Terminal capitalization rate for DCF analysis (percentage)
+        analysisStartDate:
+          type: string
+          format: date
+          description: Start date of the analysis period
+        analysisEndDate:
+          type: string
+          format: date
+          description: End date of the analysis period
+        netOperatingIncome:
+          type: number
+          format: double
+          description: Stabilized net operating income
+        netPresentValue:
+          type: number
+          format: double
+          description: Net present value from DCF analysis
+        internalRateOfReturn:
+          type: number
+          format: double
+          description: Internal rate of return (percentage)
+        currency:
+          type: string
+          description: Currency code (ISO 4217)
+        notes:
+          type: string
+          description: Additional notes or assumptions
+        createdBy:
+          type: string
+          description: Username of the creator
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    ValuationInput:
+      type: object
+      required:
+        - valuationDate
+        - methodology
+      properties:
+        valuationDate:
+          type: string
+          format: date
+        methodology:
+          type: string
+          enum:
+            - DCF
+            - DirectCapitalization
+            - ComparableSales
+        marketValue:
+          type: number
+          format: double
+        capRate:
+          type: number
+          format: double
+        discountRate:
+          type: number
+          format: double
+        terminalCapRate:
+          type: number
+          format: double
+        analysisStartDate:
+          type: string
+          format: date
+        analysisEndDate:
+          type: string
+          format: date
+        netOperatingIncome:
+          type: number
+          format: double
+        currency:
+          type: string
+          default: USD
+        notes:
+          type: string
+    ValuationList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Valuation'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    CashFlowProjection:
+      type: object
+      properties:
+        propertyId:
+          type: string
+          format: uuid
+          description: Associated property identifier
+        startDate:
+          type: string
+          format: date
+          description: Projection start date
+        endDate:
+          type: string
+          format: date
+          description: Projection end date
+        frequency:
+          type: string
+          enum:
+            - Monthly
+            - Quarterly
+            - Annual
+          description: Cash flow reporting frequency
+        currency:
+          type: string
+          description: Currency code (ISO 4217)
+        periods:
+          type: array
+          items:
+            $ref: '#/components/schemas/CashFlowPeriod'
+          description: Individual cash flow periods
+        summary:
+          $ref: '#/components/schemas/CashFlowSummary'
+    CashFlowPeriod:
+      type: object
+      properties:
+        periodStart:
+          type: string
+          format: date
+          description: Period start date
+        periodEnd:
+          type: string
+          format: date
+          description: Period end date
+        grossPotentialRent:
+          type: number
+          format: double
+          description: Gross potential rental income
+        vacancyLoss:
+          type: number
+          format: double
+          description: Vacancy and credit loss
+        effectiveGrossIncome:
+          type: number
+          format: double
+          description: Effective gross income after vacancy
+        otherIncome:
+          type: number
+          format: double
+          description: Other income (parking, storage, etc.)
+        totalRevenue:
+          type: number
+          format: double
+          description: Total revenue
+        operatingExpenses:
+          type: number
+          format: double
+          description: Total operating expenses
+        netOperatingIncome:
+          type: number
+          format: double
+          description: Net operating income (NOI)
+        capitalExpenditures:
+          type: number
+          format: double
+          description: Capital expenditure costs
+        tenantImprovements:
+          type: number
+          format: double
+          description: Tenant improvement costs
+        leasingCommissions:
+          type: number
+          format: double
+          description: Leasing commission costs
+        debtService:
+          type: number
+          format: double
+          description: Debt service payments
+        cashFlowBeforeDebt:
+          type: number
+          format: double
+          description: Cash flow before debt service
+        cashFlowAfterDebt:
+          type: number
+          format: double
+          description: Cash flow after debt service
+    CashFlowSummary:
+      type: object
+      properties:
+        totalRevenue:
+          type: number
+          format: double
+          description: Total revenue over the analysis period
+        totalExpenses:
+          type: number
+          format: double
+          description: Total expenses over the analysis period
+        totalNOI:
+          type: number
+          format: double
+          description: Total net operating income
+        totalCapEx:
+          type: number
+          format: double
+          description: Total capital expenditures
+        averageOccupancy:
+          type: number
+          format: double
+          description: Average occupancy rate (percentage)
+        irr:
+          type: number
+          format: double
+          description: Internal rate of return (percentage)
+        npv:
+          type: number
+          format: double
+          description: Net present value
+    Lease:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique lease identifier
+        propertyId:
+          type: string
+          format: uuid
+          description: Associated property identifier
+        tenantId:
+          type: string
+          format: uuid
+          description: Associated tenant identifier
+        tenantName:
+          type: string
+          description: Tenant name
+        unitNumber:
+          type: string
+          description: Unit or suite number
+        leaseType:
+          type: string
+          enum:
+            - Gross
+            - Net
+            - DoubleNet
+            - TripleNet
+            - ModifiedGross
+            - PercentageRent
+          description: Type of lease
+        status:
+          type: string
+          enum:
+            - Active
+            - Expired
+            - Pending
+          description: Current lease status
+        startDate:
+          type: string
+          format: date
+          description: Lease commencement date
+        endDate:
+          type: string
+          format: date
+          description: Lease expiration date
+        leasedArea:
+          type: number
+          format: double
+          description: Leased area in square feet
+        baseRent:
+          type: number
+          format: double
+          description: Base rent amount per period
+        rentFrequency:
+          type: string
+          enum:
+            - Monthly
+            - Quarterly
+            - Annual
+          description: Rent payment frequency
+        rentPerSquareFoot:
+          type: number
+          format: double
+          description: Rent per square foot per annum
+        escalationRate:
+          type: number
+          format: double
+          description: Annual rent escalation rate (percentage)
+        escalationType:
+          type: string
+          enum:
+            - Fixed
+            - CPI
+            - MarketReset
+            - StepUp
+          description: Type of rent escalation
+        securityDeposit:
+          type: number
+          format: double
+          description: Security deposit amount
+        tenantImprovementAllowance:
+          type: number
+          format: double
+          description: Tenant improvement allowance
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/LeaseOption'
+          description: Lease renewal or expansion options
+        currency:
+          type: string
+          description: Currency code (ISO 4217)
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    LeaseInput:
+      type: object
+      required:
+        - tenantId
+        - leaseType
+        - startDate
+        - endDate
+        - baseRent
+      properties:
+        tenantId:
+          type: string
+          format: uuid
+        unitNumber:
+          type: string
+        leaseType:
+          type: string
+          enum:
+            - Gross
+            - Net
+            - DoubleNet
+            - TripleNet
+            - ModifiedGross
+            - PercentageRent
+        status:
+          type: string
+          enum:
+            - Active
+            - Expired
+            - Pending
+          default: Active
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        leasedArea:
+          type: number
+          format: double
+        baseRent:
+          type: number
+          format: double
+        rentFrequency:
+          type: string
+          enum:
+            - Monthly
+            - Quarterly
+            - Annual
+          default: Monthly
+        escalationRate:
+          type: number
+          format: double
+        escalationType:
+          type: string
+          enum:
+            - Fixed
+            - CPI
+            - MarketReset
+            - StepUp
+        securityDeposit:
+          type: number
+          format: double
+        tenantImprovementAllowance:
+          type: number
+          format: double
+        currency:
+          type: string
+          default: USD
+    LeaseOption:
+      type: object
+      properties:
+        optionType:
+          type: string
+          enum:
+            - Renewal
+            - Expansion
+            - Termination
+            - PurchaseOption
+          description: Type of lease option
+        noticeDate:
+          type: string
+          format: date
+          description: Date by which notice must be given
+        exerciseDate:
+          type: string
+          format: date
+          description: Date the option can be exercised
+        termMonths:
+          type: integer
+          description: Duration of option term in months
+        rentAdjustment:
+          type: string
+          description: Description of rent adjustment terms
+    LeaseList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Lease'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Tenant:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique tenant identifier
+        name:
+          type: string
+          description: Tenant company or individual name
+        industry:
+          type: string
+          description: Tenant industry classification
+        creditRating:
+          type: string
+          description: Tenant credit rating
+        contactName:
+          type: string
+          description: Primary contact name
+        contactEmail:
+          type: string
+          format: email
+          description: Primary contact email
+        contactPhone:
+          type: string
+          description: Primary contact phone
+        address:
+          $ref: '#/components/schemas/Address'
+        activeLeases:
+          type: integer
+          description: Number of active leases
+        totalLeasedArea:
+          type: number
+          format: double
+          description: Total leased area across all properties
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    TenantInput:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        industry:
+          type: string
+        creditRating:
+          type: string
+        contactName:
+          type: string
+        contactEmail:
+          type: string
+          format: email
+        contactPhone:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+    TenantList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tenant'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Report:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique report identifier
+        reportType:
+          type: string
+          enum:
+            - PropertySummary
+            - PortfolioSummary
+            - CashFlowAnalysis
+            - ValuationSummary
+            - LeaseExpiry
+            - TenantRoll
+            - CapitalExpenditure
+          description: Type of report
+        title:
+          type: string
+          description: Report title
+        status:
+          type: string
+          enum:
+            - Pending
+            - Processing
+            - Completed
+            - Failed
+          description: Report generation status
+        generatedAt:
+          type: string
+          format: date-time
+          description: Report generation timestamp
+        downloadUrl:
+          type: string
+          format: uri
+          description: URL to download the completed report
+        parameters:
+          type: object
+          description: Parameters used to generate the report
+        createdBy:
+          type: string
+          description: Username of the report creator
+    ReportRequest:
+      type: object
+      required:
+        - reportType
+      properties:
+        reportType:
+          type: string
+          enum:
+            - PropertySummary
+            - PortfolioSummary
+            - CashFlowAnalysis
+            - ValuationSummary
+            - LeaseExpiry
+            - TenantRoll
+            - CapitalExpenditure
+        title:
+          type: string
+        propertyIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Properties to include in the report
+        portfolioIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Portfolios to include in the report
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        outputFormat:
+          type: string
+          enum:
+            - PDF
+            - Excel
+            - CSV
+          default: PDF
+    ReportList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Report'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique user identifier
+        username:
+          type: string
+          description: Username
+        email:
+          type: string
+          format: email
+          description: User email address
+        firstName:
+          type: string
+          description: First name
+        lastName:
+          type: string
+          description: Last name
+        role:
+          type: string
+          enum:
+            - Admin
+            - Analyst
+            - Viewer
+          description: User role
+        lastLogin:
+          type: string
+          format: date-time
+          description: Last login timestamp
+        active:
+          type: boolean
+          description: Whether the user account is active
+        createdAt:
+          type: string
+          format: date-time
+    UserList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Current page number
+        pageSize:
+          type: integer
+          description: Number of items per page
+        totalItems:
+          type: integer
+          description: Total number of items
+        totalPages:
+          type: integer
+          description: Total number of pages

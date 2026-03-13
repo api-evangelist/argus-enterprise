@@ -1,0 +1,207 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "argus": "https://api.argusenterprise.com/schemas/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Property": {
+      "@id": "argus:Property",
+      "@context": {
+        "name": "schema:name",
+        "propertyType": "argus:propertyType",
+        "status": "argus:status",
+        "address": "schema:address",
+        "grossArea": {
+          "@id": "argus:grossArea",
+          "@type": "xsd:double"
+        },
+        "netLeasableArea": {
+          "@id": "argus:netLeasableArea",
+          "@type": "xsd:double"
+        },
+        "yearBuilt": {
+          "@id": "argus:yearBuilt",
+          "@type": "xsd:integer"
+        },
+        "numberOfUnits": {
+          "@id": "argus:numberOfUnits",
+          "@type": "xsd:integer"
+        },
+        "purchasePrice": {
+          "@id": "argus:purchasePrice",
+          "@type": "xsd:double"
+        },
+        "currentMarketValue": {
+          "@id": "argus:currentMarketValue",
+          "@type": "xsd:double"
+        },
+        "occupancyRate": {
+          "@id": "argus:occupancyRate",
+          "@type": "xsd:double"
+        }
+      }
+    },
+
+    "Portfolio": {
+      "@id": "argus:Portfolio",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "strategy": "argus:investmentStrategy",
+        "totalProperties": {
+          "@id": "argus:totalProperties",
+          "@type": "xsd:integer"
+        },
+        "totalMarketValue": {
+          "@id": "argus:totalMarketValue",
+          "@type": "xsd:double"
+        },
+        "currency": "argus:currency"
+      }
+    },
+
+    "Valuation": {
+      "@id": "argus:Valuation",
+      "@context": {
+        "valuationDate": {
+          "@id": "dcterms:date",
+          "@type": "xsd:date"
+        },
+        "methodology": "argus:valuationMethodology",
+        "marketValue": {
+          "@id": "argus:marketValue",
+          "@type": "xsd:double"
+        },
+        "capRate": {
+          "@id": "argus:capitalizationRate",
+          "@type": "xsd:double"
+        },
+        "discountRate": {
+          "@id": "argus:discountRate",
+          "@type": "xsd:double"
+        },
+        "terminalCapRate": {
+          "@id": "argus:terminalCapRate",
+          "@type": "xsd:double"
+        },
+        "netOperatingIncome": {
+          "@id": "argus:netOperatingIncome",
+          "@type": "xsd:double"
+        },
+        "netPresentValue": {
+          "@id": "argus:netPresentValue",
+          "@type": "xsd:double"
+        },
+        "internalRateOfReturn": {
+          "@id": "argus:internalRateOfReturn",
+          "@type": "xsd:double"
+        }
+      }
+    },
+
+    "Lease": {
+      "@id": "argus:Lease",
+      "@context": {
+        "tenantName": "schema:name",
+        "leaseType": "argus:leaseType",
+        "status": "argus:leaseStatus",
+        "startDate": {
+          "@id": "argus:leaseStartDate",
+          "@type": "xsd:date"
+        },
+        "endDate": {
+          "@id": "argus:leaseEndDate",
+          "@type": "xsd:date"
+        },
+        "leasedArea": {
+          "@id": "argus:leasedArea",
+          "@type": "xsd:double"
+        },
+        "baseRent": {
+          "@id": "argus:baseRent",
+          "@type": "xsd:double"
+        },
+        "rentPerSquareFoot": {
+          "@id": "argus:rentPerSquareFoot",
+          "@type": "xsd:double"
+        },
+        "escalationRate": {
+          "@id": "argus:escalationRate",
+          "@type": "xsd:double"
+        },
+        "escalationType": "argus:escalationType"
+      }
+    },
+
+    "Tenant": {
+      "@id": "argus:Tenant",
+      "@context": {
+        "name": "schema:name",
+        "industry": "argus:industry",
+        "creditRating": "argus:creditRating",
+        "contactName": "schema:contactPoint",
+        "contactEmail": "schema:email",
+        "contactPhone": "schema:telephone",
+        "activeLeases": {
+          "@id": "argus:activeLeases",
+          "@type": "xsd:integer"
+        },
+        "totalLeasedArea": {
+          "@id": "argus:totalLeasedArea",
+          "@type": "xsd:double"
+        }
+      }
+    },
+
+    "CashFlowProjection": {
+      "@id": "argus:CashFlowProjection",
+      "@context": {
+        "startDate": {
+          "@id": "argus:projectionStartDate",
+          "@type": "xsd:date"
+        },
+        "endDate": {
+          "@id": "argus:projectionEndDate",
+          "@type": "xsd:date"
+        },
+        "frequency": "argus:cashFlowFrequency",
+        "currency": "argus:currency"
+      }
+    },
+
+    "Report": {
+      "@id": "argus:Report",
+      "@context": {
+        "reportType": "argus:reportType",
+        "title": "schema:name",
+        "status": "argus:reportStatus",
+        "generatedAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "createdBy": "dcterms:creator"
+      }
+    },
+
+    "User": {
+      "@id": "argus:User",
+      "@context": {
+        "username": "schema:name",
+        "email": "schema:email",
+        "firstName": "schema:givenName",
+        "lastName": "schema:familyName",
+        "role": "argus:userRole",
+        "lastLogin": {
+          "@id": "argus:lastLogin",
+          "@type": "xsd:dateTime"
+        },
+        "active": {
+          "@id": "argus:active",
+          "@type": "xsd:boolean"
+        }
+      }
+    }
+  }
+}
