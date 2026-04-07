@@ -20,12 +20,12 @@ servers:
   - url: https://webhooks.argusenterprise.com/v1
     description: Argus Enterprise Webhooks Production
 tags:
-  - name: Subscriptions
-    description: Manage webhook subscriptions
   - name: Events
     description: View webhook event history and delivery logs
   - name: Health
     description: Webhook service health and status
+  - name: Subscriptions
+    description: Manage webhook subscriptions
 security:
   - bearerAuth: []
 paths:

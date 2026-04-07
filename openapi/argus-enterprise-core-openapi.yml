@@ -23,22 +23,22 @@ servers:
 tags:
   - name: Authentication
     description: OAuth 2.0 token operations for API access
-  - name: Properties
-    description: Manage commercial real estate properties and assets
-  - name: Portfolios
-    description: Organize and manage property portfolios
-  - name: Valuations
-    description: Property valuations and appraisal data
   - name: Cash Flows
     description: Cash flow projections and analysis
-  - name: Tenants
-    description: Tenant records and contact information
   - name: Leases
     description: Lease agreements and terms
+  - name: Portfolios
+    description: Organize and manage property portfolios
+  - name: Properties
+    description: Manage commercial real estate properties and assets
   - name: Reports
     description: Generate and retrieve analytical reports
+  - name: Tenants
+    description: Tenant records and contact information
   - name: Users
     description: User management and access control
+  - name: Valuations
+    description: Property valuations and appraisal data
 security:
   - bearerAuth: []
 paths:
