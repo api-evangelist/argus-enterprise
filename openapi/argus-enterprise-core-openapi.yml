@@ -45,7 +45,7 @@ paths:
   /auth/token:
     post:
       operationId: getAccessToken
-      summary: Obtain access token
+      summary: Argus Enterprise Obtain access token
       description: >-
         Authenticate using OAuth 2.0 Client Credentials grant to obtain a
         bearer token for accessing Argus Enterprise APIs.
@@ -86,7 +86,7 @@ paths:
   /properties:
     get:
       operationId: listProperties
-      summary: List properties
+      summary: Argus Enterprise List properties
       description: >-
         Retrieve a paginated list of commercial real estate properties
         accessible to the authenticated user, with optional filtering by
@@ -138,7 +138,7 @@ paths:
           description: Forbidden
     post:
       operationId: createProperty
-      summary: Create a property
+      summary: Argus Enterprise Create a property
       description: Create a new commercial real estate property record in the system.
       tags:
         - Properties
@@ -162,7 +162,7 @@ paths:
   /properties/{propertyId}:
     get:
       operationId: getProperty
-      summary: Get a property
+      summary: Argus Enterprise Get a property
       description: Retrieve detailed information about a specific property.
       tags:
         - Properties
@@ -179,7 +179,7 @@ paths:
           description: Property not found
     put:
       operationId: updateProperty
-      summary: Update a property
+      summary: Argus Enterprise Update a property
       description: Update an existing property record with new information.
       tags:
         - Properties
@@ -204,7 +204,7 @@ paths:
           description: Property not found
     delete:
       operationId: deleteProperty
-      summary: Delete a property
+      summary: Argus Enterprise Delete a property
       description: Delete a property record. This action cannot be undone.
       tags:
         - Properties
@@ -218,7 +218,7 @@ paths:
   /properties/{propertyId}/valuations:
     get:
       operationId: listPropertyValuations
-      summary: List property valuations
+      summary: Argus Enterprise List property valuations
       description: >-
         Retrieve all valuations associated with a specific property, including
         DCF analysis results, capitalization rates, and market value estimates.
@@ -239,7 +239,7 @@ paths:
           description: Property not found
     post:
       operationId: createPropertyValuation
-      summary: Create a property valuation
+      summary: Argus Enterprise Create a property valuation
       description: >-
         Create a new valuation for a property using DCF analysis, direct
         capitalization, or comparable sales methodology.
@@ -267,7 +267,7 @@ paths:
   /properties/{propertyId}/cashflows:
     get:
       operationId: listPropertyCashFlows
-      summary: List property cash flows
+      summary: Argus Enterprise List property cash flows
       description: >-
         Retrieve projected cash flows for a property over the analysis period,
         including income streams, operating expenses, capital expenditures,
@@ -309,7 +309,7 @@ paths:
   /properties/{propertyId}/leases:
     get:
       operationId: listPropertyLeases
-      summary: List property leases
+      summary: Argus Enterprise List property leases
       description: >-
         Retrieve all lease agreements associated with a property, including
         tenant details, rent schedules, and lease terms.
@@ -339,7 +339,7 @@ paths:
           description: Property not found
     post:
       operationId: createPropertyLease
-      summary: Create a lease
+      summary: Argus Enterprise Create a lease
       description: Create a new lease agreement for a property.
       tags:
         - Leases
@@ -365,7 +365,7 @@ paths:
   /properties/{propertyId}/leases/{leaseId}:
     get:
       operationId: getPropertyLease
-      summary: Get a lease
+      summary: Argus Enterprise Get a lease
       description: Retrieve detailed information about a specific lease.
       tags:
         - Leases
@@ -383,7 +383,7 @@ paths:
           description: Lease not found
     put:
       operationId: updatePropertyLease
-      summary: Update a lease
+      summary: Argus Enterprise Update a lease
       description: Update an existing lease agreement.
       tags:
         - Leases
@@ -409,7 +409,7 @@ paths:
           description: Lease not found
     delete:
       operationId: deletePropertyLease
-      summary: Delete a lease
+      summary: Argus Enterprise Delete a lease
       description: Delete a lease record. This action cannot be undone.
       tags:
         - Leases
@@ -424,7 +424,7 @@ paths:
   /portfolios:
     get:
       operationId: listPortfolios
-      summary: List portfolios
+      summary: Argus Enterprise List portfolios
       description: >-
         Retrieve a paginated list of property portfolios accessible to the
         authenticated user.
@@ -444,7 +444,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createPortfolio
-      summary: Create a portfolio
+      summary: Argus Enterprise Create a portfolio
       description: Create a new property portfolio for organizing assets.
       tags:
         - Portfolios
@@ -466,7 +466,7 @@ paths:
   /portfolios/{portfolioId}:
     get:
       operationId: getPortfolio
-      summary: Get a portfolio
+      summary: Argus Enterprise Get a portfolio
       description: Retrieve detailed information about a specific portfolio.
       tags:
         - Portfolios
@@ -483,7 +483,7 @@ paths:
           description: Portfolio not found
     put:
       operationId: updatePortfolio
-      summary: Update a portfolio
+      summary: Argus Enterprise Update a portfolio
       description: Update an existing portfolio.
       tags:
         - Portfolios
@@ -508,7 +508,7 @@ paths:
           description: Portfolio not found
     delete:
       operationId: deletePortfolio
-      summary: Delete a portfolio
+      summary: Argus Enterprise Delete a portfolio
       description: Delete a portfolio. Properties within the portfolio are not deleted.
       tags:
         - Portfolios
@@ -522,7 +522,7 @@ paths:
   /portfolios/{portfolioId}/properties:
     get:
       operationId: listPortfolioProperties
-      summary: List portfolio properties
+      summary: Argus Enterprise List portfolio properties
       description: Retrieve all properties belonging to a specific portfolio.
       tags:
         - Portfolios
@@ -542,7 +542,7 @@ paths:
   /tenants:
     get:
       operationId: listTenants
-      summary: List tenants
+      summary: Argus Enterprise List tenants
       description: >-
         Retrieve a paginated list of tenants across all properties accessible
         to the authenticated user.
@@ -567,7 +567,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createTenant
-      summary: Create a tenant
+      summary: Argus Enterprise Create a tenant
       description: Create a new tenant record.
       tags:
         - Tenants
@@ -589,7 +589,7 @@ paths:
   /tenants/{tenantId}:
     get:
       operationId: getTenant
-      summary: Get a tenant
+      summary: Argus Enterprise Get a tenant
       description: Retrieve detailed information about a specific tenant.
       tags:
         - Tenants
@@ -606,7 +606,7 @@ paths:
           description: Tenant not found
     put:
       operationId: updateTenant
-      summary: Update a tenant
+      summary: Argus Enterprise Update a tenant
       description: Update an existing tenant record.
       tags:
         - Tenants
@@ -632,7 +632,7 @@ paths:
   /valuations:
     get:
       operationId: listValuations
-      summary: List all valuations
+      summary: Argus Enterprise List all valuations
       description: >-
         Retrieve a paginated list of all valuations across properties,
         with optional filtering by valuation date range and methodology.
@@ -674,7 +674,7 @@ paths:
   /reports:
     get:
       operationId: listReports
-      summary: List reports
+      summary: Argus Enterprise List reports
       description: >-
         Retrieve a list of available reports, including property-level,
         portfolio-level, and custom analytics reports.
@@ -705,7 +705,7 @@ paths:
                 $ref: '#/components/schemas/ReportList'
     post:
       operationId: generateReport
-      summary: Generate a report
+      summary: Argus Enterprise Generate a report
       description: >-
         Generate a new analytical report based on specified parameters
         including report type, date range, and target properties or portfolios.
@@ -729,7 +729,7 @@ paths:
   /reports/{reportId}:
     get:
       operationId: getReport
-      summary: Get a report
+      summary: Argus Enterprise Get a report
       description: >-
         Retrieve the status and results of a previously generated report.
       tags:
@@ -748,7 +748,7 @@ paths:
   /reports/{reportId}/download:
     get:
       operationId: downloadReport
-      summary: Download a report
+      summary: Argus Enterprise Download a report
       description: Download the report output file in the specified format.
       tags:
         - Reports
@@ -785,7 +785,7 @@ paths:
   /users:
     get:
       operationId: listUsers
-      summary: List users
+      summary: Argus Enterprise List users
       description: >-
         Retrieve a list of users in the Argus Enterprise instance. Requires
         administrator permissions.
@@ -808,7 +808,7 @@ paths:
   /users/{userId}:
     get:
       operationId: getUser
-      summary: Get a user
+      summary: Argus Enterprise Get a user
       description: Retrieve information about a specific user.
       tags:
         - Users

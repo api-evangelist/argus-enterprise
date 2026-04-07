@@ -32,7 +32,7 @@ paths:
   /subscriptions:
     get:
       operationId: listSubscriptions
-      summary: List webhook subscriptions
+      summary: Argus Enterprise List webhook subscriptions
       description: >-
         Retrieve all webhook subscriptions for the authenticated account,
         including their status and configured event types.
@@ -81,7 +81,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createSubscription
-      summary: Create a webhook subscription
+      summary: Argus Enterprise Create a webhook subscription
       description: >-
         Create a new webhook subscription to receive real-time notifications
         for specified event types. The target URL must be HTTPS and will
@@ -110,7 +110,7 @@ paths:
   /subscriptions/{subscriptionId}:
     get:
       operationId: getSubscription
-      summary: Get a webhook subscription
+      summary: Argus Enterprise Get a webhook subscription
       description: Retrieve detailed information about a specific webhook subscription.
       tags:
         - Subscriptions
@@ -127,7 +127,7 @@ paths:
           description: Subscription not found
     put:
       operationId: updateSubscription
-      summary: Update a webhook subscription
+      summary: Argus Enterprise Update a webhook subscription
       description: Update the configuration of an existing webhook subscription.
       tags:
         - Subscriptions
@@ -152,7 +152,7 @@ paths:
           description: Subscription not found
     delete:
       operationId: deleteSubscription
-      summary: Delete a webhook subscription
+      summary: Argus Enterprise Delete a webhook subscription
       description: >-
         Permanently delete a webhook subscription. No further events will
         be delivered to the configured URL.
@@ -168,7 +168,7 @@ paths:
   /subscriptions/{subscriptionId}/pause:
     post:
       operationId: pauseSubscription
-      summary: Pause a webhook subscription
+      summary: Argus Enterprise Pause a webhook subscription
       description: >-
         Temporarily pause a webhook subscription. Events will be queued
         and can be replayed when the subscription is resumed.
@@ -188,7 +188,7 @@ paths:
   /subscriptions/{subscriptionId}/resume:
     post:
       operationId: resumeSubscription
-      summary: Resume a webhook subscription
+      summary: Argus Enterprise Resume a webhook subscription
       description: >-
         Resume a paused webhook subscription. Any queued events will be
         delivered to the configured URL.
@@ -208,7 +208,7 @@ paths:
   /subscriptions/{subscriptionId}/test:
     post:
       operationId: testSubscription
-      summary: Send a test event
+      summary: Argus Enterprise Send a test event
       description: >-
         Send a test webhook event to the subscription endpoint to verify
         connectivity and payload handling.
@@ -228,7 +228,7 @@ paths:
   /events:
     get:
       operationId: listEvents
-      summary: List webhook events
+      summary: Argus Enterprise List webhook events
       description: >-
         Retrieve a paginated list of webhook events with delivery status,
         filterable by event type, subscription, and date range.
@@ -293,7 +293,7 @@ paths:
   /events/{eventId}:
     get:
       operationId: getEvent
-      summary: Get a webhook event
+      summary: Argus Enterprise Get a webhook event
       description: >-
         Retrieve details about a specific webhook event, including the
         payload, delivery attempts, and response information.
@@ -313,7 +313,7 @@ paths:
   /events/{eventId}/retry:
     post:
       operationId: retryEvent
-      summary: Retry event delivery
+      summary: Argus Enterprise Retry event delivery
       description: Manually retry delivery of a failed webhook event.
       tags:
         - Events
@@ -331,7 +331,7 @@ paths:
   /health:
     get:
       operationId: getWebhookHealth
-      summary: Get service health
+      summary: Argus Enterprise Get service health
       description: >-
         Check the health status of the webhook service, including delivery
         queue depth and recent error rates.
