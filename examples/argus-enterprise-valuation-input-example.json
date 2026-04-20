@@ -1,0 +1,13 @@
+{
+  "valuationDate": "2025-03-15",
+  "methodology": "ComparableSales",
+  "marketValue": 9720143.09,
+  "capRate": 9013123.98,
+  "discountRate": 6158627.43,
+  "terminalCapRate": 1652522.31,
+  "analysisStartDate": "2025-03-15",
+  "analysisEndDate": "2025-03-15",
+  "netOperatingIncome": 151253.02,
+  "currency": "USD",
+  "notes": "value-notes"
+}

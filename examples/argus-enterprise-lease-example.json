@@ -1,0 +1,36 @@
+{
+  "id": "ae-001234",
+  "propertyId": "ae-001234",
+  "tenantId": "ae-001234",
+  "tenantName": "Downtown Office Tower",
+  "unitNumber": "value-unitnumber",
+  "leaseType": "ModifiedGross",
+  "status": "Active",
+  "startDate": "2025-03-15",
+  "endDate": "2025-03-15",
+  "leasedArea": 335440.67,
+  "baseRent": 9313882.1,
+  "rentFrequency": "Quarterly",
+  "rentPerSquareFoot": 3129609.52,
+  "escalationRate": 9782700.76,
+  "escalationType": "CPI",
+  "securityDeposit": 7947614.36,
+  "tenantImprovementAllowance": 2904134.16,
+  "options": [
+    {
+      "optionType": "PurchaseOption",
+      "noticeDate": "2025-03-15",
+      "exerciseDate": "2025-03-15",
+      "termMonths": 56
+    },
+    {
+      "optionType": "Termination",
+      "noticeDate": "2025-03-15",
+      "exerciseDate": "2025-03-15",
+      "termMonths": 879
+    }
+  ],
+  "currency": "USD",
+  "createdAt": "value-createdat",
+  "updatedAt": "2025-03-15"
+}

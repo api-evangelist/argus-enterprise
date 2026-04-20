@@ -1,0 +1,12 @@
+{
+  "data": [
+    "value-data",
+    "value-data"
+  ],
+  "pagination": {
+    "page": 456,
+    "pageSize": 815,
+    "totalItems": 721,
+    "totalPages": 371
+  }
+}

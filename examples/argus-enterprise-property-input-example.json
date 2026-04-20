@@ -1,0 +1,13 @@
+{
+  "name": "Downtown Office Tower",
+  "propertyType": "Mixed-Use",
+  "status": "Active",
+  "address": "100 Main Street, New York, NY 10001",
+  "grossArea": 2237801.33,
+  "netLeasableArea": 1064277.28,
+  "yearBuilt": 960,
+  "numberOfUnits": 982,
+  "purchasePrice": 3238310.2,
+  "purchaseDate": "2025-03-15",
+  "portfolioId": "ae-001234"
+}

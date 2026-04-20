@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-schema/argus-enterprise-health-status-schema.json",
+  "title": "HealthStatus",
+  "description": "HealthStatus schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "Healthy",
+        "Degraded",
+        "Unhealthy"
+      ],
+      "description": "Overall service health"
+    },
+    "queueDepth": {
+      "type": "integer",
+      "description": "Number of events pending delivery"
+    },
+    "recentErrorRate": {
+      "type": "number",
+      "format": "double",
+      "description": "Error rate over the last hour (percentage)"
+    },
+    "uptime": {
+      "type": "string",
+      "description": "Service uptime duration"
+    },
+    "lastChecked": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of last health check"
+    }
+  }
+}

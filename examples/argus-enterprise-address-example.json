@@ -1,0 +1,7 @@
+{
+  "street": "value-street",
+  "city": "value-city",
+  "state": "value-state",
+  "postalCode": "value-postalcode",
+  "country": "value-country"
+}

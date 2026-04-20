@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-schema/argus-enterprise-tenant-schema.json",
+  "title": "Tenant",
+  "description": "Tenant schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique tenant identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Tenant company or individual name"
+    },
+    "industry": {
+      "type": "string",
+      "description": "Tenant industry classification"
+    },
+    "creditRating": {
+      "type": "string",
+      "description": "Tenant credit rating"
+    },
+    "contactName": {
+      "type": "string",
+      "description": "Primary contact name"
+    },
+    "contactEmail": {
+      "type": "string",
+      "format": "email",
+      "description": "Primary contact email"
+    },
+    "contactPhone": {
+      "type": "string",
+      "description": "Primary contact phone"
+    },
+    "address": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "activeLeases": {
+      "type": "integer",
+      "description": "Number of active leases"
+    },
+    "totalLeasedArea": {
+      "type": "number",
+      "format": "double",
+      "description": "Total leased area across all properties"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

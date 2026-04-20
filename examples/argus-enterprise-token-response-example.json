@@ -1,0 +1,6 @@
+{
+  "access_token": "value-access_tok",
+  "token_type": "Bearer",
+  "expires_in": 722,
+  "scope": "value-scope"
+}

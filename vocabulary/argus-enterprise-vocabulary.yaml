@@ -1,0 +1,151 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "ARGUS Enterprise"
+  description: "Vocabulary for the ARGUS Enterprise commercial property valuation and investment management platform by Altus Group."
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - namespace: argusenterprise
+      version: "1.0"
+      baseUrl: "/v1"
+      status: active
+      description: "ARGUS Enterprise Core API"
+
+  resources:
+    - name: properties
+      api: argusenterprise
+      actions: [list, get, create, update, delete]
+      description: "Commercial real estate properties"
+    - name: portfolios
+      api: argusenterprise
+      actions: [list, get, create, update]
+      description: "Real estate portfolios"
+    - name: valuations
+      api: argusenterprise
+      actions: [list, get, create, run]
+      description: "Property valuations and appraisals"
+    - name: leases
+      api: argusenterprise
+      actions: [list, get, create, update, delete]
+      description: "Lease records and terms"
+    - name: tenants
+      api: argusenterprise
+      actions: [list, get, create, update]
+      description: "Tenant profiles"
+    - name: cashflows
+      api: argusenterprise
+      actions: [get, run]
+      description: "Cash flow projections and actuals"
+    - name: reports
+      api: argusenterprise
+      actions: [list, get, run]
+      description: "Asset and portfolio reports"
+
+  actions:
+    - name: list
+      httpMethod: GET
+      pattern: read
+    - name: get
+      httpMethod: GET
+      pattern: read
+    - name: create
+      httpMethod: POST
+      pattern: write
+    - name: update
+      httpMethod: PUT
+      pattern: write
+    - name: delete
+      httpMethod: DELETE
+      pattern: destructive
+    - name: run
+      httpMethod: POST
+      pattern: write
+
+  schemas:
+    core:
+      - name: Property
+        description: "A commercial real estate property asset"
+      - name: Portfolio
+        description: "A collection of real estate assets"
+      - name: Valuation
+        description: "A property valuation result"
+      - name: Lease
+        description: "A lease agreement between property owner and tenant"
+      - name: Tenant
+        description: "A commercial tenant"
+      - name: CashFlow
+        description: "Cash flow projection data"
+
+  authentication:
+    schemes:
+      - type: bearer
+        description: "Bearer token authentication"
+        header: Authorization
+
+capability:
+  workflows:
+    - name: CRE Investment Management
+      file: capabilities/cre-investment-management.yaml
+      description: "Complete commercial real estate investment management workflow"
+      apisCombined: [argusenterprise]
+      toolCount: 6
+      personas: [Asset Manager, Portfolio Manager]
+      domains: [Commercial Real Estate, Valuation, Portfolio Management]
+
+  personas:
+    - id: asset-manager
+      name: Asset Manager
+      description: "Manages individual commercial real estate assets"
+      workflows: [CRE Investment Management]
+    - id: portfolio-manager
+      name: Portfolio Manager
+      description: "Oversees a portfolio of commercial real estate assets"
+      workflows: [CRE Investment Management]
+
+  domains:
+    - name: Commercial Real Estate
+      description: "Commercial property investment and management"
+    - name: Valuation
+      description: "Property valuation and appraisal"
+    - name: Portfolio Management
+      description: "Multi-asset portfolio analytics and reporting"
+
+  namespaces:
+    - name: argusenterprise
+      type: consumed
+      source: shared/argus-enterprise-api.yaml
+    - name: cre-investment-api
+      type: rest-exposed
+      port: 8083
+    - name: cre-investment-mcp
+      type: mcp-exposed
+      port: 9093
+
+  binds:
+    - name: ARGUS_API_KEY
+      description: "ARGUS Enterprise API key"
+      workflows: [CRE Investment Management]
+    - name: ARGUS_BASE_URL
+      description: "ARGUS Enterprise base URL"
+      workflows: [CRE Investment Management]
+
+crossReference:
+  - resource: properties
+    operations: [list, get]
+    workflows: [CRE Investment Management]
+    personas: [Asset Manager, Portfolio Manager]
+  - resource: portfolios
+    operations: [list, get]
+    workflows: [CRE Investment Management]
+    personas: [Portfolio Manager]
+  - resource: valuations
+    operations: [list, get]
+    workflows: [CRE Investment Management]
+    personas: [Asset Manager, Portfolio Manager]
+  - resource: leases
+    operations: [list, get]
+    workflows: [CRE Investment Management]
+    personas: [Asset Manager]

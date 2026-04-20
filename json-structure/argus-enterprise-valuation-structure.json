@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-structure/argus-enterprise-valuation-structure.json",
+  "name": "Argus Enterprise Valuation",
+  "description": "Represents a property valuation in the ARGUS Enterprise platform, capturing DCF analysis, direct capitalization, or comparable sales methodology results including key financial metrics.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique valuation identifier"
+    },
+    "propertyId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Associated property identifier"
+    },
+    "valuationDate": {
+      "type": "date",
+      "description": "Date of valuation"
+    },
+    "methodology": {
+      "type": "string",
+      "enum": [
+        "DCF",
+        "DirectCapitalization",
+        "ComparableSales"
+      ],
+      "description": "Valuation methodology used"
+    },
+    "marketValue": {
+      "type": "double",
+      "description": "Estimated market value"
+    },
+    "capRate": {
+      "type": "double",
+      "description": "Capitalization rate (percentage)"
+    },
+    "discountRate": {
+      "type": "double",
+      "description": "Discount rate used in DCF analysis (percentage)"
+    },
+    "terminalCapRate": {
+      "type": "double",
+      "description": "Terminal capitalization rate for DCF analysis (percentage)"
+    },
+    "analysisStartDate": {
+      "type": "date",
+      "description": "Start date of the analysis period"
+    },
+    "analysisEndDate": {
+      "type": "date",
+      "description": "End date of the analysis period"
+    },
+    "netOperatingIncome": {
+      "type": "double",
+      "description": "Stabilized net operating income"
+    },
+    "netPresentValue": {
+      "type": "double",
+      "description": "Net present value from DCF analysis"
+    },
+    "internalRateOfReturn": {
+      "type": "double",
+      "description": "Internal rate of return (percentage)"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code (ISO 4217)",
+      "default": "USD"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional notes or assumptions"
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "Username of the creator"
+    },
+    "createdAt": {
+      "type": "datetime",
+      "description": "Record creation timestamp"
+    },
+    "updatedAt": {
+      "type": "datetime",
+      "description": "Record last update timestamp"
+    }
+  },
+  "required": [
+    "valuationDate",
+    "methodology"
+  ]
+}

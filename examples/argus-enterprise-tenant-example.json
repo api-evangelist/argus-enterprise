@@ -1,0 +1,14 @@
+{
+  "id": "ae-001234",
+  "name": "Downtown Office Tower",
+  "industry": "value-industry",
+  "creditRating": "value-creditrati",
+  "contactName": "Downtown Office Tower",
+  "contactEmail": "value-contactema",
+  "contactPhone": "value-contactpho",
+  "address": "100 Main Street, New York, NY 10001",
+  "activeLeases": 299,
+  "totalLeasedArea": 5254292.1,
+  "createdAt": "value-createdat",
+  "updatedAt": "2025-03-15"
+}

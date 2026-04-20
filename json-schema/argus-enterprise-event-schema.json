@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-schema/argus-enterprise-event-schema.json",
+  "title": "Event",
+  "description": "Event schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique event identifier"
+    },
+    "subscriptionId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Subscription that received this event"
+    },
+    "eventType": {
+      "type": "string",
+      "description": "Type of event"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Pending",
+        "Delivered",
+        "Failed",
+        "Retrying"
+      ],
+      "description": "Delivery status"
+    },
+    "payload": {
+      "type": "object",
+      "description": "Event payload data",
+      "properties": {
+        "eventId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "eventType": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "resourceType": {
+          "type": "string",
+          "description": "Type of resource that triggered the event"
+        },
+        "resourceId": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Identifier of the resource"
+        },
+        "data": {
+          "type": "object",
+          "description": "Resource data at the time of the event"
+        }
+      }
+    },
+    "deliveryAttempts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/DeliveryAttempt"
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

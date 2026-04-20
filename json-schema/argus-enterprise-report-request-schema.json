@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-schema/argus-enterprise-report-request-schema.json",
+  "title": "ReportRequest",
+  "description": "ReportRequest schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "reportType": {
+      "type": "string",
+      "enum": [
+        "PropertySummary",
+        "PortfolioSummary",
+        "CashFlowAnalysis",
+        "ValuationSummary",
+        "LeaseExpiry",
+        "TenantRoll",
+        "CapitalExpenditure"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "propertyIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "description": "Properties to include in the report"
+    },
+    "portfolioIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "description": "Portfolios to include in the report"
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "endDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "outputFormat": {
+      "type": "string",
+      "enum": [
+        "PDF",
+        "Excel",
+        "CSV"
+      ],
+      "default": "PDF"
+    }
+  },
+  "required": [
+    "reportType"
+  ]
+}

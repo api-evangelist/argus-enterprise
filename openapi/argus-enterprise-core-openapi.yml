@@ -18,39 +18,39 @@ externalDocs:
   description: Argus Enterprise API Documentation
   url: https://docs.argusenterprise.com/api/v1
 servers:
-  - url: https://api.argusenterprise.com/v1
-    description: Argus Enterprise Production
+- url: https://api.argusenterprise.com/v1
+  description: Argus Enterprise Production
 tags:
-  - name: Authentication
-    description: OAuth 2.0 token operations for API access
-  - name: Cash Flows
-    description: Cash flow projections and analysis
-  - name: Leases
-    description: Lease agreements and terms
-  - name: Portfolios
-    description: Organize and manage property portfolios
-  - name: Properties
-    description: Manage commercial real estate properties and assets
-  - name: Reports
-    description: Generate and retrieve analytical reports
-  - name: Tenants
-    description: Tenant records and contact information
-  - name: Users
-    description: User management and access control
-  - name: Valuations
-    description: Property valuations and appraisal data
+- name: Authentication
+  description: OAuth 2.0 token operations for API access
+- name: Cash Flows
+  description: Cash flow projections and analysis
+- name: Leases
+  description: Lease agreements and terms
+- name: Portfolios
+  description: Organize and manage property portfolios
+- name: Properties
+  description: Manage commercial real estate properties and assets
+- name: Reports
+  description: Generate and retrieve analytical reports
+- name: Tenants
+  description: Tenant records and contact information
+- name: Users
+  description: User management and access control
+- name: Valuations
+  description: Property valuations and appraisal data
 security:
-  - bearerAuth: []
+- bearerAuth: []
 paths:
   /auth/token:
     post:
       operationId: getAccessToken
-      summary: Argus Enterprise Obtain access token
+      summary: Argus Enterprise Obtain Access Token
       description: >-
         Authenticate using OAuth 2.0 Client Credentials grant to obtain a
         bearer token for accessing Argus Enterprise APIs.
       tags:
-        - Authentication
+      - Authentication
       requestBody:
         required: true
         content:
@@ -58,14 +58,14 @@ paths:
             schema:
               type: object
               required:
-                - grant_type
-                - client_id
-                - client_secret
+              - grant_type
+              - client_id
+              - client_secret
               properties:
                 grant_type:
                   type: string
                   enum:
-                    - client_credentials
+                  - client_credentials
                   description: OAuth 2.0 grant type
                 client_id:
                   type: string
@@ -83,48 +83,51 @@ paths:
         '401':
           description: Invalid credentials
       security: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /properties:
     get:
       operationId: listProperties
-      summary: Argus Enterprise List properties
+      summary: Argus Enterprise List Properties
       description: >-
         Retrieve a paginated list of commercial real estate properties
         accessible to the authenticated user, with optional filtering by
         portfolio, property type, and status.
       tags:
-        - Properties
+      - Properties
       parameters:
-        - $ref: '#/components/parameters/pageParam'
-        - $ref: '#/components/parameters/pageSizeParam'
-        - name: portfolioId
-          in: query
-          description: Filter by portfolio identifier
-          schema:
-            type: string
-            format: uuid
-        - name: propertyType
-          in: query
-          description: Filter by property type
-          schema:
-            type: string
-            enum:
-              - Office
-              - Retail
-              - Industrial
-              - Multifamily
-              - Mixed-Use
-              - Hotel
-              - Land
-              - Other
-        - name: status
-          in: query
-          description: Filter by property status
-          schema:
-            type: string
-            enum:
-              - Active
-              - Pending
-              - Archived
+      - $ref: '#/components/parameters/pageParam'
+      - $ref: '#/components/parameters/pageSizeParam'
+      - name: portfolioId
+        in: query
+        description: Filter by portfolio identifier
+        schema:
+          type: string
+          format: uuid
+      - name: propertyType
+        in: query
+        description: Filter by property type
+        schema:
+          type: string
+          enum:
+          - Office
+          - Retail
+          - Industrial
+          - Multifamily
+          - Mixed-Use
+          - Hotel
+          - Land
+          - Other
+      - name: status
+        in: query
+        description: Filter by property status
+        schema:
+          type: string
+          enum:
+          - Active
+          - Pending
+          - Archived
       responses:
         '200':
           description: Properties retrieved successfully
@@ -136,12 +139,15 @@ paths:
           description: Unauthorized
         '403':
           description: Forbidden
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createProperty
-      summary: Argus Enterprise Create a property
+      summary: Argus Enterprise Create a Property
       description: Create a new commercial real estate property record in the system.
       tags:
-        - Properties
+      - Properties
       requestBody:
         required: true
         content:
@@ -159,15 +165,18 @@ paths:
           description: Invalid property data
         '401':
           description: Unauthorized
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /properties/{propertyId}:
     get:
       operationId: getProperty
-      summary: Argus Enterprise Get a property
+      summary: Argus Enterprise Get a Property
       description: Retrieve detailed information about a specific property.
       tags:
-        - Properties
+      - Properties
       parameters:
-        - $ref: '#/components/parameters/propertyId'
+      - $ref: '#/components/parameters/propertyId'
       responses:
         '200':
           description: Property retrieved successfully
@@ -177,14 +186,17 @@ paths:
                 $ref: '#/components/schemas/Property'
         '404':
           description: Property not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: updateProperty
-      summary: Argus Enterprise Update a property
+      summary: Argus Enterprise Update a Property
       description: Update an existing property record with new information.
       tags:
-        - Properties
+      - Properties
       parameters:
-        - $ref: '#/components/parameters/propertyId'
+      - $ref: '#/components/parameters/propertyId'
       requestBody:
         required: true
         content:
@@ -202,32 +214,38 @@ paths:
           description: Invalid property data
         '404':
           description: Property not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deleteProperty
-      summary: Argus Enterprise Delete a property
+      summary: Argus Enterprise Delete a Property
       description: Delete a property record. This action cannot be undone.
       tags:
-        - Properties
+      - Properties
       parameters:
-        - $ref: '#/components/parameters/propertyId'
+      - $ref: '#/components/parameters/propertyId'
       responses:
         '204':
           description: Property deleted successfully
         '404':
           description: Property not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /properties/{propertyId}/valuations:
     get:
       operationId: listPropertyValuations
-      summary: Argus Enterprise List property valuations
+      summary: Argus Enterprise List Property Valuations
       description: >-
         Retrieve all valuations associated with a specific property, including
         DCF analysis results, capitalization rates, and market value estimates.
       tags:
-        - Valuations
+      - Valuations
       parameters:
-        - $ref: '#/components/parameters/propertyId'
-        - $ref: '#/components/parameters/pageParam'
-        - $ref: '#/components/parameters/pageSizeParam'
+      - $ref: '#/components/parameters/propertyId'
+      - $ref: '#/components/parameters/pageParam'
+      - $ref: '#/components/parameters/pageSizeParam'
       responses:
         '200':
           description: Valuations retrieved successfully
@@ -237,16 +255,19 @@ paths:
                 $ref: '#/components/schemas/ValuationList'
         '404':
           description: Property not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createPropertyValuation
-      summary: Argus Enterprise Create a property valuation
+      summary: Argus Enterprise Create a Property Valuation
       description: >-
         Create a new valuation for a property using DCF analysis, direct
         capitalization, or comparable sales methodology.
       tags:
-        - Valuations
+      - Valuations
       parameters:
-        - $ref: '#/components/parameters/propertyId'
+      - $ref: '#/components/parameters/propertyId'
       requestBody:
         required: true
         content:
@@ -264,39 +285,42 @@ paths:
           description: Invalid valuation data
         '404':
           description: Property not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /properties/{propertyId}/cashflows:
     get:
       operationId: listPropertyCashFlows
-      summary: Argus Enterprise List property cash flows
+      summary: Argus Enterprise List Property Cash Flows
       description: >-
         Retrieve projected cash flows for a property over the analysis period,
         including income streams, operating expenses, capital expenditures,
         and net operating income.
       tags:
-        - Cash Flows
+      - Cash Flows
       parameters:
-        - $ref: '#/components/parameters/propertyId'
-        - name: startDate
-          in: query
-          description: Start date for cash flow projections
-          schema:
-            type: string
-            format: date
-        - name: endDate
-          in: query
-          description: End date for cash flow projections
-          schema:
-            type: string
-            format: date
-        - name: frequency
-          in: query
-          description: Cash flow reporting frequency
-          schema:
-            type: string
-            enum:
-              - Monthly
-              - Quarterly
-              - Annual
+      - $ref: '#/components/parameters/propertyId'
+      - name: startDate
+        in: query
+        description: Start date for cash flow projections
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        description: End date for cash flow projections
+        schema:
+          type: string
+          format: date
+      - name: frequency
+        in: query
+        description: Cash flow reporting frequency
+        schema:
+          type: string
+          enum:
+          - Monthly
+          - Quarterly
+          - Annual
       responses:
         '200':
           description: Cash flows retrieved successfully
@@ -306,28 +330,31 @@ paths:
                 $ref: '#/components/schemas/CashFlowProjection'
         '404':
           description: Property not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /properties/{propertyId}/leases:
     get:
       operationId: listPropertyLeases
-      summary: Argus Enterprise List property leases
+      summary: Argus Enterprise List Property Leases
       description: >-
         Retrieve all lease agreements associated with a property, including
         tenant details, rent schedules, and lease terms.
       tags:
-        - Leases
+      - Leases
       parameters:
-        - $ref: '#/components/parameters/propertyId'
-        - $ref: '#/components/parameters/pageParam'
-        - $ref: '#/components/parameters/pageSizeParam'
-        - name: status
-          in: query
-          description: Filter by lease status
-          schema:
-            type: string
-            enum:
-              - Active
-              - Expired
-              - Pending
+      - $ref: '#/components/parameters/propertyId'
+      - $ref: '#/components/parameters/pageParam'
+      - $ref: '#/components/parameters/pageSizeParam'
+      - name: status
+        in: query
+        description: Filter by lease status
+        schema:
+          type: string
+          enum:
+          - Active
+          - Expired
+          - Pending
       responses:
         '200':
           description: Leases retrieved successfully
@@ -337,14 +364,17 @@ paths:
                 $ref: '#/components/schemas/LeaseList'
         '404':
           description: Property not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createPropertyLease
-      summary: Argus Enterprise Create a lease
+      summary: Argus Enterprise Create a Lease
       description: Create a new lease agreement for a property.
       tags:
-        - Leases
+      - Leases
       parameters:
-        - $ref: '#/components/parameters/propertyId'
+      - $ref: '#/components/parameters/propertyId'
       requestBody:
         required: true
         content:
@@ -362,16 +392,19 @@ paths:
           description: Invalid lease data
         '404':
           description: Property not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /properties/{propertyId}/leases/{leaseId}:
     get:
       operationId: getPropertyLease
-      summary: Argus Enterprise Get a lease
+      summary: Argus Enterprise Get a Lease
       description: Retrieve detailed information about a specific lease.
       tags:
-        - Leases
+      - Leases
       parameters:
-        - $ref: '#/components/parameters/propertyId'
-        - $ref: '#/components/parameters/leaseId'
+      - $ref: '#/components/parameters/propertyId'
+      - $ref: '#/components/parameters/leaseId'
       responses:
         '200':
           description: Lease retrieved successfully
@@ -381,15 +414,18 @@ paths:
                 $ref: '#/components/schemas/Lease'
         '404':
           description: Lease not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: updatePropertyLease
-      summary: Argus Enterprise Update a lease
+      summary: Argus Enterprise Update a Lease
       description: Update an existing lease agreement.
       tags:
-        - Leases
+      - Leases
       parameters:
-        - $ref: '#/components/parameters/propertyId'
-        - $ref: '#/components/parameters/leaseId'
+      - $ref: '#/components/parameters/propertyId'
+      - $ref: '#/components/parameters/leaseId'
       requestBody:
         required: true
         content:
@@ -407,32 +443,38 @@ paths:
           description: Invalid lease data
         '404':
           description: Lease not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deletePropertyLease
-      summary: Argus Enterprise Delete a lease
+      summary: Argus Enterprise Delete a Lease
       description: Delete a lease record. This action cannot be undone.
       tags:
-        - Leases
+      - Leases
       parameters:
-        - $ref: '#/components/parameters/propertyId'
-        - $ref: '#/components/parameters/leaseId'
+      - $ref: '#/components/parameters/propertyId'
+      - $ref: '#/components/parameters/leaseId'
       responses:
         '204':
           description: Lease deleted successfully
         '404':
           description: Lease not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /portfolios:
     get:
       operationId: listPortfolios
-      summary: Argus Enterprise List portfolios
+      summary: Argus Enterprise List Portfolios
       description: >-
         Retrieve a paginated list of property portfolios accessible to the
         authenticated user.
       tags:
-        - Portfolios
+      - Portfolios
       parameters:
-        - $ref: '#/components/parameters/pageParam'
-        - $ref: '#/components/parameters/pageSizeParam'
+      - $ref: '#/components/parameters/pageParam'
+      - $ref: '#/components/parameters/pageSizeParam'
       responses:
         '200':
           description: Portfolios retrieved successfully
@@ -442,12 +484,15 @@ paths:
                 $ref: '#/components/schemas/PortfolioList'
         '401':
           description: Unauthorized
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createPortfolio
-      summary: Argus Enterprise Create a portfolio
+      summary: Argus Enterprise Create a Portfolio
       description: Create a new property portfolio for organizing assets.
       tags:
-        - Portfolios
+      - Portfolios
       requestBody:
         required: true
         content:
@@ -463,15 +508,18 @@ paths:
                 $ref: '#/components/schemas/Portfolio'
         '400':
           description: Invalid portfolio data
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /portfolios/{portfolioId}:
     get:
       operationId: getPortfolio
-      summary: Argus Enterprise Get a portfolio
+      summary: Argus Enterprise Get a Portfolio
       description: Retrieve detailed information about a specific portfolio.
       tags:
-        - Portfolios
+      - Portfolios
       parameters:
-        - $ref: '#/components/parameters/portfolioId'
+      - $ref: '#/components/parameters/portfolioId'
       responses:
         '200':
           description: Portfolio retrieved successfully
@@ -481,14 +529,17 @@ paths:
                 $ref: '#/components/schemas/Portfolio'
         '404':
           description: Portfolio not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: updatePortfolio
-      summary: Argus Enterprise Update a portfolio
+      summary: Argus Enterprise Update a Portfolio
       description: Update an existing portfolio.
       tags:
-        - Portfolios
+      - Portfolios
       parameters:
-        - $ref: '#/components/parameters/portfolioId'
+      - $ref: '#/components/parameters/portfolioId'
       requestBody:
         required: true
         content:
@@ -506,30 +557,36 @@ paths:
           description: Invalid portfolio data
         '404':
           description: Portfolio not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deletePortfolio
-      summary: Argus Enterprise Delete a portfolio
+      summary: Argus Enterprise Delete a Portfolio
       description: Delete a portfolio. Properties within the portfolio are not deleted.
       tags:
-        - Portfolios
+      - Portfolios
       parameters:
-        - $ref: '#/components/parameters/portfolioId'
+      - $ref: '#/components/parameters/portfolioId'
       responses:
         '204':
           description: Portfolio deleted successfully
         '404':
           description: Portfolio not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /portfolios/{portfolioId}/properties:
     get:
       operationId: listPortfolioProperties
-      summary: Argus Enterprise List portfolio properties
+      summary: Argus Enterprise List Portfolio Properties
       description: Retrieve all properties belonging to a specific portfolio.
       tags:
-        - Portfolios
+      - Portfolios
       parameters:
-        - $ref: '#/components/parameters/portfolioId'
-        - $ref: '#/components/parameters/pageParam'
-        - $ref: '#/components/parameters/pageSizeParam'
+      - $ref: '#/components/parameters/portfolioId'
+      - $ref: '#/components/parameters/pageParam'
+      - $ref: '#/components/parameters/pageSizeParam'
       responses:
         '200':
           description: Properties retrieved successfully
@@ -539,23 +596,26 @@ paths:
                 $ref: '#/components/schemas/PropertyList'
         '404':
           description: Portfolio not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /tenants:
     get:
       operationId: listTenants
-      summary: Argus Enterprise List tenants
+      summary: Argus Enterprise List Tenants
       description: >-
         Retrieve a paginated list of tenants across all properties accessible
         to the authenticated user.
       tags:
-        - Tenants
+      - Tenants
       parameters:
-        - $ref: '#/components/parameters/pageParam'
-        - $ref: '#/components/parameters/pageSizeParam'
-        - name: search
-          in: query
-          description: Search tenants by name
-          schema:
-            type: string
+      - $ref: '#/components/parameters/pageParam'
+      - $ref: '#/components/parameters/pageSizeParam'
+      - name: search
+        in: query
+        description: Search tenants by name
+        schema:
+          type: string
       responses:
         '200':
           description: Tenants retrieved successfully
@@ -565,12 +625,15 @@ paths:
                 $ref: '#/components/schemas/TenantList'
         '401':
           description: Unauthorized
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createTenant
-      summary: Argus Enterprise Create a tenant
+      summary: Argus Enterprise Create a Tenant
       description: Create a new tenant record.
       tags:
-        - Tenants
+      - Tenants
       requestBody:
         required: true
         content:
@@ -586,15 +649,18 @@ paths:
                 $ref: '#/components/schemas/Tenant'
         '400':
           description: Invalid tenant data
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /tenants/{tenantId}:
     get:
       operationId: getTenant
-      summary: Argus Enterprise Get a tenant
+      summary: Argus Enterprise Get a Tenant
       description: Retrieve detailed information about a specific tenant.
       tags:
-        - Tenants
+      - Tenants
       parameters:
-        - $ref: '#/components/parameters/tenantId'
+      - $ref: '#/components/parameters/tenantId'
       responses:
         '200':
           description: Tenant retrieved successfully
@@ -604,14 +670,17 @@ paths:
                 $ref: '#/components/schemas/Tenant'
         '404':
           description: Tenant not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: updateTenant
-      summary: Argus Enterprise Update a tenant
+      summary: Argus Enterprise Update a Tenant
       description: Update an existing tenant record.
       tags:
-        - Tenants
+      - Tenants
       parameters:
-        - $ref: '#/components/parameters/tenantId'
+      - $ref: '#/components/parameters/tenantId'
       requestBody:
         required: true
         content:
@@ -629,39 +698,42 @@ paths:
           description: Invalid tenant data
         '404':
           description: Tenant not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /valuations:
     get:
       operationId: listValuations
-      summary: Argus Enterprise List all valuations
+      summary: Argus Enterprise List All Valuations
       description: >-
         Retrieve a paginated list of all valuations across properties,
         with optional filtering by valuation date range and methodology.
       tags:
-        - Valuations
+      - Valuations
       parameters:
-        - $ref: '#/components/parameters/pageParam'
-        - $ref: '#/components/parameters/pageSizeParam'
-        - name: methodology
-          in: query
-          description: Filter by valuation methodology
-          schema:
-            type: string
-            enum:
-              - DCF
-              - DirectCapitalization
-              - ComparableSales
-        - name: valuationDateFrom
-          in: query
-          description: Filter valuations from this date
-          schema:
-            type: string
-            format: date
-        - name: valuationDateTo
-          in: query
-          description: Filter valuations up to this date
-          schema:
-            type: string
-            format: date
+      - $ref: '#/components/parameters/pageParam'
+      - $ref: '#/components/parameters/pageSizeParam'
+      - name: methodology
+        in: query
+        description: Filter by valuation methodology
+        schema:
+          type: string
+          enum:
+          - DCF
+          - DirectCapitalization
+          - ComparableSales
+      - name: valuationDateFrom
+        in: query
+        description: Filter valuations from this date
+        schema:
+          type: string
+          format: date
+      - name: valuationDateTo
+        in: query
+        description: Filter valuations up to this date
+        schema:
+          type: string
+          format: date
       responses:
         '200':
           description: Valuations retrieved successfully
@@ -671,31 +743,34 @@ paths:
                 $ref: '#/components/schemas/ValuationList'
         '401':
           description: Unauthorized
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /reports:
     get:
       operationId: listReports
-      summary: Argus Enterprise List reports
+      summary: Argus Enterprise List Reports
       description: >-
         Retrieve a list of available reports, including property-level,
         portfolio-level, and custom analytics reports.
       tags:
-        - Reports
+      - Reports
       parameters:
-        - $ref: '#/components/parameters/pageParam'
-        - $ref: '#/components/parameters/pageSizeParam'
-        - name: reportType
-          in: query
-          description: Filter by report type
-          schema:
-            type: string
-            enum:
-              - PropertySummary
-              - PortfolioSummary
-              - CashFlowAnalysis
-              - ValuationSummary
-              - LeaseExpiry
-              - TenantRoll
-              - CapitalExpenditure
+      - $ref: '#/components/parameters/pageParam'
+      - $ref: '#/components/parameters/pageSizeParam'
+      - name: reportType
+        in: query
+        description: Filter by report type
+        schema:
+          type: string
+          enum:
+          - PropertySummary
+          - PortfolioSummary
+          - CashFlowAnalysis
+          - ValuationSummary
+          - LeaseExpiry
+          - TenantRoll
+          - CapitalExpenditure
       responses:
         '200':
           description: Reports retrieved successfully
@@ -703,14 +778,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReportList'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: generateReport
-      summary: Argus Enterprise Generate a report
+      summary: Argus Enterprise Generate a Report
       description: >-
         Generate a new analytical report based on specified parameters
         including report type, date range, and target properties or portfolios.
       tags:
-        - Reports
+      - Reports
       requestBody:
         required: true
         content:
@@ -726,16 +804,19 @@ paths:
                 $ref: '#/components/schemas/Report'
         '400':
           description: Invalid report request
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /reports/{reportId}:
     get:
       operationId: getReport
-      summary: Argus Enterprise Get a report
+      summary: Argus Enterprise Get a Report
       description: >-
         Retrieve the status and results of a previously generated report.
       tags:
-        - Reports
+      - Reports
       parameters:
-        - $ref: '#/components/parameters/reportId'
+      - $ref: '#/components/parameters/reportId'
       responses:
         '200':
           description: Report retrieved successfully
@@ -745,25 +826,28 @@ paths:
                 $ref: '#/components/schemas/Report'
         '404':
           description: Report not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /reports/{reportId}/download:
     get:
       operationId: downloadReport
-      summary: Argus Enterprise Download a report
+      summary: Argus Enterprise Download a Report
       description: Download the report output file in the specified format.
       tags:
-        - Reports
+      - Reports
       parameters:
-        - $ref: '#/components/parameters/reportId'
-        - name: format
-          in: query
-          description: Output format for the report
-          schema:
-            type: string
-            enum:
-              - PDF
-              - Excel
-              - CSV
-            default: PDF
+      - $ref: '#/components/parameters/reportId'
+      - name: format
+        in: query
+        description: Output format for the report
+        schema:
+          type: string
+          enum:
+          - PDF
+          - Excel
+          - CSV
+          default: PDF
       responses:
         '200':
           description: Report file
@@ -782,18 +866,21 @@ paths:
                 format: binary
         '404':
           description: Report not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /users:
     get:
       operationId: listUsers
-      summary: Argus Enterprise List users
+      summary: Argus Enterprise List Users
       description: >-
         Retrieve a list of users in the Argus Enterprise instance. Requires
         administrator permissions.
       tags:
-        - Users
+      - Users
       parameters:
-        - $ref: '#/components/parameters/pageParam'
-        - $ref: '#/components/parameters/pageSizeParam'
+      - $ref: '#/components/parameters/pageParam'
+      - $ref: '#/components/parameters/pageSizeParam'
       responses:
         '200':
           description: Users retrieved successfully
@@ -805,15 +892,18 @@ paths:
           description: Unauthorized
         '403':
           description: Forbidden - requires admin access
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /users/{userId}:
     get:
       operationId: getUser
-      summary: Argus Enterprise Get a user
+      summary: Argus Enterprise Get a User
       description: Retrieve information about a specific user.
       tags:
-        - Users
+      - Users
       parameters:
-        - $ref: '#/components/parameters/userId'
+      - $ref: '#/components/parameters/userId'
       responses:
         '200':
           description: User retrieved successfully
@@ -823,6 +913,9 @@ paths:
                 $ref: '#/components/schemas/User'
         '404':
           description: User not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     bearerAuth:
@@ -908,7 +1001,7 @@ components:
         token_type:
           type: string
           enum:
-            - Bearer
+          - Bearer
         expires_in:
           type: integer
           description: Token validity duration in seconds
@@ -928,21 +1021,21 @@ components:
         propertyType:
           type: string
           enum:
-            - Office
-            - Retail
-            - Industrial
-            - Multifamily
-            - Mixed-Use
-            - Hotel
-            - Land
-            - Other
+          - Office
+          - Retail
+          - Industrial
+          - Multifamily
+          - Mixed-Use
+          - Hotel
+          - Land
+          - Other
           description: Type of commercial real estate property
         status:
           type: string
           enum:
-            - Active
-            - Pending
-            - Archived
+          - Active
+          - Pending
+          - Archived
           description: Current property status
         address:
           $ref: '#/components/schemas/Address'
@@ -991,9 +1084,9 @@ components:
     PropertyInput:
       type: object
       required:
-        - name
-        - propertyType
-        - address
+      - name
+      - propertyType
+      - address
       properties:
         name:
           type: string
@@ -1001,20 +1094,20 @@ components:
         propertyType:
           type: string
           enum:
-            - Office
-            - Retail
-            - Industrial
-            - Multifamily
-            - Mixed-Use
-            - Hotel
-            - Land
-            - Other
+          - Office
+          - Retail
+          - Industrial
+          - Multifamily
+          - Mixed-Use
+          - Hotel
+          - Land
+          - Other
         status:
           type: string
           enum:
-            - Active
-            - Pending
-            - Archived
+          - Active
+          - Pending
+          - Archived
           default: Active
         address:
           $ref: '#/components/schemas/Address'
@@ -1080,10 +1173,10 @@ components:
         strategy:
           type: string
           enum:
-            - Core
-            - CorePlus
-            - ValueAdd
-            - Opportunistic
+          - Core
+          - CorePlus
+          - ValueAdd
+          - Opportunistic
           description: Investment strategy classification
         totalProperties:
           type: integer
@@ -1105,7 +1198,7 @@ components:
     PortfolioInput:
       type: object
       required:
-        - name
+      - name
       properties:
         name:
           type: string
@@ -1114,10 +1207,10 @@ components:
         strategy:
           type: string
           enum:
-            - Core
-            - CorePlus
-            - ValueAdd
-            - Opportunistic
+          - Core
+          - CorePlus
+          - ValueAdd
+          - Opportunistic
         currency:
           type: string
           default: USD
@@ -1148,9 +1241,9 @@ components:
         methodology:
           type: string
           enum:
-            - DCF
-            - DirectCapitalization
-            - ComparableSales
+          - DCF
+          - DirectCapitalization
+          - ComparableSales
           description: Valuation methodology used
         marketValue:
           type: number
@@ -1206,8 +1299,8 @@ components:
     ValuationInput:
       type: object
       required:
-        - valuationDate
-        - methodology
+      - valuationDate
+      - methodology
       properties:
         valuationDate:
           type: string
@@ -1215,9 +1308,9 @@ components:
         methodology:
           type: string
           enum:
-            - DCF
-            - DirectCapitalization
-            - ComparableSales
+          - DCF
+          - DirectCapitalization
+          - ComparableSales
         marketValue:
           type: number
           format: double
@@ -1271,9 +1364,9 @@ components:
         frequency:
           type: string
           enum:
-            - Monthly
-            - Quarterly
-            - Annual
+          - Monthly
+          - Quarterly
+          - Annual
           description: Cash flow reporting frequency
         currency:
           type: string
@@ -1403,19 +1496,19 @@ components:
         leaseType:
           type: string
           enum:
-            - Gross
-            - Net
-            - DoubleNet
-            - TripleNet
-            - ModifiedGross
-            - PercentageRent
+          - Gross
+          - Net
+          - DoubleNet
+          - TripleNet
+          - ModifiedGross
+          - PercentageRent
           description: Type of lease
         status:
           type: string
           enum:
-            - Active
-            - Expired
-            - Pending
+          - Active
+          - Expired
+          - Pending
           description: Current lease status
         startDate:
           type: string
@@ -1436,9 +1529,9 @@ components:
         rentFrequency:
           type: string
           enum:
-            - Monthly
-            - Quarterly
-            - Annual
+          - Monthly
+          - Quarterly
+          - Annual
           description: Rent payment frequency
         rentPerSquareFoot:
           type: number
@@ -1451,10 +1544,10 @@ components:
         escalationType:
           type: string
           enum:
-            - Fixed
-            - CPI
-            - MarketReset
-            - StepUp
+          - Fixed
+          - CPI
+          - MarketReset
+          - StepUp
           description: Type of rent escalation
         securityDeposit:
           type: number
@@ -1481,11 +1574,11 @@ components:
     LeaseInput:
       type: object
       required:
-        - tenantId
-        - leaseType
-        - startDate
-        - endDate
-        - baseRent
+      - tenantId
+      - leaseType
+      - startDate
+      - endDate
+      - baseRent
       properties:
         tenantId:
           type: string
@@ -1495,18 +1588,18 @@ components:
         leaseType:
           type: string
           enum:
-            - Gross
-            - Net
-            - DoubleNet
-            - TripleNet
-            - ModifiedGross
-            - PercentageRent
+          - Gross
+          - Net
+          - DoubleNet
+          - TripleNet
+          - ModifiedGross
+          - PercentageRent
         status:
           type: string
           enum:
-            - Active
-            - Expired
-            - Pending
+          - Active
+          - Expired
+          - Pending
           default: Active
         startDate:
           type: string
@@ -1523,9 +1616,9 @@ components:
         rentFrequency:
           type: string
           enum:
-            - Monthly
-            - Quarterly
-            - Annual
+          - Monthly
+          - Quarterly
+          - Annual
           default: Monthly
         escalationRate:
           type: number
@@ -1533,10 +1626,10 @@ components:
         escalationType:
           type: string
           enum:
-            - Fixed
-            - CPI
-            - MarketReset
-            - StepUp
+          - Fixed
+          - CPI
+          - MarketReset
+          - StepUp
         securityDeposit:
           type: number
           format: double
@@ -1552,10 +1645,10 @@ components:
         optionType:
           type: string
           enum:
-            - Renewal
-            - Expansion
-            - Termination
-            - PurchaseOption
+          - Renewal
+          - Expansion
+          - Termination
+          - PurchaseOption
           description: Type of lease option
         noticeDate:
           type: string
@@ -1624,7 +1717,7 @@ components:
     TenantInput:
       type: object
       required:
-        - name
+      - name
       properties:
         name:
           type: string
@@ -1660,13 +1753,13 @@ components:
         reportType:
           type: string
           enum:
-            - PropertySummary
-            - PortfolioSummary
-            - CashFlowAnalysis
-            - ValuationSummary
-            - LeaseExpiry
-            - TenantRoll
-            - CapitalExpenditure
+          - PropertySummary
+          - PortfolioSummary
+          - CashFlowAnalysis
+          - ValuationSummary
+          - LeaseExpiry
+          - TenantRoll
+          - CapitalExpenditure
           description: Type of report
         title:
           type: string
@@ -1674,10 +1767,10 @@ components:
         status:
           type: string
           enum:
-            - Pending
-            - Processing
-            - Completed
-            - Failed
+          - Pending
+          - Processing
+          - Completed
+          - Failed
           description: Report generation status
         generatedAt:
           type: string
@@ -1696,18 +1789,18 @@ components:
     ReportRequest:
       type: object
       required:
-        - reportType
+      - reportType
       properties:
         reportType:
           type: string
           enum:
-            - PropertySummary
-            - PortfolioSummary
-            - CashFlowAnalysis
-            - ValuationSummary
-            - LeaseExpiry
-            - TenantRoll
-            - CapitalExpenditure
+          - PropertySummary
+          - PortfolioSummary
+          - CashFlowAnalysis
+          - ValuationSummary
+          - LeaseExpiry
+          - TenantRoll
+          - CapitalExpenditure
         title:
           type: string
         propertyIds:
@@ -1731,9 +1824,9 @@ components:
         outputFormat:
           type: string
           enum:
-            - PDF
-            - Excel
-            - CSV
+          - PDF
+          - Excel
+          - CSV
           default: PDF
     ReportList:
       type: object
@@ -1767,9 +1860,9 @@ components:
         role:
           type: string
           enum:
-            - Admin
-            - Analyst
-            - Viewer
+          - Admin
+          - Analyst
+          - Viewer
           description: User role
         lastLogin:
           type: string

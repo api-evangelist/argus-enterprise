@@ -1,0 +1,15 @@
+{
+  "reportType": "LeaseExpiry",
+  "title": "value-title",
+  "propertyIds": [
+    "ae-001234",
+    "ae-001234"
+  ],
+  "portfolioIds": [
+    "ae-001234",
+    "ae-001234"
+  ],
+  "startDate": "2025-03-15",
+  "endDate": "2025-03-15",
+  "outputFormat": "PDF"
+}

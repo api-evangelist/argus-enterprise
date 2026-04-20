@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-structure/argus-enterprise-cash-flow-summary-structure.json",
+  "name": "CashFlowSummary",
+  "description": "CashFlowSummary schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "totalRevenue": {
+      "type": "double",
+      "description": "Total revenue over the analysis period"
+    },
+    "totalExpenses": {
+      "type": "double",
+      "description": "Total expenses over the analysis period"
+    },
+    "totalNOI": {
+      "type": "double",
+      "description": "Total net operating income"
+    },
+    "totalCapEx": {
+      "type": "double",
+      "description": "Total capital expenditures"
+    },
+    "averageOccupancy": {
+      "type": "double",
+      "description": "Average occupancy rate (percentage)"
+    },
+    "irr": {
+      "type": "double",
+      "description": "Internal rate of return (percentage)"
+    },
+    "npv": {
+      "type": "double",
+      "description": "Net present value"
+    }
+  }
+}

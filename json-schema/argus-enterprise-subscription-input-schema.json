@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-schema/argus-enterprise-subscription-input-schema.json",
+  "title": "SubscriptionInput",
+  "description": "SubscriptionInput schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "HTTPS endpoint URL for webhook delivery"
+    },
+    "eventTypes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "property.created",
+          "property.updated",
+          "property.deleted",
+          "valuation.created",
+          "valuation.updated",
+          "lease.created",
+          "lease.updated",
+          "lease.expired",
+          "portfolio.created",
+          "portfolio.updated",
+          "portfolio.deleted",
+          "report.completed",
+          "report.failed",
+          "cashflow.updated",
+          "tenant.created",
+          "tenant.updated"
+        ]
+      },
+      "minItems": 1
+    },
+    "description": {
+      "type": "string"
+    },
+    "retryPolicy": {
+      "$ref": "#/components/schemas/RetryPolicy"
+    }
+  },
+  "required": [
+    "url",
+    "eventTypes"
+  ]
+}

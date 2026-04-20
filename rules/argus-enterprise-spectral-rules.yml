@@ -1,0 +1,123 @@
+# ARGUS Enterprise API Spectral Ruleset
+
+rules:
+
+  info-title-prefix:
+    description: API title should start with "Argus Enterprise"
+    severity: warn
+    given: "$.info.title"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Argus Enterprise"
+
+  info-description-required:
+    description: API must have a description
+    severity: error
+    given: "$.info"
+    then:
+      field: description
+      function: truthy
+
+  operation-summary-required:
+    description: Every operation must have a summary
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: summary
+      function: truthy
+
+  operation-summary-prefix:
+    description: Summaries should start with "Argus Enterprise"
+    severity: warn
+    given: "$.paths[*][get,post,put,delete,patch].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Argus Enterprise"
+
+  operation-operationid-required:
+    description: Every operation must have an operationId
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: operationId
+      function: truthy
+
+  operation-tags-required:
+    description: Operations must be tagged
+    severity: warn
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: tags
+      function: truthy
+
+  paths-versioned:
+    description: Paths should be versioned
+    severity: info
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/v[0-9]"
+
+  paths-kebab-case:
+    description: Path segments should use kebab-case
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/v[0-9]+)?(/[a-z0-9{}-]+)*$"
+
+  response-success-required:
+    description: Every operation must define responses
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch].responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          minProperties: 1
+
+  response-description-required:
+    description: All responses must have descriptions
+    severity: warn
+    given: "$.paths[*][get,post,put,delete,patch].responses[*]"
+    then:
+      field: description
+      function: truthy
+
+  security-definitions-required:
+    description: API must define security schemes
+    severity: warn
+    given: "$"
+    then:
+      field: components
+      function: truthy
+
+  schema-properties-description:
+    description: Schema properties should have descriptions
+    severity: info
+    given: "$.components.schemas[*].properties[*]"
+    then:
+      field: description
+      function: truthy
+
+  no-empty-summaries:
+    description: Summaries must not be empty
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: ".+"
+
+  parameter-description-required:
+    description: Parameters should have descriptions
+    severity: warn
+    given: "$.paths[*][get,post,put,delete,patch].parameters[*]"
+    then:
+      field: description
+      function: truthy

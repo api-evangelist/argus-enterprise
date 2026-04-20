@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-schema/argus-enterprise-test-result-schema.json",
+  "title": "TestResult",
+  "description": "TestResult schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "success": {
+      "type": "boolean",
+      "description": "Whether the test event was delivered successfully"
+    },
+    "responseCode": {
+      "type": "integer",
+      "description": "HTTP response code from the endpoint"
+    },
+    "responseTime": {
+      "type": "integer",
+      "description": "Response time in milliseconds"
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "Error details if the test failed"
+    }
+  }
+}

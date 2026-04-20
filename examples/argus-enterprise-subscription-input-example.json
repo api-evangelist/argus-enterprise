@@ -1,0 +1,9 @@
+{
+  "url": "value-url",
+  "eventTypes": [
+    "portfolio.deleted",
+    "tenant.created"
+  ],
+  "description": "value-descriptio",
+  "retryPolicy": "value-retrypolic"
+}

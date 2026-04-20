@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-structure/argus-enterprise-portfolio-input-structure.json",
+  "name": "PortfolioInput",
+  "description": "PortfolioInput schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "strategy": {
+      "type": "string",
+      "enum": [
+        "Core",
+        "CorePlus",
+        "ValueAdd",
+        "Opportunistic"
+      ]
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

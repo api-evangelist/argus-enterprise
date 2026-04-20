@@ -1,0 +1,16 @@
+{
+  "tenantId": "ae-001234",
+  "unitNumber": "value-unitnumber",
+  "leaseType": "Gross",
+  "status": "Active",
+  "startDate": "2025-03-15",
+  "endDate": "2025-03-15",
+  "leasedArea": 7445806.67,
+  "baseRent": 5081349.26,
+  "rentFrequency": "Monthly",
+  "escalationRate": 1805826.45,
+  "escalationType": "MarketReset",
+  "securityDeposit": 1054853.88,
+  "tenantImprovementAllowance": 9487129.41,
+  "currency": "USD"
+}

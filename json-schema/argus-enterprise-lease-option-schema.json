@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-schema/argus-enterprise-lease-option-schema.json",
+  "title": "LeaseOption",
+  "description": "LeaseOption schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "optionType": {
+      "type": "string",
+      "enum": [
+        "Renewal",
+        "Expansion",
+        "Termination",
+        "PurchaseOption"
+      ],
+      "description": "Type of lease option"
+    },
+    "noticeDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date by which notice must be given"
+    },
+    "exerciseDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the option can be exercised"
+    },
+    "termMonths": {
+      "type": "integer",
+      "description": "Duration of option term in months"
+    },
+    "rentAdjustment": {
+      "type": "string",
+      "description": "Description of rent adjustment terms"
+    }
+  }
+}

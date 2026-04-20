@@ -1,0 +1,23 @@
+{
+  "id": "ae-001234",
+  "name": "Downtown Office Tower",
+  "propertyType": "Multifamily",
+  "status": "Pending",
+  "address": {
+    "street": "value-street",
+    "city": "value-city",
+    "state": "value-state",
+    "postalCode": "value-postalcode"
+  },
+  "grossArea": 6669059.8,
+  "netLeasableArea": 911331.21,
+  "yearBuilt": 210,
+  "numberOfUnits": 841,
+  "purchasePrice": 6647764.06,
+  "purchaseDate": "2025-03-15",
+  "currentMarketValue": 6773691.41,
+  "occupancyRate": 3170454.26,
+  "portfolioId": "ae-001234",
+  "createdAt": "value-createdat",
+  "updatedAt": "2025-03-15"
+}

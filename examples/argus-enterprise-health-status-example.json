@@ -1,0 +1,7 @@
+{
+  "status": "Unhealthy",
+  "queueDepth": 37,
+  "recentErrorRate": 7461753.04,
+  "uptime": "value-uptime",
+  "lastChecked": "value-lastchecke"
+}

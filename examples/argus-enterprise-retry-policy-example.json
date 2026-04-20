@@ -1,0 +1,5 @@
+{
+  "maxRetries": 5,
+  "retryIntervalSeconds": 60,
+  "backoffMultiplier": 2.0
+}

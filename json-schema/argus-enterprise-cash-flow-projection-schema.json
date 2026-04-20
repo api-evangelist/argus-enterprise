@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-schema/argus-enterprise-cash-flow-projection-schema.json",
+  "title": "CashFlowProjection",
+  "description": "CashFlowProjection schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "propertyId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Associated property identifier"
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Projection start date"
+    },
+    "endDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Projection end date"
+    },
+    "frequency": {
+      "type": "string",
+      "enum": [
+        "Monthly",
+        "Quarterly",
+        "Annual"
+      ],
+      "description": "Cash flow reporting frequency"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code (ISO 4217)"
+    },
+    "periods": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CashFlowPeriod"
+      },
+      "description": "Individual cash flow periods"
+    },
+    "summary": {
+      "$ref": "#/components/schemas/CashFlowSummary"
+    }
+  }
+}

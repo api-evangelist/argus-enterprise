@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-schema/argus-enterprise-report-schema.json",
+  "title": "Report",
+  "description": "Report schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique report identifier"
+    },
+    "reportType": {
+      "type": "string",
+      "enum": [
+        "PropertySummary",
+        "PortfolioSummary",
+        "CashFlowAnalysis",
+        "ValuationSummary",
+        "LeaseExpiry",
+        "TenantRoll",
+        "CapitalExpenditure"
+      ],
+      "description": "Type of report"
+    },
+    "title": {
+      "type": "string",
+      "description": "Report title"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Pending",
+        "Processing",
+        "Completed",
+        "Failed"
+      ],
+      "description": "Report generation status"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Report generation timestamp"
+    },
+    "downloadUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to download the completed report"
+    },
+    "parameters": {
+      "type": "object",
+      "description": "Parameters used to generate the report"
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "Username of the report creator"
+    }
+  }
+}

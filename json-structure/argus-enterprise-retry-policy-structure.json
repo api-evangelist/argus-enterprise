@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-structure/argus-enterprise-retry-policy-structure.json",
+  "name": "RetryPolicy",
+  "description": "RetryPolicy schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "maxRetries": {
+      "type": "int32",
+      "minimum": 0,
+      "maximum": 10,
+      "default": 5,
+      "description": "Maximum number of delivery retry attempts"
+    },
+    "retryIntervalSeconds": {
+      "type": "int32",
+      "minimum": 10,
+      "maximum": 3600,
+      "default": 60,
+      "description": "Initial interval between retries in seconds"
+    },
+    "backoffMultiplier": {
+      "type": "double",
+      "minimum": 1.0,
+      "maximum": 5.0,
+      "default": 2.0,
+      "description": "Exponential backoff multiplier"
+    }
+  }
+}

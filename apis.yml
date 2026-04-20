@@ -1,93 +1,144 @@
-name: Argus Enterprise
+aid: argus-enterprise
+name: ARGUS Enterprise
 description: >-
-  APIs and integration points for the ARGUS Enterprise commercial real estate investment
-  management and valuation platform by Altus Group.
-image: https://www.altusgroup.com/wp-content/uploads/argus-logo.png
-url: https://www.argusenterprise.com
-created: '2024-01-15'
-modified: '2026-03-04'
-specificationVersion: '0.18'
+  ARGUS Enterprise is the industry-standard commercial property valuation and cash flow
+  forecasting software by Altus Group, now integrated into the ARGUS Intelligence Platform.
+  It provides lease-by-lease cash flow modeling, property valuations using DCF and yield-based
+  methods, budgeting and forecasting, scenario testing, and 40+ industry-standard reports.
+  Trusted by real estate investors, portfolio managers, valuation professionals, and asset
+  managers worldwide and taught at 200+ universities.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Business Intelligence
+  - Altus Group
+  - Asset Management
+  - Cash Flow Modeling
   - Commercial Real Estate
-  - Enterprise Software
+  - Portfolio Management
   - Valuation
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/apis.yml
+created: '2024-01-15'
+modified: '2026-04-19'
+specificationVersion: '0.19'
 apis:
-  - name: Argus Enterprise Core API
+  - aid: argus-enterprise:argus-enterprise-core
+    name: ARGUS Enterprise Core API
     description: >-
-      Core REST API for the ARGUS Enterprise platform providing programmatic
-      access to commercial real estate investment management capabilities
-      including property data, portfolio management, cash flow projections,
-      valuations, tenants, leases, and reporting.
-    image: https://www.altusgroup.com/wp-content/uploads/argus-logo.png
+      Core REST API for the ARGUS Enterprise platform providing programmatic access to
+      commercial real estate investment management capabilities including property data,
+      portfolio management, cash flow projections, valuations, tenants, leases, and reporting.
+      Authentication via bearer token.
+    humanURL: https://www.altusgroup.com/solutions/argus-enterprise/
     baseURL: https://api.argusenterprise.com/v1
-    humanURL: https://www.argusenterprise.com/api
-    properties:
-      - type: Documentation
-        url: https://docs.argusenterprise.com/api/v1
-      - type: OpenAPI
-        url: https://api.argusenterprise.com/v1/openapi.json
-      - type: Authentication
-        url: https://docs.argusenterprise.com/api/authentication
-      - type: OpenAPI
-        url: openapi/argus-enterprise-core-openapi.yml
-    contact:
-      - FN: Argus API Support
-        email: api-support@argusenterprise.com
-        url: https://support.argusenterprise.com
     tags:
       - Analytics
-      - Data Management
-      - Enterprise
+      - Cash Flow
       - Leases
-      - Portfolios
+      - Portfolio Management
       - Properties
       - Reporting
       - Valuations
-  - name: Argus Webhook API
-    description: >-
-      Webhook service for the ARGUS Enterprise platform enabling real-time
-      event notifications for property changes, valuation updates, lease
-      events, portfolio modifications, and report completions.
-    image: https://www.altusgroup.com/wp-content/uploads/argus-logo.png
-    baseURL: https://webhooks.argusenterprise.com/v1
-    humanURL: https://www.argusenterprise.com/webhooks
     properties:
       - type: Documentation
-        url: https://docs.argusenterprise.com/webhooks
-      - type: Schema
-        url: https://webhooks.argusenterprise.com/v1/schema
+        url: https://www.altusgroup.com/argus/downloads/argus-enterprise/
       - type: OpenAPI
-        url: openapi/argus-enterprise-webhooks-openapi.yml
+        url: openapi/argus-enterprise-core-openapi.yml
+      - type: Authentication
+        url: https://www.altusgroup.com/support/start-using-argus-intelligence/
+  - aid: argus-enterprise:argus-enterprise-webhooks
+    name: ARGUS Enterprise Webhook API
+    description: >-
+      Webhook service for the ARGUS Enterprise platform enabling real-time event notifications
+      for property changes, valuation updates, lease events, portfolio modifications, and
+      report completions.
+    humanURL: https://www.altusgroup.com/solutions/argus-enterprise/
     tags:
       - Events
       - Real-Time
       - Webhooks
+    properties:
+      - type: Documentation
+        url: https://www.altusgroup.com/argus/downloads/argus-enterprise/
+      - type: OpenAPI
+        url: openapi/argus-enterprise-webhooks-openapi.yml
 common:
-  - type: Portal
-    url: https://www.argusenterprise.com/api
-  - type: Documentation
-    url: https://docs.argusenterprise.com
-  - type: Authentication
-    url: https://docs.argusenterprise.com/api/authentication
-  - type: Support
-    url: https://support.argusenterprise.com
-  - type: Terms of Service
-    url: https://www.altusgroup.com/terms-of-use
-  - type: Privacy Policy
-    url: https://www.altusgroup.com/privacy-policy
   - type: Website
-    url: https://www.altusgroup.com
-  - type: JSON-LD
+    url: https://www.altusgroup.com/solutions/argus-enterprise/
+  - type: Documentation
+    url: https://www.altusgroup.com/argus/downloads/argus-enterprise/
+  - type: GettingStarted
+    url: https://www.altusgroup.com/support/start-using-argus-intelligence/
+  - type: Portal
+    url: https://cloud.altusplatform.com/login
+  - type: Support
+    url: https://www.altusgroup.com/support/
+  - type: TermsOfService
+    url: https://www.altusgroup.com/terms-of-use/
+  - type: PrivacyPolicy
+    url: https://www.altusgroup.com/privacy-policy/
+  - type: Training
+    url: https://www.altusgroup.com/argus/training/
+  - type: Security
+    url: https://www.altusgroup.com/security/
+  - type: JSONLD
     url: json-ld/argus-enterprise-context.jsonld
-  - type: JSONSchema
-    url: json-schema/argus-enterprise-property-schema.json
-  - type: JSONSchema
-    url: json-schema/argus-enterprise-valuation-schema.json
-  - type: JSONSchema
-    url: json-schema/argus-enterprise-lease-schema.json
-  - type: JSONSchema
-    url: json-schema/argus-enterprise-portfolio-schema.json
+  - type: SpectralRules
+    url: rules/argus-enterprise-spectral-rules.yml
+  - type: NaftikoCapability
+    url: capabilities/cre-investment-management.yaml
+  - type: Vocabulary
+    url: vocabulary/argus-enterprise-vocabulary.yaml
+  - type: Features
+    data:
+      - name: Lease-by-Lease Cash Flow Modeling
+        description: Model cash flows at the individual lease level across all property types including office, industrial, retail, and multifamily.
+      - name: Multiple Valuation Methods
+        description: Support for DCF, cap rate, hardcore, term and reversion, and initial yield valuation methodologies.
+      - name: Budgeting and Forecasting
+        description: Create property-level budgets with budget-to-actual tracking and prior-year comparison.
+      - name: Scenario Analysis
+        description: Run what-if scenarios to assess best-case and worst-case outcomes for investment decisions.
+      - name: Sensitivity Analysis
+        description: Stress-test yield rates, growth assumptions, and modeling parameters.
+      - name: Portfolio Reporting
+        description: 40+ industry-standard asset and portfolio reports for investor and management communication.
+      - name: Market Leasing Assumptions
+        description: Configure market leasing assumptions for new, vacant, and renewing spaces.
+      - name: Debt Modeling
+        description: Model leveraged and unleveraged returns with debt tranche configuration.
+      - name: ISO 27001 Certified
+        description: ARGUS Enterprise is ISO/IEC 27001:2022 certified and SOC 2 Type II audited.
+      - name: ARGUS Intelligence Integration
+        description: Integrated with ARGUS Intelligence Platform for portfolio-level dashboards and benchmarking.
+  - type: UseCases
+    data:
+      - name: Asset Valuation
+        description: Produce DCF and yield-based valuations for commercial real estate appraisals and acquisitions.
+      - name: Portfolio Performance Monitoring
+        description: Monitor portfolio-level performance against budgets and prior periods with dashboards.
+      - name: Acquisition Underwriting
+        description: Underwrite new property acquisitions with detailed cash flow and return analysis.
+      - name: Asset Management Budgeting
+        description: Create and track property-level budgets against actual performance for active assets.
+      - name: Investor Reporting
+        description: Generate standardized reports for investors, lenders, and boards on asset and portfolio performance.
+      - name: Disposition Analysis
+        description: Model disposition scenarios and exit valuations for hold/sell decisions.
+  - type: Integrations
+    data:
+      - name: ARGUS Intelligence Platform
+        description: Native integration with ARGUS Intelligence for portfolio dashboards, analytics, and benchmarking.
+      - name: ARGUS Developer
+        description: Integration with ARGUS Developer for development-to-stabilization lifecycle management.
+      - name: Yardi
+        description: Import property management and lease data from Yardi into ARGUS Enterprise models.
+      - name: MRI Software
+        description: Integrate MRI property management data into cash flow models.
+      - name: JLL
+        description: JLL uses ARGUS Enterprise for asset management and portfolio analytics globally.
+      - name: CBRE
+        description: CBRE uses ARGUS Enterprise for valuation and investment analysis services.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

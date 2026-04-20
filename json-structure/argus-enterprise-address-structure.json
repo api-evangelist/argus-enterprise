@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-structure/argus-enterprise-address-structure.json",
+  "name": "Address",
+  "description": "Address schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "street": {
+      "type": "string",
+      "description": "Street address"
+    },
+    "city": {
+      "type": "string",
+      "description": "City"
+    },
+    "state": {
+      "type": "string",
+      "description": "State or province"
+    },
+    "postalCode": {
+      "type": "string",
+      "description": "Postal or ZIP code"
+    },
+    "country": {
+      "type": "string",
+      "description": "Country code (ISO 3166-1 alpha-2)"
+    }
+  }
+}

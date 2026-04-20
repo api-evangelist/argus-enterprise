@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-schema/argus-enterprise-property-input-schema.json",
+  "title": "PropertyInput",
+  "description": "PropertyInput schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Property name"
+    },
+    "propertyType": {
+      "type": "string",
+      "enum": [
+        "Office",
+        "Retail",
+        "Industrial",
+        "Multifamily",
+        "Mixed-Use",
+        "Hotel",
+        "Land",
+        "Other"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "Pending",
+        "Archived"
+      ],
+      "default": "Active"
+    },
+    "address": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "grossArea": {
+      "type": "number",
+      "format": "double"
+    },
+    "netLeasableArea": {
+      "type": "number",
+      "format": "double"
+    },
+    "yearBuilt": {
+      "type": "integer"
+    },
+    "numberOfUnits": {
+      "type": "integer"
+    },
+    "purchasePrice": {
+      "type": "number",
+      "format": "double"
+    },
+    "purchaseDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "portfolioId": {
+      "type": "string",
+      "format": "uuid"
+    }
+  },
+  "required": [
+    "name",
+    "propertyType",
+    "address"
+  ]
+}

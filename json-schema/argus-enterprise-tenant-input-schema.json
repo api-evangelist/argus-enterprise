@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-schema/argus-enterprise-tenant-input-schema.json",
+  "title": "TenantInput",
+  "description": "TenantInput schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "industry": {
+      "type": "string"
+    },
+    "creditRating": {
+      "type": "string"
+    },
+    "contactName": {
+      "type": "string"
+    },
+    "contactEmail": {
+      "type": "string",
+      "format": "email"
+    },
+    "contactPhone": {
+      "type": "string"
+    },
+    "address": {
+      "$ref": "#/components/schemas/Address"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

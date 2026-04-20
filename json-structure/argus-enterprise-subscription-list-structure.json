@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-structure/argus-enterprise-subscription-list-structure.json",
+  "name": "SubscriptionList",
+  "description": "SubscriptionList schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Subscription"
+      }
+    }
+  }
+}

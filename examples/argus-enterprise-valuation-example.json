@@ -1,0 +1,20 @@
+{
+  "id": "ae-001234",
+  "propertyId": "ae-001234",
+  "valuationDate": "2025-03-15",
+  "methodology": "ComparableSales",
+  "marketValue": 4448623.37,
+  "capRate": 573736.05,
+  "discountRate": 5500315.5,
+  "terminalCapRate": 5049460.63,
+  "analysisStartDate": "2025-03-15",
+  "analysisEndDate": "2025-03-15",
+  "netOperatingIncome": 8826662.02,
+  "netPresentValue": 9207688.8,
+  "internalRateOfReturn": 7049626.78,
+  "currency": "USD",
+  "notes": "value-notes",
+  "createdBy": "value-createdby",
+  "createdAt": "value-createdat",
+  "updatedAt": "2025-03-15"
+}

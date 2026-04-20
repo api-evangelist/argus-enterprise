@@ -1,0 +1,14 @@
+{
+  "id": "ae-001234",
+  "url": "value-url",
+  "eventTypes": [
+    "report.failed",
+    "portfolio.deleted"
+  ],
+  "status": "Paused",
+  "secret": "value-secret",
+  "description": "value-descriptio",
+  "retryPolicy": "value-retrypolic",
+  "createdAt": "value-createdat",
+  "updatedAt": "2025-03-15"
+}

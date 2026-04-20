@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-structure/argus-enterprise-event-list-structure.json",
+  "name": "EventList",
+  "description": "EventList schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Event"
+      }
+    },
+    "pagination": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "int32"
+        },
+        "pageSize": {
+          "type": "int32"
+        },
+        "totalItems": {
+          "type": "int32"
+        },
+        "totalPages": {
+          "type": "int32"
+        }
+      }
+    }
+  }
+}

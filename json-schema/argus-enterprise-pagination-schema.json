@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-schema/argus-enterprise-pagination-schema.json",
+  "title": "Pagination",
+  "description": "Pagination schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "page": {
+      "type": "integer",
+      "description": "Current page number"
+    },
+    "pageSize": {
+      "type": "integer",
+      "description": "Number of items per page"
+    },
+    "totalItems": {
+      "type": "integer",
+      "description": "Total number of items"
+    },
+    "totalPages": {
+      "type": "integer",
+      "description": "Total number of pages"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "periodStart": "value-periodstar",
+  "periodEnd": "value-periodend",
+  "grossPotentialRent": 9286116.11,
+  "vacancyLoss": 4802749.74,
+  "effectiveGrossIncome": 222976.98,
+  "otherIncome": 5966245.24,
+  "totalRevenue": 4390096.5,
+  "operatingExpenses": 301842.78,
+  "netOperatingIncome": 5078498.88,
+  "capitalExpenditures": 6857318.34,
+  "tenantImprovements": 9100619.28,
+  "leasingCommissions": 6012511.17,
+  "debtService": 795553.17,
+  "cashFlowBeforeDebt": 9764153.99,
+  "cashFlowAfterDebt": 9370593.24
+}

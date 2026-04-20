@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-structure/argus-enterprise-valuation-input-structure.json",
+  "name": "ValuationInput",
+  "description": "ValuationInput schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "valuationDate": {
+      "type": "date"
+    },
+    "methodology": {
+      "type": "string",
+      "enum": [
+        "DCF",
+        "DirectCapitalization",
+        "ComparableSales"
+      ]
+    },
+    "marketValue": {
+      "type": "double"
+    },
+    "capRate": {
+      "type": "double"
+    },
+    "discountRate": {
+      "type": "double"
+    },
+    "terminalCapRate": {
+      "type": "double"
+    },
+    "analysisStartDate": {
+      "type": "date"
+    },
+    "analysisEndDate": {
+      "type": "date"
+    },
+    "netOperatingIncome": {
+      "type": "double"
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "valuationDate",
+    "methodology"
+  ]
+}

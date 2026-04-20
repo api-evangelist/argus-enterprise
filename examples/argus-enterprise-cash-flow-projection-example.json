@@ -1,0 +1,12 @@
+{
+  "propertyId": "ae-001234",
+  "startDate": "2025-03-15",
+  "endDate": "2025-03-15",
+  "frequency": "Quarterly",
+  "currency": "USD",
+  "periods": [
+    "value-periods",
+    "value-periods"
+  ],
+  "summary": "value-summary"
+}

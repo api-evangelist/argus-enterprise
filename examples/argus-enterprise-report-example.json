@@ -1,0 +1,10 @@
+{
+  "id": "ae-001234",
+  "reportType": "ValuationSummary",
+  "title": "value-title",
+  "status": "Failed",
+  "generatedAt": "0.065",
+  "downloadUrl": "value-downloadur",
+  "parameters": {},
+  "createdBy": "value-createdby"
+}

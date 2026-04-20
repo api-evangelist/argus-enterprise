@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-structure/argus-enterprise-lease-input-structure.json",
+  "name": "LeaseInput",
+  "description": "LeaseInput schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "tenantId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "unitNumber": {
+      "type": "string"
+    },
+    "leaseType": {
+      "type": "string",
+      "enum": [
+        "Gross",
+        "Net",
+        "DoubleNet",
+        "TripleNet",
+        "ModifiedGross",
+        "PercentageRent"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "Expired",
+        "Pending"
+      ],
+      "default": "Active"
+    },
+    "startDate": {
+      "type": "date"
+    },
+    "endDate": {
+      "type": "date"
+    },
+    "leasedArea": {
+      "type": "double"
+    },
+    "baseRent": {
+      "type": "double"
+    },
+    "rentFrequency": {
+      "type": "string",
+      "enum": [
+        "Monthly",
+        "Quarterly",
+        "Annual"
+      ],
+      "default": "Monthly"
+    },
+    "escalationRate": {
+      "type": "double"
+    },
+    "escalationType": {
+      "type": "string",
+      "enum": [
+        "Fixed",
+        "CPI",
+        "MarketReset",
+        "StepUp"
+      ]
+    },
+    "securityDeposit": {
+      "type": "double"
+    },
+    "tenantImprovementAllowance": {
+      "type": "double"
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD"
+    }
+  },
+  "required": [
+    "tenantId",
+    "leaseType",
+    "startDate",
+    "endDate",
+    "baseRent"
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-schema/argus-enterprise-subscription-schema.json",
+  "title": "Subscription",
+  "description": "Subscription schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique subscription identifier"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "HTTPS endpoint URL for webhook delivery"
+    },
+    "eventTypes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "property.created",
+          "property.updated",
+          "property.deleted",
+          "valuation.created",
+          "valuation.updated",
+          "lease.created",
+          "lease.updated",
+          "lease.expired",
+          "portfolio.created",
+          "portfolio.updated",
+          "portfolio.deleted",
+          "report.completed",
+          "report.failed",
+          "cashflow.updated",
+          "tenant.created",
+          "tenant.updated"
+        ]
+      },
+      "description": "Event types this subscription receives"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "Paused",
+        "Disabled"
+      ],
+      "description": "Current subscription status"
+    },
+    "secret": {
+      "type": "string",
+      "description": "Shared secret for HMAC-SHA256 signature verification of webhook payloads (only returned on creation)"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the subscription"
+    },
+    "retryPolicy": {
+      "$ref": "#/components/schemas/RetryPolicy"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

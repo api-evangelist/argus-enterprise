@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-structure/argus-enterprise-user-structure.json",
+  "name": "User",
+  "description": "User schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique user identifier"
+    },
+    "username": {
+      "type": "string",
+      "description": "Username"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "User email address"
+    },
+    "firstName": {
+      "type": "string",
+      "description": "First name"
+    },
+    "lastName": {
+      "type": "string",
+      "description": "Last name"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "Admin",
+        "Analyst",
+        "Viewer"
+      ],
+      "description": "User role"
+    },
+    "lastLogin": {
+      "type": "datetime",
+      "description": "Last login timestamp"
+    },
+    "active": {
+      "type": "boolean",
+      "description": "Whether the user account is active"
+    },
+    "createdAt": {
+      "type": "datetime"
+    }
+  }
+}

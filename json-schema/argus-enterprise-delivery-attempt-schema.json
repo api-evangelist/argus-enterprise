@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-schema/argus-enterprise-delivery-attempt-schema.json",
+  "title": "DeliveryAttempt",
+  "description": "DeliveryAttempt schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "attemptNumber": {
+      "type": "integer",
+      "description": "Sequential attempt number"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the delivery was attempted"
+    },
+    "responseCode": {
+      "type": "integer",
+      "description": "HTTP response status code from the endpoint"
+    },
+    "responseTime": {
+      "type": "integer",
+      "description": "Response time in milliseconds"
+    },
+    "success": {
+      "type": "boolean",
+      "description": "Whether the delivery was successful"
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "Error message if delivery failed"
+    }
+  }
+}

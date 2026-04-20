@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-schema/argus-enterprise-cash-flow-period-schema.json",
+  "title": "CashFlowPeriod",
+  "description": "CashFlowPeriod schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "periodStart": {
+      "type": "string",
+      "format": "date",
+      "description": "Period start date"
+    },
+    "periodEnd": {
+      "type": "string",
+      "format": "date",
+      "description": "Period end date"
+    },
+    "grossPotentialRent": {
+      "type": "number",
+      "format": "double",
+      "description": "Gross potential rental income"
+    },
+    "vacancyLoss": {
+      "type": "number",
+      "format": "double",
+      "description": "Vacancy and credit loss"
+    },
+    "effectiveGrossIncome": {
+      "type": "number",
+      "format": "double",
+      "description": "Effective gross income after vacancy"
+    },
+    "otherIncome": {
+      "type": "number",
+      "format": "double",
+      "description": "Other income (parking, storage, etc.)"
+    },
+    "totalRevenue": {
+      "type": "number",
+      "format": "double",
+      "description": "Total revenue"
+    },
+    "operatingExpenses": {
+      "type": "number",
+      "format": "double",
+      "description": "Total operating expenses"
+    },
+    "netOperatingIncome": {
+      "type": "number",
+      "format": "double",
+      "description": "Net operating income (NOI)"
+    },
+    "capitalExpenditures": {
+      "type": "number",
+      "format": "double",
+      "description": "Capital expenditure costs"
+    },
+    "tenantImprovements": {
+      "type": "number",
+      "format": "double",
+      "description": "Tenant improvement costs"
+    },
+    "leasingCommissions": {
+      "type": "number",
+      "format": "double",
+      "description": "Leasing commission costs"
+    },
+    "debtService": {
+      "type": "number",
+      "format": "double",
+      "description": "Debt service payments"
+    },
+    "cashFlowBeforeDebt": {
+      "type": "number",
+      "format": "double",
+      "description": "Cash flow before debt service"
+    },
+    "cashFlowAfterDebt": {
+      "type": "number",
+      "format": "double",
+      "description": "Cash flow after debt service"
+    }
+  }
+}

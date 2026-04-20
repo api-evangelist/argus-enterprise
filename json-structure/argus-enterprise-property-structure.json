@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-structure/argus-enterprise-property-structure.json",
+  "name": "Argus Enterprise Property",
+  "description": "Represents a commercial real estate property in the ARGUS Enterprise platform, including physical attributes, financial metrics, and portfolio association.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique property identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Property name"
+    },
+    "propertyType": {
+      "type": "string",
+      "enum": [
+        "Office",
+        "Retail",
+        "Industrial",
+        "Multifamily",
+        "Mixed-Use",
+        "Hotel",
+        "Land",
+        "Other"
+      ],
+      "description": "Type of commercial real estate property"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "Pending",
+        "Archived"
+      ],
+      "description": "Current property status"
+    },
+    "address": {
+      "type": "object",
+      "description": "Property physical address",
+      "properties": {
+        "street": {
+          "type": "string",
+          "description": "Street address"
+        },
+        "city": {
+          "type": "string",
+          "description": "City"
+        },
+        "state": {
+          "type": "string",
+          "description": "State or province"
+        },
+        "postalCode": {
+          "type": "string",
+          "description": "Postal or ZIP code"
+        },
+        "country": {
+          "type": "string",
+          "description": "Country code (ISO 3166-1 alpha-2)"
+        }
+      }
+    },
+    "grossArea": {
+      "type": "double",
+      "description": "Gross leasable area in square feet"
+    },
+    "netLeasableArea": {
+      "type": "double",
+      "description": "Net leasable area in square feet"
+    },
+    "yearBuilt": {
+      "type": "int32",
+      "description": "Year the property was built"
+    },
+    "numberOfUnits": {
+      "type": "int32",
+      "description": "Number of leasable units or suites"
+    },
+    "purchasePrice": {
+      "type": "double",
+      "description": "Original purchase price"
+    },
+    "purchaseDate": {
+      "type": "date",
+      "description": "Date of property acquisition"
+    },
+    "currentMarketValue": {
+      "type": "double",
+      "description": "Current estimated market value"
+    },
+    "occupancyRate": {
+      "type": "double",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Current occupancy rate as a percentage"
+    },
+    "portfolioId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Identifier of the parent portfolio"
+    },
+    "createdAt": {
+      "type": "datetime",
+      "description": "Record creation timestamp"
+    },
+    "updatedAt": {
+      "type": "datetime",
+      "description": "Record last update timestamp"
+    }
+  },
+  "required": [
+    "name",
+    "propertyType",
+    "address"
+  ]
+}

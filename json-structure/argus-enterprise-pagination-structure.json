@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-structure/argus-enterprise-pagination-structure.json",
+  "name": "Pagination",
+  "description": "Pagination schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "page": {
+      "type": "int32",
+      "description": "Current page number"
+    },
+    "pageSize": {
+      "type": "int32",
+      "description": "Number of items per page"
+    },
+    "totalItems": {
+      "type": "int32",
+      "description": "Total number of items"
+    },
+    "totalPages": {
+      "type": "int32",
+      "description": "Total number of pages"
+    }
+  }
+}

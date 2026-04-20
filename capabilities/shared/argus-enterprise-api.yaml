@@ -1,0 +1,139 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "ARGUS Enterprise API"
+  description: "ARGUS Enterprise REST API for commercial real estate investment management, property valuation, cash flow modeling, and portfolio analytics."
+  tags:
+    - ARGUS Enterprise
+    - Commercial Real Estate
+    - Valuation
+    - Portfolio Management
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      ARGUS_API_KEY: ARGUS_API_KEY
+      ARGUS_BASE_URL: ARGUS_BASE_URL
+
+capability:
+  consumes:
+    - type: http
+      namespace: argusenterprise
+      baseUri: "{{env.ARGUS_BASE_URL}}/v1"
+      description: "ARGUS Enterprise Core API"
+      authentication:
+        type: apikey
+        key: Authorization
+        value: "Bearer {{env.ARGUS_API_KEY}}"
+        placement: header
+      resources:
+        - name: properties
+          path: /properties
+          description: "Commercial real estate properties"
+          operations:
+            - name: list-properties
+              method: GET
+              description: "List all properties"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-property
+              method: GET
+              description: "Get property details"
+              inputParameters:
+                - name: id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Property ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: portfolios
+          path: /portfolios
+          description: "Real estate portfolios"
+          operations:
+            - name: list-portfolios
+              method: GET
+              description: "List all portfolios"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: valuations
+          path: /valuations
+          description: "Property valuations"
+          operations:
+            - name: list-valuations
+              method: GET
+              description: "List valuations"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: leases
+          path: /leases
+          description: "Lease records"
+          operations:
+            - name: list-leases
+              method: GET
+              description: "List leases"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: cashflows
+          path: /properties/{id}/cashflows
+          description: "Property cash flow projections"
+          operations:
+            - name: get-cashflows
+              method: GET
+              description: "Get cash flow projections"
+              inputParameters:
+                - name: id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Property ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8104
+      namespace: argus-enterprise-rest
+      resources:
+        - path: /v1/properties
+          name: properties
+          operations:
+            - method: GET
+              name: list-properties
+              call: "argusenterprise.list-properties"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+    - type: mcp
+      port: 9104
+      namespace: argus-enterprise-mcp
+      transport: http
+      tools:
+        - name: list-properties
+          description: "List commercial real estate properties in ARGUS Enterprise"
+          hints:
+            readOnly: true
+          call: "argusenterprise.list-properties"
+          outputParameters:
+            - type: object
+              mapping: "$."

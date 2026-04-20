@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-structure/argus-enterprise-lease-structure.json",
+  "name": "Argus Enterprise Lease",
+  "description": "Represents a commercial real estate lease agreement in the ARGUS Enterprise platform, including tenant details, rent schedules, escalation terms, and lease options.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique lease identifier"
+    },
+    "propertyId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Associated property identifier"
+    },
+    "tenantId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Associated tenant identifier"
+    },
+    "tenantName": {
+      "type": "string",
+      "description": "Tenant name"
+    },
+    "unitNumber": {
+      "type": "string",
+      "description": "Unit or suite number"
+    },
+    "leaseType": {
+      "type": "string",
+      "enum": [
+        "Gross",
+        "Net",
+        "DoubleNet",
+        "TripleNet",
+        "ModifiedGross",
+        "PercentageRent"
+      ],
+      "description": "Type of lease"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "Expired",
+        "Pending"
+      ],
+      "description": "Current lease status"
+    },
+    "startDate": {
+      "type": "date",
+      "description": "Lease commencement date"
+    },
+    "endDate": {
+      "type": "date",
+      "description": "Lease expiration date"
+    },
+    "leasedArea": {
+      "type": "double",
+      "description": "Leased area in square feet"
+    },
+    "baseRent": {
+      "type": "double",
+      "description": "Base rent amount per period"
+    },
+    "rentFrequency": {
+      "type": "string",
+      "enum": [
+        "Monthly",
+        "Quarterly",
+        "Annual"
+      ],
+      "description": "Rent payment frequency"
+    },
+    "rentPerSquareFoot": {
+      "type": "double",
+      "description": "Rent per square foot per annum"
+    },
+    "escalationRate": {
+      "type": "double",
+      "description": "Annual rent escalation rate (percentage)"
+    },
+    "escalationType": {
+      "type": "string",
+      "enum": [
+        "Fixed",
+        "CPI",
+        "MarketReset",
+        "StepUp"
+      ],
+      "description": "Type of rent escalation"
+    },
+    "securityDeposit": {
+      "type": "double",
+      "description": "Security deposit amount"
+    },
+    "tenantImprovementAllowance": {
+      "type": "double",
+      "description": "Tenant improvement allowance"
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "optionType": {
+            "type": "string",
+            "enum": [
+              "Renewal",
+              "Expansion",
+              "Termination",
+              "PurchaseOption"
+            ],
+            "description": "Type of lease option"
+          },
+          "noticeDate": {
+            "type": "date",
+            "description": "Date by which notice must be given"
+          },
+          "exerciseDate": {
+            "type": "date",
+            "description": "Date the option can be exercised"
+          },
+          "termMonths": {
+            "type": "int32",
+            "description": "Duration of option term in months"
+          },
+          "rentAdjustment": {
+            "type": "string",
+            "description": "Description of rent adjustment terms"
+          }
+        }
+      },
+      "description": "Lease renewal or expansion options"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code (ISO 4217)"
+    },
+    "createdAt": {
+      "type": "datetime",
+      "description": "Record creation timestamp"
+    },
+    "updatedAt": {
+      "type": "datetime",
+      "description": "Record last update timestamp"
+    }
+  },
+  "required": [
+    "tenantId",
+    "leaseType",
+    "startDate",
+    "endDate",
+    "baseRent"
+  ]
+}

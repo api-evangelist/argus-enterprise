@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/json-structure/argus-enterprise-cash-flow-period-structure.json",
+  "name": "CashFlowPeriod",
+  "description": "CashFlowPeriod schema from ARGUS Enterprise API",
+  "type": "object",
+  "properties": {
+    "periodStart": {
+      "type": "date",
+      "description": "Period start date"
+    },
+    "periodEnd": {
+      "type": "date",
+      "description": "Period end date"
+    },
+    "grossPotentialRent": {
+      "type": "double",
+      "description": "Gross potential rental income"
+    },
+    "vacancyLoss": {
+      "type": "double",
+      "description": "Vacancy and credit loss"
+    },
+    "effectiveGrossIncome": {
+      "type": "double",
+      "description": "Effective gross income after vacancy"
+    },
+    "otherIncome": {
+      "type": "double",
+      "description": "Other income (parking, storage, etc.)"
+    },
+    "totalRevenue": {
+      "type": "double",
+      "description": "Total revenue"
+    },
+    "operatingExpenses": {
+      "type": "double",
+      "description": "Total operating expenses"
+    },
+    "netOperatingIncome": {
+      "type": "double",
+      "description": "Net operating income (NOI)"
+    },
+    "capitalExpenditures": {
+      "type": "double",
+      "description": "Capital expenditure costs"
+    },
+    "tenantImprovements": {
+      "type": "double",
+      "description": "Tenant improvement costs"
+    },
+    "leasingCommissions": {
+      "type": "double",
+      "description": "Leasing commission costs"
+    },
+    "debtService": {
+      "type": "double",
+      "description": "Debt service payments"
+    },
+    "cashFlowBeforeDebt": {
+      "type": "double",
+      "description": "Cash flow before debt service"
+    },
+    "cashFlowAfterDebt": {
+      "type": "double",
+      "description": "Cash flow after debt service"
+    }
+  }
+}

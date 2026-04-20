@@ -1,0 +1,17 @@
+{
+  "id": "ae-001234",
+  "subscriptionId": "ae-001234",
+  "eventType": "Office",
+  "status": "Pending",
+  "payload": {
+    "eventId": "ae-001234",
+    "eventType": "Office",
+    "timestamp": "value-timestamp",
+    "resourceType": "Office"
+  },
+  "deliveryAttempts": [
+    "value-deliveryat",
+    "value-deliveryat"
+  ],
+  "createdAt": "value-createdat"
+}
