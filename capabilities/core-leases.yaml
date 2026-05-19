@@ -1,0 +1,206 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Argus Enterprise Core API — Leases
+  description: 'Argus Enterprise Core API — Leases. 5 operations. Lead operation: Argus Enterprise List Property Leases. Self-contained
+    Naftiko capability covering one Argus Enterprise business surface.'
+  tags:
+  - Argus Enterprise
+  - Leases
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ARGUS_ENTERPRISE_API_KEY: ARGUS_ENTERPRISE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: core-leases
+    baseUri: https://api.argusenterprise.com/v1
+    description: Argus Enterprise Core API — Leases business capability. Self-contained, no shared references.
+    resources:
+    - name: properties-propertyId-leases
+      path: /properties/{propertyId}/leases
+      operations:
+      - name: listpropertyleases
+        method: GET
+        description: Argus Enterprise List Property Leases
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: Filter by lease status
+      - name: createpropertylease
+        method: POST
+        description: Argus Enterprise Create a Lease
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: properties-propertyId-leases-leaseId
+      path: /properties/{propertyId}/leases/{leaseId}
+      operations:
+      - name: getpropertylease
+        method: GET
+        description: Argus Enterprise Get a Lease
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatepropertylease
+        method: PUT
+        description: Argus Enterprise Update a Lease
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletepropertylease
+        method: DELETE
+        description: Argus Enterprise Delete a Lease
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ARGUS_ENTERPRISE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: core-leases-rest
+    port: 8080
+    description: REST adapter for Argus Enterprise Core API — Leases. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/properties/{propertyid}/leases
+      name: properties-propertyid-leases
+      description: REST surface for properties-propertyId-leases.
+      operations:
+      - method: GET
+        name: listpropertyleases
+        description: Argus Enterprise List Property Leases
+        call: core-leases.listpropertyleases
+        with:
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createpropertylease
+        description: Argus Enterprise Create a Lease
+        call: core-leases.createpropertylease
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/properties/{propertyid}/leases/{leaseid}
+      name: properties-propertyid-leases-leaseid
+      description: REST surface for properties-propertyId-leases-leaseId.
+      operations:
+      - method: GET
+        name: getpropertylease
+        description: Argus Enterprise Get a Lease
+        call: core-leases.getpropertylease
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatepropertylease
+        description: Argus Enterprise Update a Lease
+        call: core-leases.updatepropertylease
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletepropertylease
+        description: Argus Enterprise Delete a Lease
+        call: core-leases.deletepropertylease
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: core-leases-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Argus Enterprise Core API — Leases. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: argus-enterprise-list-property-leases
+      description: Argus Enterprise List Property Leases
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-leases.listpropertyleases
+      with:
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: argus-enterprise-create-lease
+      description: Argus Enterprise Create a Lease
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-leases.createpropertylease
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: argus-enterprise-get-lease
+      description: Argus Enterprise Get a Lease
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-leases.getpropertylease
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: argus-enterprise-update-lease
+      description: Argus Enterprise Update a Lease
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: core-leases.updatepropertylease
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: argus-enterprise-delete-lease
+      description: Argus Enterprise Delete a Lease
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: core-leases.deletepropertylease
+      outputParameters:
+      - type: object
+        mapping: $.

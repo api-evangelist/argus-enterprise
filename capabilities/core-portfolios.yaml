@@ -1,0 +1,229 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Argus Enterprise Core API — Portfolios
+  description: 'Argus Enterprise Core API — Portfolios. 6 operations. Lead operation: Argus Enterprise List Portfolios. Self-contained
+    Naftiko capability covering one Argus Enterprise business surface.'
+  tags:
+  - Argus Enterprise
+  - Portfolios
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ARGUS_ENTERPRISE_API_KEY: ARGUS_ENTERPRISE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: core-portfolios
+    baseUri: https://api.argusenterprise.com/v1
+    description: Argus Enterprise Core API — Portfolios business capability. Self-contained, no shared references.
+    resources:
+    - name: portfolios
+      path: /portfolios
+      operations:
+      - name: listportfolios
+        method: GET
+        description: Argus Enterprise List Portfolios
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createportfolio
+        method: POST
+        description: Argus Enterprise Create a Portfolio
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: portfolios-portfolioId
+      path: /portfolios/{portfolioId}
+      operations:
+      - name: getportfolio
+        method: GET
+        description: Argus Enterprise Get a Portfolio
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateportfolio
+        method: PUT
+        description: Argus Enterprise Update a Portfolio
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteportfolio
+        method: DELETE
+        description: Argus Enterprise Delete a Portfolio
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: portfolios-portfolioId-properties
+      path: /portfolios/{portfolioId}/properties
+      operations:
+      - name: listportfolioproperties
+        method: GET
+        description: Argus Enterprise List Portfolio Properties
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ARGUS_ENTERPRISE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: core-portfolios-rest
+    port: 8080
+    description: REST adapter for Argus Enterprise Core API — Portfolios. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/portfolios
+      name: portfolios
+      description: REST surface for portfolios.
+      operations:
+      - method: GET
+        name: listportfolios
+        description: Argus Enterprise List Portfolios
+        call: core-portfolios.listportfolios
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createportfolio
+        description: Argus Enterprise Create a Portfolio
+        call: core-portfolios.createportfolio
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/portfolios/{portfolioid}
+      name: portfolios-portfolioid
+      description: REST surface for portfolios-portfolioId.
+      operations:
+      - method: GET
+        name: getportfolio
+        description: Argus Enterprise Get a Portfolio
+        call: core-portfolios.getportfolio
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateportfolio
+        description: Argus Enterprise Update a Portfolio
+        call: core-portfolios.updateportfolio
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteportfolio
+        description: Argus Enterprise Delete a Portfolio
+        call: core-portfolios.deleteportfolio
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/portfolios/{portfolioid}/properties
+      name: portfolios-portfolioid-properties
+      description: REST surface for portfolios-portfolioId-properties.
+      operations:
+      - method: GET
+        name: listportfolioproperties
+        description: Argus Enterprise List Portfolio Properties
+        call: core-portfolios.listportfolioproperties
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: core-portfolios-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Argus Enterprise Core API — Portfolios. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: argus-enterprise-list-portfolios
+      description: Argus Enterprise List Portfolios
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-portfolios.listportfolios
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: argus-enterprise-create-portfolio
+      description: Argus Enterprise Create a Portfolio
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-portfolios.createportfolio
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: argus-enterprise-get-portfolio
+      description: Argus Enterprise Get a Portfolio
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-portfolios.getportfolio
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: argus-enterprise-update-portfolio
+      description: Argus Enterprise Update a Portfolio
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: core-portfolios.updateportfolio
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: argus-enterprise-delete-portfolio
+      description: Argus Enterprise Delete a Portfolio
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: core-portfolios.deleteportfolio
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: argus-enterprise-list-portfolio-properties
+      description: Argus Enterprise List Portfolio Properties
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-portfolios.listportfolioproperties
+      outputParameters:
+      - type: object
+        mapping: $.

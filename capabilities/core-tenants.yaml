@@ -1,0 +1,181 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Argus Enterprise Core API — Tenants
+  description: 'Argus Enterprise Core API — Tenants. 4 operations. Lead operation: Argus Enterprise List Tenants. Self-contained
+    Naftiko capability covering one Argus Enterprise business surface.'
+  tags:
+  - Argus Enterprise
+  - Tenants
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ARGUS_ENTERPRISE_API_KEY: ARGUS_ENTERPRISE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: core-tenants
+    baseUri: https://api.argusenterprise.com/v1
+    description: Argus Enterprise Core API — Tenants business capability. Self-contained, no shared references.
+    resources:
+    - name: tenants
+      path: /tenants
+      operations:
+      - name: listtenants
+        method: GET
+        description: Argus Enterprise List Tenants
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: search
+          in: query
+          type: string
+          description: Search tenants by name
+      - name: createtenant
+        method: POST
+        description: Argus Enterprise Create a Tenant
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: tenants-tenantId
+      path: /tenants/{tenantId}
+      operations:
+      - name: gettenant
+        method: GET
+        description: Argus Enterprise Get a Tenant
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatetenant
+        method: PUT
+        description: Argus Enterprise Update a Tenant
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ARGUS_ENTERPRISE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: core-tenants-rest
+    port: 8080
+    description: REST adapter for Argus Enterprise Core API — Tenants. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/tenants
+      name: tenants
+      description: REST surface for tenants.
+      operations:
+      - method: GET
+        name: listtenants
+        description: Argus Enterprise List Tenants
+        call: core-tenants.listtenants
+        with:
+          search: rest.search
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createtenant
+        description: Argus Enterprise Create a Tenant
+        call: core-tenants.createtenant
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tenants/{tenantid}
+      name: tenants-tenantid
+      description: REST surface for tenants-tenantId.
+      operations:
+      - method: GET
+        name: gettenant
+        description: Argus Enterprise Get a Tenant
+        call: core-tenants.gettenant
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatetenant
+        description: Argus Enterprise Update a Tenant
+        call: core-tenants.updatetenant
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: core-tenants-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Argus Enterprise Core API — Tenants. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: argus-enterprise-list-tenants
+      description: Argus Enterprise List Tenants
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-tenants.listtenants
+      with:
+        search: tools.search
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: argus-enterprise-create-tenant
+      description: Argus Enterprise Create a Tenant
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-tenants.createtenant
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: argus-enterprise-get-tenant
+      description: Argus Enterprise Get a Tenant
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-tenants.gettenant
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: argus-enterprise-update-tenant
+      description: Argus Enterprise Update a Tenant
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: core-tenants.updatetenant
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

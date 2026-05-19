@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Argus Enterprise Core API — Authentication
+  description: 'Argus Enterprise Core API — Authentication. 1 operations. Lead operation: Argus Enterprise Obtain Access Token.
+    Self-contained Naftiko capability covering one Argus Enterprise business surface.'
+  tags:
+  - Argus Enterprise
+  - Authentication
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ARGUS_ENTERPRISE_API_KEY: ARGUS_ENTERPRISE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: core-authentication
+    baseUri: https://api.argusenterprise.com/v1
+    description: Argus Enterprise Core API — Authentication business capability. Self-contained, no shared references.
+    resources:
+    - name: auth-token
+      path: /auth/token
+      operations:
+      - name: getaccesstoken
+        method: POST
+        description: Argus Enterprise Obtain Access Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ARGUS_ENTERPRISE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: core-authentication-rest
+    port: 8080
+    description: REST adapter for Argus Enterprise Core API — Authentication. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/auth/token
+      name: auth-token
+      description: REST surface for auth-token.
+      operations:
+      - method: POST
+        name: getaccesstoken
+        description: Argus Enterprise Obtain Access Token
+        call: core-authentication.getaccesstoken
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: core-authentication-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Argus Enterprise Core API — Authentication. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: argus-enterprise-obtain-access-token
+      description: Argus Enterprise Obtain Access Token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-authentication.getaccesstoken
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

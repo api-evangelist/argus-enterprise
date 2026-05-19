@@ -1,0 +1,177 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Argus Enterprise Webhook API — Events
+  description: 'Argus Enterprise Webhook API — Events. 3 operations. Lead operation: Argus Enterprise List Webhook Events.
+    Self-contained Naftiko capability covering one Argus Enterprise business surface.'
+  tags:
+  - Argus Enterprise
+  - Events
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ARGUS_ENTERPRISE_API_KEY: ARGUS_ENTERPRISE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: webhooks-events
+    baseUri: https://webhooks.argusenterprise.com/v1
+    description: Argus Enterprise Webhook API — Events business capability. Self-contained, no shared references.
+    resources:
+    - name: events
+      path: /events
+      operations:
+      - name: listevents
+        method: GET
+        description: Argus Enterprise List Webhook Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: subscriptionId
+          in: query
+          type: string
+          description: Filter by subscription
+        - name: eventType
+          in: query
+          type: string
+          description: Filter by event type
+        - name: status
+          in: query
+          type: string
+          description: Filter by delivery status
+        - name: from
+          in: query
+          type: string
+          description: Start of date range
+        - name: to
+          in: query
+          type: string
+          description: End of date range
+        - name: page
+          in: query
+          type: integer
+        - name: pageSize
+          in: query
+          type: integer
+    - name: events-eventId
+      path: /events/{eventId}
+      operations:
+      - name: getevent
+        method: GET
+        description: Argus Enterprise Get a Webhook Event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: events-eventId-retry
+      path: /events/{eventId}/retry
+      operations:
+      - name: retryevent
+        method: POST
+        description: Argus Enterprise Retry Event Delivery
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ARGUS_ENTERPRISE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: webhooks-events-rest
+    port: 8080
+    description: REST adapter for Argus Enterprise Webhook API — Events. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/events
+      name: events
+      description: REST surface for events.
+      operations:
+      - method: GET
+        name: listevents
+        description: Argus Enterprise List Webhook Events
+        call: webhooks-events.listevents
+        with:
+          subscriptionId: rest.subscriptionId
+          eventType: rest.eventType
+          status: rest.status
+          from: rest.from
+          to: rest.to
+          page: rest.page
+          pageSize: rest.pageSize
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/events/{eventid}
+      name: events-eventid
+      description: REST surface for events-eventId.
+      operations:
+      - method: GET
+        name: getevent
+        description: Argus Enterprise Get a Webhook Event
+        call: webhooks-events.getevent
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/events/{eventid}/retry
+      name: events-eventid-retry
+      description: REST surface for events-eventId-retry.
+      operations:
+      - method: POST
+        name: retryevent
+        description: Argus Enterprise Retry Event Delivery
+        call: webhooks-events.retryevent
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: webhooks-events-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Argus Enterprise Webhook API — Events. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: argus-enterprise-list-webhook-events
+      description: Argus Enterprise List Webhook Events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: webhooks-events.listevents
+      with:
+        subscriptionId: tools.subscriptionId
+        eventType: tools.eventType
+        status: tools.status
+        from: tools.from
+        to: tools.to
+        page: tools.page
+        pageSize: tools.pageSize
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: argus-enterprise-get-webhook-event
+      description: Argus Enterprise Get a Webhook Event
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: webhooks-events.getevent
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: argus-enterprise-retry-event-delivery
+      description: Argus Enterprise Retry Event Delivery
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: webhooks-events.retryevent
+      outputParameters:
+      - type: object
+        mapping: $.
