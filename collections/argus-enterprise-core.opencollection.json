@@ -1,0 +1,862 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Argus Enterprise Core API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Argus Enterprise Obtain Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.argusenterprise.com/v1/auth/token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "client_id",
+                  "value": ""
+                },
+                {
+                  "name": "client_secret",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Authenticate using OAuth 2.0 Client Credentials grant to obtain a bearer token for accessing Argus Enterprise APIs."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Properties",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Argus Enterprise List Properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/properties",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "portfolioId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by portfolio identifier"
+              },
+              {
+                "name": "propertyType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by property type"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by property status"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of commercial real estate properties accessible to the authenticated user, with optional filtering by portfolio, property type, and status."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Create a Property",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.argusenterprise.com/v1/properties",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new commercial real estate property record in the system."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Get a Property",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/properties/:propertyId",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the property"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific property."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Update a Property",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.argusenterprise.com/v1/properties/:propertyId",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the property"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing property record with new information."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Delete a Property",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.argusenterprise.com/v1/properties/:propertyId",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the property"
+              }
+            ]
+          },
+          "docs": "Delete a property record. This action cannot be undone."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Valuations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Argus Enterprise List Property Valuations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/properties/:propertyId/valuations",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the property"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              }
+            ]
+          },
+          "docs": "Retrieve all valuations associated with a specific property, including DCF analysis results, capitalization rates, and market value estimates."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Create a Property Valuation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.argusenterprise.com/v1/properties/:propertyId/valuations",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the property"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new valuation for a property using DCF analysis, direct capitalization, or comparable sales methodology."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise List All Valuations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/valuations",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "methodology",
+                "value": "",
+                "type": "query",
+                "description": "Filter by valuation methodology"
+              },
+              {
+                "name": "valuationDateFrom",
+                "value": "",
+                "type": "query",
+                "description": "Filter valuations from this date"
+              },
+              {
+                "name": "valuationDateTo",
+                "value": "",
+                "type": "query",
+                "description": "Filter valuations up to this date"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of all valuations across properties, with optional filtering by valuation date range and methodology."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Cash Flows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Argus Enterprise List Property Cash Flows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/properties/:propertyId/cashflows",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the property"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Start date for cash flow projections"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "End date for cash flow projections"
+              },
+              {
+                "name": "frequency",
+                "value": "",
+                "type": "query",
+                "description": "Cash flow reporting frequency"
+              }
+            ]
+          },
+          "docs": "Retrieve projected cash flows for a property over the analysis period, including income streams, operating expenses, capital expenditures, and net operating income."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Leases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Argus Enterprise List Property Leases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/properties/:propertyId/leases",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the property"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by lease status"
+              }
+            ]
+          },
+          "docs": "Retrieve all lease agreements associated with a property, including tenant details, rent schedules, and lease terms."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Create a Lease",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.argusenterprise.com/v1/properties/:propertyId/leases",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the property"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new lease agreement for a property."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Get a Lease",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/properties/:propertyId/leases/:leaseId",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the property"
+              },
+              {
+                "name": "leaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the lease"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific lease."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Update a Lease",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.argusenterprise.com/v1/properties/:propertyId/leases/:leaseId",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the property"
+              },
+              {
+                "name": "leaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the lease"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing lease agreement."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Delete a Lease",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.argusenterprise.com/v1/properties/:propertyId/leases/:leaseId",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the property"
+              },
+              {
+                "name": "leaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the lease"
+              }
+            ]
+          },
+          "docs": "Delete a lease record. This action cannot be undone."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Portfolios",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Argus Enterprise List Portfolios",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/portfolios",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of property portfolios accessible to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Create a Portfolio",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.argusenterprise.com/v1/portfolios",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new property portfolio for organizing assets."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Get a Portfolio",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/portfolios/:portfolioId",
+            "params": [
+              {
+                "name": "portfolioId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the portfolio"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific portfolio."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Update a Portfolio",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.argusenterprise.com/v1/portfolios/:portfolioId",
+            "params": [
+              {
+                "name": "portfolioId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the portfolio"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing portfolio."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Delete a Portfolio",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.argusenterprise.com/v1/portfolios/:portfolioId",
+            "params": [
+              {
+                "name": "portfolioId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the portfolio"
+              }
+            ]
+          },
+          "docs": "Delete a portfolio. Properties within the portfolio are not deleted."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise List Portfolio Properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/portfolios/:portfolioId/properties",
+            "params": [
+              {
+                "name": "portfolioId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the portfolio"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              }
+            ]
+          },
+          "docs": "Retrieve all properties belonging to a specific portfolio."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tenants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Argus Enterprise List Tenants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/tenants",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search tenants by name"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of tenants across all properties accessible to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Create a Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.argusenterprise.com/v1/tenants",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new tenant record."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Get a Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/tenants/:tenantId",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the tenant"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific tenant."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Update a Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.argusenterprise.com/v1/tenants/:tenantId",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the tenant"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing tenant record."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Argus Enterprise List Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/reports",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "reportType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by report type"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of available reports, including property-level, portfolio-level, and custom analytics reports."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Generate a Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.argusenterprise.com/v1/reports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate a new analytical report based on specified parameters including report type, date range, and target properties or portfolios."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Get a Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/reports/:reportId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the report"
+              }
+            ]
+          },
+          "docs": "Retrieve the status and results of a previously generated report."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Download a Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/reports/:reportId/download",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the report"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Output format for the report"
+              }
+            ]
+          },
+          "docs": "Download the report output file in the specified format."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Argus Enterprise List Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/users",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of users in the Argus Enterprise instance. Requires administrator permissions."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Get a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the user"
+              }
+            ]
+          },
+          "docs": "Retrieve information about a specific user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
