@@ -59,6 +59,10 @@ apis:
       - type: OpenAPI
         url: openapi/argus-enterprise-webhooks-openapi.yml
 common:
+  - type: DomainSecurity
+    url: security/argus-enterprise-domain-security.yml
+  - type: Authentication
+    url: authentication/argus-enterprise-authentication.yml
   - type: Website
     url: https://www.altusgroup.com/solutions/argus-enterprise/
   - type: Documentation
@@ -135,6 +139,8 @@ common:
         description: JLL uses ARGUS Enterprise for asset management and portfolio analytics globally.
       - name: CBRE
         description: CBRE uses ARGUS Enterprise for valuation and investment analysis services.
+  - url: https://www.altusgroup.com/insights/
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

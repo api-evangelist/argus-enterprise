@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/argus-enterprise-core-openapi.yml, openapi/argus-enterprise-webhooks-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: OAuth 2.0 Bearer token obtained from the /auth/token endpoint using client credentials.
+  sources:
+  - openapi/argus-enterprise-core-openapi.yml
+  - openapi/argus-enterprise-webhooks-openapi.yml
