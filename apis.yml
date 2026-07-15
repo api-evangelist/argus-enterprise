@@ -59,6 +59,8 @@ apis:
       - type: OpenAPI
         url: openapi/argus-enterprise-webhooks-openapi.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/argus-enterprise-agentic-access.yml
   - type: DomainSecurity
     url: security/argus-enterprise-domain-security.yml
   - type: Authentication
