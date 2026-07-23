@@ -1,0 +1,364 @@
+openapi: 3.1.0
+info:
+  title: Argus Enterprise Core Authentication Properties API
+  description: Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.
+  version: '1.0'
+  contact:
+    name: Argus API Support
+    email: api-support@argusenterprise.com
+    url: https://support.argusenterprise.com
+  termsOfService: https://www.altusgroup.com/terms-of-use
+servers:
+- url: https://api.argusenterprise.com/v1
+  description: Argus Enterprise Production
+security:
+- bearerAuth: []
+tags:
+- name: Properties
+  description: Manage commercial real estate properties and assets
+paths:
+  /properties:
+    get:
+      operationId: listProperties
+      summary: Argus Enterprise List Properties
+      description: Retrieve a paginated list of commercial real estate properties accessible to the authenticated user, with optional filtering by portfolio, property type, and status.
+      tags:
+      - Properties
+      parameters:
+      - $ref: '#/components/parameters/pageParam'
+      - $ref: '#/components/parameters/pageSizeParam'
+      - name: portfolioId
+        in: query
+        description: Filter by portfolio identifier
+        schema:
+          type: string
+          format: uuid
+      - name: propertyType
+        in: query
+        description: Filter by property type
+        schema:
+          type: string
+          enum:
+          - Office
+          - Retail
+          - Industrial
+          - Multifamily
+          - Mixed-Use
+          - Hotel
+          - Land
+          - Other
+      - name: status
+        in: query
+        description: Filter by property status
+        schema:
+          type: string
+          enum:
+          - Active
+          - Pending
+          - Archived
+      responses:
+        '200':
+          description: Properties retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyList'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createProperty
+      summary: Argus Enterprise Create a Property
+      description: Create a new commercial real estate property record in the system.
+      tags:
+      - Properties
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PropertyInput'
+      responses:
+        '201':
+          description: Property created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Property'
+        '400':
+          description: Invalid property data
+        '401':
+          description: Unauthorized
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /properties/{propertyId}:
+    get:
+      operationId: getProperty
+      summary: Argus Enterprise Get a Property
+      description: Retrieve detailed information about a specific property.
+      tags:
+      - Properties
+      parameters:
+      - $ref: '#/components/parameters/propertyId'
+      responses:
+        '200':
+          description: Property retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Property'
+        '404':
+          description: Property not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateProperty
+      summary: Argus Enterprise Update a Property
+      description: Update an existing property record with new information.
+      tags:
+      - Properties
+      parameters:
+      - $ref: '#/components/parameters/propertyId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PropertyInput'
+      responses:
+        '200':
+          description: Property updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Property'
+        '400':
+          description: Invalid property data
+        '404':
+          description: Property not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteProperty
+      summary: Argus Enterprise Delete a Property
+      description: Delete a property record. This action cannot be undone.
+      tags:
+      - Properties
+      parameters:
+      - $ref: '#/components/parameters/propertyId'
+      responses:
+        '204':
+          description: Property deleted successfully
+        '404':
+          description: Property not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    PropertyInput:
+      type: object
+      required:
+      - name
+      - propertyType
+      - address
+      properties:
+        name:
+          type: string
+          description: Property name
+        propertyType:
+          type: string
+          enum:
+          - Office
+          - Retail
+          - Industrial
+          - Multifamily
+          - Mixed-Use
+          - Hotel
+          - Land
+          - Other
+        status:
+          type: string
+          enum:
+          - Active
+          - Pending
+          - Archived
+          default: Active
+        address:
+          $ref: '#/components/schemas/Address'
+        grossArea:
+          type: number
+          format: double
+        netLeasableArea:
+          type: number
+          format: double
+        yearBuilt:
+          type: integer
+        numberOfUnits:
+          type: integer
+        purchasePrice:
+          type: number
+          format: double
+        purchaseDate:
+          type: string
+          format: date
+        portfolioId:
+          type: string
+          format: uuid
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+          description: Street address
+        city:
+          type: string
+          description: City
+        state:
+          type: string
+          description: State or province
+        postalCode:
+          type: string
+          description: Postal or ZIP code
+        country:
+          type: string
+          description: Country code (ISO 3166-1 alpha-2)
+    PropertyList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Property'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Current page number
+        pageSize:
+          type: integer
+          description: Number of items per page
+        totalItems:
+          type: integer
+          description: Total number of items
+        totalPages:
+          type: integer
+          description: Total number of pages
+    Property:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique property identifier
+        name:
+          type: string
+          description: Property name
+        propertyType:
+          type: string
+          enum:
+          - Office
+          - Retail
+          - Industrial
+          - Multifamily
+          - Mixed-Use
+          - Hotel
+          - Land
+          - Other
+          description: Type of commercial real estate property
+        status:
+          type: string
+          enum:
+          - Active
+          - Pending
+          - Archived
+          description: Current property status
+        address:
+          $ref: '#/components/schemas/Address'
+        grossArea:
+          type: number
+          format: double
+          description: Gross leasable area in square feet
+        netLeasableArea:
+          type: number
+          format: double
+          description: Net leasable area in square feet
+        yearBuilt:
+          type: integer
+          description: Year the property was built
+        numberOfUnits:
+          type: integer
+          description: Number of leasable units or suites
+        purchasePrice:
+          type: number
+          format: double
+          description: Original purchase price
+        purchaseDate:
+          type: string
+          format: date
+          description: Date of property acquisition
+        currentMarketValue:
+          type: number
+          format: double
+          description: Current estimated market value
+        occupancyRate:
+          type: number
+          format: double
+          description: Current occupancy rate as a percentage
+        portfolioId:
+          type: string
+          format: uuid
+          description: Identifier of the parent portfolio
+        createdAt:
+          type: string
+          format: date-time
+          description: Record creation timestamp
+        updatedAt:
+          type: string
+          format: date-time
+          description: Record last update timestamp
+  parameters:
+    pageSizeParam:
+      name: pageSize
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    pageParam:
+      name: page
+      in: query
+      description: Page number for pagination
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    propertyId:
+      name: propertyId
+      in: path
+      required: true
+      description: Unique identifier of the property
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token obtained from the /auth/token endpoint using client credentials.
+externalDocs:
+  description: Argus Enterprise API Documentation
+  url: https://docs.argusenterprise.com/api/v1

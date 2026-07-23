@@ -1,0 +1,238 @@
+openapi: 3.1.0
+info:
+  title: Argus Enterprise Core Authentication Events API
+  description: Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.
+  version: '1.0'
+  contact:
+    name: Argus API Support
+    email: api-support@argusenterprise.com
+    url: https://support.argusenterprise.com
+  termsOfService: https://www.altusgroup.com/terms-of-use
+servers:
+- url: https://api.argusenterprise.com/v1
+  description: Argus Enterprise Production
+security:
+- bearerAuth: []
+tags:
+- name: Events
+  description: View webhook event history and delivery logs
+paths:
+  /events:
+    get:
+      operationId: listEvents
+      summary: Argus Enterprise List Webhook Events
+      description: Retrieve a paginated list of webhook events with delivery status, filterable by event type, subscription, and date range.
+      tags:
+      - Events
+      parameters:
+      - name: subscriptionId
+        in: query
+        description: Filter by subscription
+        schema:
+          type: string
+          format: uuid
+      - name: eventType
+        in: query
+        description: Filter by event type
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: Filter by delivery status
+        schema:
+          type: string
+          enum:
+          - Pending
+          - Delivered
+          - Failed
+          - Retrying
+      - name: from
+        in: query
+        description: Start of date range
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: End of date range
+        schema:
+          type: string
+          format: date-time
+      - name: page
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 25
+      responses:
+        '200':
+          description: Events retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventList'
+        '401':
+          description: Unauthorized
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /events/{eventId}:
+    get:
+      operationId: getEvent
+      summary: Argus Enterprise Get a Webhook Event
+      description: Retrieve details about a specific webhook event, including the payload, delivery attempts, and response information.
+      tags:
+      - Events
+      parameters:
+      - $ref: '#/components/parameters/eventId'
+      responses:
+        '200':
+          description: Event retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '404':
+          description: Event not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /events/{eventId}/retry:
+    post:
+      operationId: retryEvent
+      summary: Argus Enterprise Retry Event Delivery
+      description: Manually retry delivery of a failed webhook event.
+      tags:
+      - Events
+      parameters:
+      - $ref: '#/components/parameters/eventId'
+      responses:
+        '202':
+          description: Retry initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '404':
+          description: Event not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    DeliveryAttempt:
+      type: object
+      properties:
+        attemptNumber:
+          type: integer
+          description: Sequential attempt number
+        timestamp:
+          type: string
+          format: date-time
+          description: When the delivery was attempted
+        responseCode:
+          type: integer
+          description: HTTP response status code from the endpoint
+        responseTime:
+          type: integer
+          description: Response time in milliseconds
+        success:
+          type: boolean
+          description: Whether the delivery was successful
+        errorMessage:
+          type: string
+          description: Error message if delivery failed
+    EventList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+        pagination:
+          type: object
+          properties:
+            page:
+              type: integer
+            pageSize:
+              type: integer
+            totalItems:
+              type: integer
+            totalPages:
+              type: integer
+    Event:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique event identifier
+        subscriptionId:
+          type: string
+          format: uuid
+          description: Subscription that received this event
+        eventType:
+          type: string
+          description: Type of event
+        status:
+          type: string
+          enum:
+          - Pending
+          - Delivered
+          - Failed
+          - Retrying
+          description: Delivery status
+        payload:
+          type: object
+          description: Event payload data
+          properties:
+            eventId:
+              type: string
+              format: uuid
+            eventType:
+              type: string
+            timestamp:
+              type: string
+              format: date-time
+            resourceType:
+              type: string
+              description: Type of resource that triggered the event
+            resourceId:
+              type: string
+              format: uuid
+              description: Identifier of the resource
+            data:
+              type: object
+              description: Resource data at the time of the event
+        deliveryAttempts:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeliveryAttempt'
+        createdAt:
+          type: string
+          format: date-time
+  parameters:
+    eventId:
+      name: eventId
+      in: path
+      required: true
+      description: Unique identifier of the webhook event
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token obtained from the /auth/token endpoint using client credentials.
+externalDocs:
+  description: Argus Enterprise API Documentation
+  url: https://docs.argusenterprise.com/api/v1

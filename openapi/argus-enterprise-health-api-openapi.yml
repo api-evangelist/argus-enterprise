@@ -1,0 +1,72 @@
+openapi: 3.1.0
+info:
+  title: Argus Enterprise Core Authentication Health API
+  description: Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.
+  version: '1.0'
+  contact:
+    name: Argus API Support
+    email: api-support@argusenterprise.com
+    url: https://support.argusenterprise.com
+  termsOfService: https://www.altusgroup.com/terms-of-use
+servers:
+- url: https://api.argusenterprise.com/v1
+  description: Argus Enterprise Production
+security:
+- bearerAuth: []
+tags:
+- name: Health
+  description: Webhook service health and status
+paths:
+  /health:
+    get:
+      operationId: getWebhookHealth
+      summary: Argus Enterprise Get Service Health
+      description: Check the health status of the webhook service, including delivery queue depth and recent error rates.
+      tags:
+      - Health
+      responses:
+        '200':
+          description: Service health information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+      security: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - Healthy
+          - Degraded
+          - Unhealthy
+          description: Overall service health
+        queueDepth:
+          type: integer
+          description: Number of events pending delivery
+        recentErrorRate:
+          type: number
+          format: double
+          description: Error rate over the last hour (percentage)
+        uptime:
+          type: string
+          description: Service uptime duration
+        lastChecked:
+          type: string
+          format: date-time
+          description: Timestamp of last health check
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token obtained from the /auth/token endpoint using client credentials.
+externalDocs:
+  description: Argus Enterprise API Documentation
+  url: https://docs.argusenterprise.com/api/v1

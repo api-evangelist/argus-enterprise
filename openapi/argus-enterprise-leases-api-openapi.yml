@@ -1,0 +1,408 @@
+openapi: 3.1.0
+info:
+  title: Argus Enterprise Core Authentication Leases API
+  description: Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.
+  version: '1.0'
+  contact:
+    name: Argus API Support
+    email: api-support@argusenterprise.com
+    url: https://support.argusenterprise.com
+  termsOfService: https://www.altusgroup.com/terms-of-use
+servers:
+- url: https://api.argusenterprise.com/v1
+  description: Argus Enterprise Production
+security:
+- bearerAuth: []
+tags:
+- name: Leases
+  description: Lease agreements and terms
+paths:
+  /properties/{propertyId}/leases:
+    get:
+      operationId: listPropertyLeases
+      summary: Argus Enterprise List Property Leases
+      description: Retrieve all lease agreements associated with a property, including tenant details, rent schedules, and lease terms.
+      tags:
+      - Leases
+      parameters:
+      - $ref: '#/components/parameters/propertyId'
+      - $ref: '#/components/parameters/pageParam'
+      - $ref: '#/components/parameters/pageSizeParam'
+      - name: status
+        in: query
+        description: Filter by lease status
+        schema:
+          type: string
+          enum:
+          - Active
+          - Expired
+          - Pending
+      responses:
+        '200':
+          description: Leases retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaseList'
+        '404':
+          description: Property not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createPropertyLease
+      summary: Argus Enterprise Create a Lease
+      description: Create a new lease agreement for a property.
+      tags:
+      - Leases
+      parameters:
+      - $ref: '#/components/parameters/propertyId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeaseInput'
+      responses:
+        '201':
+          description: Lease created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Lease'
+        '400':
+          description: Invalid lease data
+        '404':
+          description: Property not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /properties/{propertyId}/leases/{leaseId}:
+    get:
+      operationId: getPropertyLease
+      summary: Argus Enterprise Get a Lease
+      description: Retrieve detailed information about a specific lease.
+      tags:
+      - Leases
+      parameters:
+      - $ref: '#/components/parameters/propertyId'
+      - $ref: '#/components/parameters/leaseId'
+      responses:
+        '200':
+          description: Lease retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Lease'
+        '404':
+          description: Lease not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updatePropertyLease
+      summary: Argus Enterprise Update a Lease
+      description: Update an existing lease agreement.
+      tags:
+      - Leases
+      parameters:
+      - $ref: '#/components/parameters/propertyId'
+      - $ref: '#/components/parameters/leaseId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeaseInput'
+      responses:
+        '200':
+          description: Lease updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Lease'
+        '400':
+          description: Invalid lease data
+        '404':
+          description: Lease not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deletePropertyLease
+      summary: Argus Enterprise Delete a Lease
+      description: Delete a lease record. This action cannot be undone.
+      tags:
+      - Leases
+      parameters:
+      - $ref: '#/components/parameters/propertyId'
+      - $ref: '#/components/parameters/leaseId'
+      responses:
+        '204':
+          description: Lease deleted successfully
+        '404':
+          description: Lease not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Lease:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique lease identifier
+        propertyId:
+          type: string
+          format: uuid
+          description: Associated property identifier
+        tenantId:
+          type: string
+          format: uuid
+          description: Associated tenant identifier
+        tenantName:
+          type: string
+          description: Tenant name
+        unitNumber:
+          type: string
+          description: Unit or suite number
+        leaseType:
+          type: string
+          enum:
+          - Gross
+          - Net
+          - DoubleNet
+          - TripleNet
+          - ModifiedGross
+          - PercentageRent
+          description: Type of lease
+        status:
+          type: string
+          enum:
+          - Active
+          - Expired
+          - Pending
+          description: Current lease status
+        startDate:
+          type: string
+          format: date
+          description: Lease commencement date
+        endDate:
+          type: string
+          format: date
+          description: Lease expiration date
+        leasedArea:
+          type: number
+          format: double
+          description: Leased area in square feet
+        baseRent:
+          type: number
+          format: double
+          description: Base rent amount per period
+        rentFrequency:
+          type: string
+          enum:
+          - Monthly
+          - Quarterly
+          - Annual
+          description: Rent payment frequency
+        rentPerSquareFoot:
+          type: number
+          format: double
+          description: Rent per square foot per annum
+        escalationRate:
+          type: number
+          format: double
+          description: Annual rent escalation rate (percentage)
+        escalationType:
+          type: string
+          enum:
+          - Fixed
+          - CPI
+          - MarketReset
+          - StepUp
+          description: Type of rent escalation
+        securityDeposit:
+          type: number
+          format: double
+          description: Security deposit amount
+        tenantImprovementAllowance:
+          type: number
+          format: double
+          description: Tenant improvement allowance
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/LeaseOption'
+          description: Lease renewal or expansion options
+        currency:
+          type: string
+          description: Currency code (ISO 4217)
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    LeaseInput:
+      type: object
+      required:
+      - tenantId
+      - leaseType
+      - startDate
+      - endDate
+      - baseRent
+      properties:
+        tenantId:
+          type: string
+          format: uuid
+        unitNumber:
+          type: string
+        leaseType:
+          type: string
+          enum:
+          - Gross
+          - Net
+          - DoubleNet
+          - TripleNet
+          - ModifiedGross
+          - PercentageRent
+        status:
+          type: string
+          enum:
+          - Active
+          - Expired
+          - Pending
+          default: Active
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        leasedArea:
+          type: number
+          format: double
+        baseRent:
+          type: number
+          format: double
+        rentFrequency:
+          type: string
+          enum:
+          - Monthly
+          - Quarterly
+          - Annual
+          default: Monthly
+        escalationRate:
+          type: number
+          format: double
+        escalationType:
+          type: string
+          enum:
+          - Fixed
+          - CPI
+          - MarketReset
+          - StepUp
+        securityDeposit:
+          type: number
+          format: double
+        tenantImprovementAllowance:
+          type: number
+          format: double
+        currency:
+          type: string
+          default: USD
+    LeaseList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Lease'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    LeaseOption:
+      type: object
+      properties:
+        optionType:
+          type: string
+          enum:
+          - Renewal
+          - Expansion
+          - Termination
+          - PurchaseOption
+          description: Type of lease option
+        noticeDate:
+          type: string
+          format: date
+          description: Date by which notice must be given
+        exerciseDate:
+          type: string
+          format: date
+          description: Date the option can be exercised
+        termMonths:
+          type: integer
+          description: Duration of option term in months
+        rentAdjustment:
+          type: string
+          description: Description of rent adjustment terms
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Current page number
+        pageSize:
+          type: integer
+          description: Number of items per page
+        totalItems:
+          type: integer
+          description: Total number of items
+        totalPages:
+          type: integer
+          description: Total number of pages
+  parameters:
+    pageSizeParam:
+      name: pageSize
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    pageParam:
+      name: page
+      in: query
+      description: Page number for pagination
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    propertyId:
+      name: propertyId
+      in: path
+      required: true
+      description: Unique identifier of the property
+      schema:
+        type: string
+        format: uuid
+    leaseId:
+      name: leaseId
+      in: path
+      required: true
+      description: Unique identifier of the lease
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token obtained from the /auth/token endpoint using client credentials.
+externalDocs:
+  description: Argus Enterprise API Documentation
+  url: https://docs.argusenterprise.com/api/v1

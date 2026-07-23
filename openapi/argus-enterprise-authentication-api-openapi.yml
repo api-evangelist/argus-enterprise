@@ -1,0 +1,88 @@
+openapi: 3.1.0
+info:
+  title: Argus Enterprise Core Authentication API
+  description: Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.
+  version: '1.0'
+  contact:
+    name: Argus API Support
+    email: api-support@argusenterprise.com
+    url: https://support.argusenterprise.com
+  termsOfService: https://www.altusgroup.com/terms-of-use
+servers:
+- url: https://api.argusenterprise.com/v1
+  description: Argus Enterprise Production
+security:
+- bearerAuth: []
+tags:
+- name: Authentication
+  description: OAuth 2.0 token operations for API access
+paths:
+  /auth/token:
+    post:
+      operationId: getAccessToken
+      summary: Argus Enterprise Obtain Access Token
+      description: Authenticate using OAuth 2.0 Client Credentials grant to obtain a bearer token for accessing Argus Enterprise APIs.
+      tags:
+      - Authentication
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - grant_type
+              - client_id
+              - client_secret
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                  - client_credentials
+                  description: OAuth 2.0 grant type
+                client_id:
+                  type: string
+                  description: API client identifier
+                client_secret:
+                  type: string
+                  description: API client secret
+      responses:
+        '200':
+          description: Access token returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '401':
+          description: Invalid credentials
+      security: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: Bearer token for API authentication
+        token_type:
+          type: string
+          enum:
+          - Bearer
+        expires_in:
+          type: integer
+          description: Token validity duration in seconds
+        scope:
+          type: string
+          description: Granted scopes
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token obtained from the /auth/token endpoint using client credentials.
+externalDocs:
+  description: Argus Enterprise API Documentation
+  url: https://docs.argusenterprise.com/api/v1

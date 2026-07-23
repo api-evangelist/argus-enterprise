@@ -1,0 +1,380 @@
+openapi: 3.1.0
+info:
+  title: Argus Enterprise Core Authentication Subscriptions API
+  description: Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.
+  version: '1.0'
+  contact:
+    name: Argus API Support
+    email: api-support@argusenterprise.com
+    url: https://support.argusenterprise.com
+  termsOfService: https://www.altusgroup.com/terms-of-use
+servers:
+- url: https://api.argusenterprise.com/v1
+  description: Argus Enterprise Production
+security:
+- bearerAuth: []
+tags:
+- name: Subscriptions
+  description: Manage webhook subscriptions
+paths:
+  /subscriptions:
+    get:
+      operationId: listSubscriptions
+      summary: Argus Enterprise List Webhook Subscriptions
+      description: Retrieve all webhook subscriptions for the authenticated account, including their status and configured event types.
+      tags:
+      - Subscriptions
+      parameters:
+      - name: status
+        in: query
+        description: Filter by subscription status
+        schema:
+          type: string
+          enum:
+          - Active
+          - Paused
+          - Disabled
+      - name: eventType
+        in: query
+        description: Filter by event type
+        schema:
+          type: string
+          enum:
+          - property.created
+          - property.updated
+          - property.deleted
+          - valuation.created
+          - valuation.updated
+          - lease.created
+          - lease.updated
+          - lease.expired
+          - portfolio.created
+          - portfolio.updated
+          - portfolio.deleted
+          - report.completed
+          - report.failed
+          - cashflow.updated
+          - tenant.created
+          - tenant.updated
+      responses:
+        '200':
+          description: Subscriptions retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionList'
+        '401':
+          description: Unauthorized
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createSubscription
+      summary: Argus Enterprise Create a Webhook Subscription
+      description: Create a new webhook subscription to receive real-time notifications for specified event types. The target URL must be HTTPS and will receive a verification request before activation.
+      tags:
+      - Subscriptions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionInput'
+      responses:
+        '201':
+          description: Subscription created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '400':
+          description: Invalid subscription data
+        '401':
+          description: Unauthorized
+        '409':
+          description: Subscription already exists for this URL and event combination
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /subscriptions/{subscriptionId}:
+    get:
+      operationId: getSubscription
+      summary: Argus Enterprise Get a Webhook Subscription
+      description: Retrieve detailed information about a specific webhook subscription.
+      tags:
+      - Subscriptions
+      parameters:
+      - $ref: '#/components/parameters/subscriptionId'
+      responses:
+        '200':
+          description: Subscription retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '404':
+          description: Subscription not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateSubscription
+      summary: Argus Enterprise Update a Webhook Subscription
+      description: Update the configuration of an existing webhook subscription.
+      tags:
+      - Subscriptions
+      parameters:
+      - $ref: '#/components/parameters/subscriptionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionInput'
+      responses:
+        '200':
+          description: Subscription updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '400':
+          description: Invalid subscription data
+        '404':
+          description: Subscription not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteSubscription
+      summary: Argus Enterprise Delete a Webhook Subscription
+      description: Permanently delete a webhook subscription. No further events will be delivered to the configured URL.
+      tags:
+      - Subscriptions
+      parameters:
+      - $ref: '#/components/parameters/subscriptionId'
+      responses:
+        '204':
+          description: Subscription deleted successfully
+        '404':
+          description: Subscription not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /subscriptions/{subscriptionId}/pause:
+    post:
+      operationId: pauseSubscription
+      summary: Argus Enterprise Pause a Webhook Subscription
+      description: Temporarily pause a webhook subscription. Events will be queued and can be replayed when the subscription is resumed.
+      tags:
+      - Subscriptions
+      parameters:
+      - $ref: '#/components/parameters/subscriptionId'
+      responses:
+        '200':
+          description: Subscription paused successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '404':
+          description: Subscription not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /subscriptions/{subscriptionId}/resume:
+    post:
+      operationId: resumeSubscription
+      summary: Argus Enterprise Resume a Webhook Subscription
+      description: Resume a paused webhook subscription. Any queued events will be delivered to the configured URL.
+      tags:
+      - Subscriptions
+      parameters:
+      - $ref: '#/components/parameters/subscriptionId'
+      responses:
+        '200':
+          description: Subscription resumed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '404':
+          description: Subscription not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /subscriptions/{subscriptionId}/test:
+    post:
+      operationId: testSubscription
+      summary: Argus Enterprise Send a Test Event
+      description: Send a test webhook event to the subscription endpoint to verify connectivity and payload handling.
+      tags:
+      - Subscriptions
+      parameters:
+      - $ref: '#/components/parameters/subscriptionId'
+      responses:
+        '200':
+          description: Test event sent successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestResult'
+        '404':
+          description: Subscription not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    TestResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the test event was delivered successfully
+        responseCode:
+          type: integer
+          description: HTTP response code from the endpoint
+        responseTime:
+          type: integer
+          description: Response time in milliseconds
+        errorMessage:
+          type: string
+          description: Error details if the test failed
+    RetryPolicy:
+      type: object
+      properties:
+        maxRetries:
+          type: integer
+          minimum: 0
+          maximum: 10
+          default: 5
+          description: Maximum number of delivery retry attempts
+        retryIntervalSeconds:
+          type: integer
+          minimum: 10
+          maximum: 3600
+          default: 60
+          description: Initial interval between retries in seconds
+        backoffMultiplier:
+          type: number
+          format: double
+          minimum: 1.0
+          maximum: 5.0
+          default: 2.0
+          description: Exponential backoff multiplier
+    SubscriptionInput:
+      type: object
+      required:
+      - url
+      - eventTypes
+      properties:
+        url:
+          type: string
+          format: uri
+          description: HTTPS endpoint URL for webhook delivery
+        eventTypes:
+          type: array
+          items:
+            type: string
+            enum:
+            - property.created
+            - property.updated
+            - property.deleted
+            - valuation.created
+            - valuation.updated
+            - lease.created
+            - lease.updated
+            - lease.expired
+            - portfolio.created
+            - portfolio.updated
+            - portfolio.deleted
+            - report.completed
+            - report.failed
+            - cashflow.updated
+            - tenant.created
+            - tenant.updated
+          minItems: 1
+        description:
+          type: string
+        retryPolicy:
+          $ref: '#/components/schemas/RetryPolicy'
+    Subscription:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique subscription identifier
+        url:
+          type: string
+          format: uri
+          description: HTTPS endpoint URL for webhook delivery
+        eventTypes:
+          type: array
+          items:
+            type: string
+            enum:
+            - property.created
+            - property.updated
+            - property.deleted
+            - valuation.created
+            - valuation.updated
+            - lease.created
+            - lease.updated
+            - lease.expired
+            - portfolio.created
+            - portfolio.updated
+            - portfolio.deleted
+            - report.completed
+            - report.failed
+            - cashflow.updated
+            - tenant.created
+            - tenant.updated
+          description: Event types this subscription receives
+        status:
+          type: string
+          enum:
+          - Active
+          - Paused
+          - Disabled
+          description: Current subscription status
+        secret:
+          type: string
+          description: Shared secret for HMAC-SHA256 signature verification of webhook payloads (only returned on creation)
+        description:
+          type: string
+          description: Human-readable description of the subscription
+        retryPolicy:
+          $ref: '#/components/schemas/RetryPolicy'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    SubscriptionList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subscription'
+  parameters:
+    subscriptionId:
+      name: subscriptionId
+      in: path
+      required: true
+      description: Unique identifier of the webhook subscription
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token obtained from the /auth/token endpoint using client credentials.
+externalDocs:
+  description: Argus Enterprise API Documentation
+  url: https://docs.argusenterprise.com/api/v1

@@ -1,0 +1,207 @@
+openapi: 3.1.0
+info:
+  title: Argus Enterprise Core Authentication Cash Flows API
+  description: Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.
+  version: '1.0'
+  contact:
+    name: Argus API Support
+    email: api-support@argusenterprise.com
+    url: https://support.argusenterprise.com
+  termsOfService: https://www.altusgroup.com/terms-of-use
+servers:
+- url: https://api.argusenterprise.com/v1
+  description: Argus Enterprise Production
+security:
+- bearerAuth: []
+tags:
+- name: Cash Flows
+  description: Cash flow projections and analysis
+paths:
+  /properties/{propertyId}/cashflows:
+    get:
+      operationId: listPropertyCashFlows
+      summary: Argus Enterprise List Property Cash Flows
+      description: Retrieve projected cash flows for a property over the analysis period, including income streams, operating expenses, capital expenditures, and net operating income.
+      tags:
+      - Cash Flows
+      parameters:
+      - $ref: '#/components/parameters/propertyId'
+      - name: startDate
+        in: query
+        description: Start date for cash flow projections
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        description: End date for cash flow projections
+        schema:
+          type: string
+          format: date
+      - name: frequency
+        in: query
+        description: Cash flow reporting frequency
+        schema:
+          type: string
+          enum:
+          - Monthly
+          - Quarterly
+          - Annual
+      responses:
+        '200':
+          description: Cash flows retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CashFlowProjection'
+        '404':
+          description: Property not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    propertyId:
+      name: propertyId
+      in: path
+      required: true
+      description: Unique identifier of the property
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    CashFlowSummary:
+      type: object
+      properties:
+        totalRevenue:
+          type: number
+          format: double
+          description: Total revenue over the analysis period
+        totalExpenses:
+          type: number
+          format: double
+          description: Total expenses over the analysis period
+        totalNOI:
+          type: number
+          format: double
+          description: Total net operating income
+        totalCapEx:
+          type: number
+          format: double
+          description: Total capital expenditures
+        averageOccupancy:
+          type: number
+          format: double
+          description: Average occupancy rate (percentage)
+        irr:
+          type: number
+          format: double
+          description: Internal rate of return (percentage)
+        npv:
+          type: number
+          format: double
+          description: Net present value
+    CashFlowPeriod:
+      type: object
+      properties:
+        periodStart:
+          type: string
+          format: date
+          description: Period start date
+        periodEnd:
+          type: string
+          format: date
+          description: Period end date
+        grossPotentialRent:
+          type: number
+          format: double
+          description: Gross potential rental income
+        vacancyLoss:
+          type: number
+          format: double
+          description: Vacancy and credit loss
+        effectiveGrossIncome:
+          type: number
+          format: double
+          description: Effective gross income after vacancy
+        otherIncome:
+          type: number
+          format: double
+          description: Other income (parking, storage, etc.)
+        totalRevenue:
+          type: number
+          format: double
+          description: Total revenue
+        operatingExpenses:
+          type: number
+          format: double
+          description: Total operating expenses
+        netOperatingIncome:
+          type: number
+          format: double
+          description: Net operating income (NOI)
+        capitalExpenditures:
+          type: number
+          format: double
+          description: Capital expenditure costs
+        tenantImprovements:
+          type: number
+          format: double
+          description: Tenant improvement costs
+        leasingCommissions:
+          type: number
+          format: double
+          description: Leasing commission costs
+        debtService:
+          type: number
+          format: double
+          description: Debt service payments
+        cashFlowBeforeDebt:
+          type: number
+          format: double
+          description: Cash flow before debt service
+        cashFlowAfterDebt:
+          type: number
+          format: double
+          description: Cash flow after debt service
+    CashFlowProjection:
+      type: object
+      properties:
+        propertyId:
+          type: string
+          format: uuid
+          description: Associated property identifier
+        startDate:
+          type: string
+          format: date
+          description: Projection start date
+        endDate:
+          type: string
+          format: date
+          description: Projection end date
+        frequency:
+          type: string
+          enum:
+          - Monthly
+          - Quarterly
+          - Annual
+          description: Cash flow reporting frequency
+        currency:
+          type: string
+          description: Currency code (ISO 4217)
+        periods:
+          type: array
+          items:
+            $ref: '#/components/schemas/CashFlowPeriod'
+          description: Individual cash flow periods
+        summary:
+          $ref: '#/components/schemas/CashFlowSummary'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token obtained from the /auth/token endpoint using client credentials.
+externalDocs:
+  description: Argus Enterprise API Documentation
+  url: https://docs.argusenterprise.com/api/v1

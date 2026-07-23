@@ -1,0 +1,283 @@
+openapi: 3.1.0
+info:
+  title: Argus Enterprise Core Authentication Reports API
+  description: Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.
+  version: '1.0'
+  contact:
+    name: Argus API Support
+    email: api-support@argusenterprise.com
+    url: https://support.argusenterprise.com
+  termsOfService: https://www.altusgroup.com/terms-of-use
+servers:
+- url: https://api.argusenterprise.com/v1
+  description: Argus Enterprise Production
+security:
+- bearerAuth: []
+tags:
+- name: Reports
+  description: Generate and retrieve analytical reports
+paths:
+  /reports:
+    get:
+      operationId: listReports
+      summary: Argus Enterprise List Reports
+      description: Retrieve a list of available reports, including property-level, portfolio-level, and custom analytics reports.
+      tags:
+      - Reports
+      parameters:
+      - $ref: '#/components/parameters/pageParam'
+      - $ref: '#/components/parameters/pageSizeParam'
+      - name: reportType
+        in: query
+        description: Filter by report type
+        schema:
+          type: string
+          enum:
+          - PropertySummary
+          - PortfolioSummary
+          - CashFlowAnalysis
+          - ValuationSummary
+          - LeaseExpiry
+          - TenantRoll
+          - CapitalExpenditure
+      responses:
+        '200':
+          description: Reports retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportList'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: generateReport
+      summary: Argus Enterprise Generate a Report
+      description: Generate a new analytical report based on specified parameters including report type, date range, and target properties or portfolios.
+      tags:
+      - Reports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportRequest'
+      responses:
+        '202':
+          description: Report generation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+        '400':
+          description: Invalid report request
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reports/{reportId}:
+    get:
+      operationId: getReport
+      summary: Argus Enterprise Get a Report
+      description: Retrieve the status and results of a previously generated report.
+      tags:
+      - Reports
+      parameters:
+      - $ref: '#/components/parameters/reportId'
+      responses:
+        '200':
+          description: Report retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+        '404':
+          description: Report not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reports/{reportId}/download:
+    get:
+      operationId: downloadReport
+      summary: Argus Enterprise Download a Report
+      description: Download the report output file in the specified format.
+      tags:
+      - Reports
+      parameters:
+      - $ref: '#/components/parameters/reportId'
+      - name: format
+        in: query
+        description: Output format for the report
+        schema:
+          type: string
+          enum:
+          - PDF
+          - Excel
+          - CSV
+          default: PDF
+      responses:
+        '200':
+          description: Report file
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+              schema:
+                type: string
+                format: binary
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Report not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    pageSizeParam:
+      name: pageSize
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    pageParam:
+      name: page
+      in: query
+      description: Page number for pagination
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    reportId:
+      name: reportId
+      in: path
+      required: true
+      description: Unique identifier of the report
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    ReportRequest:
+      type: object
+      required:
+      - reportType
+      properties:
+        reportType:
+          type: string
+          enum:
+          - PropertySummary
+          - PortfolioSummary
+          - CashFlowAnalysis
+          - ValuationSummary
+          - LeaseExpiry
+          - TenantRoll
+          - CapitalExpenditure
+        title:
+          type: string
+        propertyIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Properties to include in the report
+        portfolioIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Portfolios to include in the report
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        outputFormat:
+          type: string
+          enum:
+          - PDF
+          - Excel
+          - CSV
+          default: PDF
+    ReportList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Report'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Report:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique report identifier
+        reportType:
+          type: string
+          enum:
+          - PropertySummary
+          - PortfolioSummary
+          - CashFlowAnalysis
+          - ValuationSummary
+          - LeaseExpiry
+          - TenantRoll
+          - CapitalExpenditure
+          description: Type of report
+        title:
+          type: string
+          description: Report title
+        status:
+          type: string
+          enum:
+          - Pending
+          - Processing
+          - Completed
+          - Failed
+          description: Report generation status
+        generatedAt:
+          type: string
+          format: date-time
+          description: Report generation timestamp
+        downloadUrl:
+          type: string
+          format: uri
+          description: URL to download the completed report
+        parameters:
+          type: object
+          description: Parameters used to generate the report
+        createdBy:
+          type: string
+          description: Username of the report creator
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Current page number
+        pageSize:
+          type: integer
+          description: Number of items per page
+        totalItems:
+          type: integer
+          description: Total number of items
+        totalPages:
+          type: integer
+          description: Total number of pages
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token obtained from the /auth/token endpoint using client credentials.
+externalDocs:
+  description: Argus Enterprise API Documentation
+  url: https://docs.argusenterprise.com/api/v1

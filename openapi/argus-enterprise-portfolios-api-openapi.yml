@@ -1,0 +1,371 @@
+openapi: 3.1.0
+info:
+  title: Argus Enterprise Core Authentication Portfolios API
+  description: Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.
+  version: '1.0'
+  contact:
+    name: Argus API Support
+    email: api-support@argusenterprise.com
+    url: https://support.argusenterprise.com
+  termsOfService: https://www.altusgroup.com/terms-of-use
+servers:
+- url: https://api.argusenterprise.com/v1
+  description: Argus Enterprise Production
+security:
+- bearerAuth: []
+tags:
+- name: Portfolios
+  description: Organize and manage property portfolios
+paths:
+  /portfolios:
+    get:
+      operationId: listPortfolios
+      summary: Argus Enterprise List Portfolios
+      description: Retrieve a paginated list of property portfolios accessible to the authenticated user.
+      tags:
+      - Portfolios
+      parameters:
+      - $ref: '#/components/parameters/pageParam'
+      - $ref: '#/components/parameters/pageSizeParam'
+      responses:
+        '200':
+          description: Portfolios retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortfolioList'
+        '401':
+          description: Unauthorized
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createPortfolio
+      summary: Argus Enterprise Create a Portfolio
+      description: Create a new property portfolio for organizing assets.
+      tags:
+      - Portfolios
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PortfolioInput'
+      responses:
+        '201':
+          description: Portfolio created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Portfolio'
+        '400':
+          description: Invalid portfolio data
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /portfolios/{portfolioId}:
+    get:
+      operationId: getPortfolio
+      summary: Argus Enterprise Get a Portfolio
+      description: Retrieve detailed information about a specific portfolio.
+      tags:
+      - Portfolios
+      parameters:
+      - $ref: '#/components/parameters/portfolioId'
+      responses:
+        '200':
+          description: Portfolio retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Portfolio'
+        '404':
+          description: Portfolio not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updatePortfolio
+      summary: Argus Enterprise Update a Portfolio
+      description: Update an existing portfolio.
+      tags:
+      - Portfolios
+      parameters:
+      - $ref: '#/components/parameters/portfolioId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PortfolioInput'
+      responses:
+        '200':
+          description: Portfolio updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Portfolio'
+        '400':
+          description: Invalid portfolio data
+        '404':
+          description: Portfolio not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deletePortfolio
+      summary: Argus Enterprise Delete a Portfolio
+      description: Delete a portfolio. Properties within the portfolio are not deleted.
+      tags:
+      - Portfolios
+      parameters:
+      - $ref: '#/components/parameters/portfolioId'
+      responses:
+        '204':
+          description: Portfolio deleted successfully
+        '404':
+          description: Portfolio not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /portfolios/{portfolioId}/properties:
+    get:
+      operationId: listPortfolioProperties
+      summary: Argus Enterprise List Portfolio Properties
+      description: Retrieve all properties belonging to a specific portfolio.
+      tags:
+      - Portfolios
+      parameters:
+      - $ref: '#/components/parameters/portfolioId'
+      - $ref: '#/components/parameters/pageParam'
+      - $ref: '#/components/parameters/pageSizeParam'
+      responses:
+        '200':
+          description: Properties retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyList'
+        '404':
+          description: Portfolio not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Portfolio:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique portfolio identifier
+        name:
+          type: string
+          description: Portfolio name
+        description:
+          type: string
+          description: Portfolio description
+        strategy:
+          type: string
+          enum:
+          - Core
+          - CorePlus
+          - ValueAdd
+          - Opportunistic
+          description: Investment strategy classification
+        totalProperties:
+          type: integer
+          description: Number of properties in the portfolio
+        totalMarketValue:
+          type: number
+          format: double
+          description: Aggregate market value of all properties
+        currency:
+          type: string
+          description: Currency code (ISO 4217)
+          default: USD
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    PortfolioInput:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        strategy:
+          type: string
+          enum:
+          - Core
+          - CorePlus
+          - ValueAdd
+          - Opportunistic
+        currency:
+          type: string
+          default: USD
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+          description: Street address
+        city:
+          type: string
+          description: City
+        state:
+          type: string
+          description: State or province
+        postalCode:
+          type: string
+          description: Postal or ZIP code
+        country:
+          type: string
+          description: Country code (ISO 3166-1 alpha-2)
+    PortfolioList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Portfolio'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    PropertyList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Property'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Current page number
+        pageSize:
+          type: integer
+          description: Number of items per page
+        totalItems:
+          type: integer
+          description: Total number of items
+        totalPages:
+          type: integer
+          description: Total number of pages
+    Property:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique property identifier
+        name:
+          type: string
+          description: Property name
+        propertyType:
+          type: string
+          enum:
+          - Office
+          - Retail
+          - Industrial
+          - Multifamily
+          - Mixed-Use
+          - Hotel
+          - Land
+          - Other
+          description: Type of commercial real estate property
+        status:
+          type: string
+          enum:
+          - Active
+          - Pending
+          - Archived
+          description: Current property status
+        address:
+          $ref: '#/components/schemas/Address'
+        grossArea:
+          type: number
+          format: double
+          description: Gross leasable area in square feet
+        netLeasableArea:
+          type: number
+          format: double
+          description: Net leasable area in square feet
+        yearBuilt:
+          type: integer
+          description: Year the property was built
+        numberOfUnits:
+          type: integer
+          description: Number of leasable units or suites
+        purchasePrice:
+          type: number
+          format: double
+          description: Original purchase price
+        purchaseDate:
+          type: string
+          format: date
+          description: Date of property acquisition
+        currentMarketValue:
+          type: number
+          format: double
+          description: Current estimated market value
+        occupancyRate:
+          type: number
+          format: double
+          description: Current occupancy rate as a percentage
+        portfolioId:
+          type: string
+          format: uuid
+          description: Identifier of the parent portfolio
+        createdAt:
+          type: string
+          format: date-time
+          description: Record creation timestamp
+        updatedAt:
+          type: string
+          format: date-time
+          description: Record last update timestamp
+  parameters:
+    pageSizeParam:
+      name: pageSize
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    portfolioId:
+      name: portfolioId
+      in: path
+      required: true
+      description: Unique identifier of the portfolio
+      schema:
+        type: string
+        format: uuid
+    pageParam:
+      name: page
+      in: query
+      description: Page number for pagination
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token obtained from the /auth/token endpoint using client credentials.
+externalDocs:
+  description: Argus Enterprise API Documentation
+  url: https://docs.argusenterprise.com/api/v1
