@@ -7,7 +7,20 @@ description: >-
   reports. Trusted by real estate investors, portfolio managers, valuation professionals, and asset managers worldwide
   and taught at 200+ universities.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/argus-enterprise.png
 tags:
   - Altus Group
   - Asset Management
@@ -20,45 +33,177 @@ created: '2024-01-15'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: argus-enterprise:argus-enterprise-core
-    name: ARGUS Enterprise Core API
-    description: >-
-      Core REST API for the ARGUS Enterprise platform providing programmatic access to commercial real estate investment
-      management capabilities including property data, portfolio management, cash flow projections, valuations, tenants,
-      leases, and reporting. Authentication via bearer token.
-    humanURL: https://www.altusgroup.com/solutions/argus-enterprise/
-    baseURL: https://api.argusenterprise.com/v1
-    tags:
-      - Analytics
-      - Cash Flow
-      - Leases
-      - Portfolio Management
-      - Properties
-      - Reporting
-      - Valuations
-    properties:
-      - type: Documentation
-        url: https://www.altusgroup.com/argus/downloads/argus-enterprise/
-      - type: OpenAPI
-        url: openapi/argus-enterprise-core-openapi.yml
-      - type: Authentication
-        url: https://www.altusgroup.com/support/start-using-argus-intelligence/
-  - aid: argus-enterprise:argus-enterprise-webhooks
-    name: ARGUS Enterprise Webhook API
-    description: >-
-      Webhook service for the ARGUS Enterprise platform enabling real-time event notifications for property changes,
-      valuation updates, lease events, portfolio modifications, and report completions.
-    humanURL: https://www.altusgroup.com/solutions/argus-enterprise/
-    tags:
-      - Events
-      - Real-Time
-      - Webhooks
-    properties:
-      - type: Documentation
-        url: https://www.altusgroup.com/argus/downloads/argus-enterprise/
-      - type: OpenAPI
-        url: openapi/argus-enterprise-webhooks-openapi.yml
+- aid: argus-enterprise:argus-enterprise-authentication-api
+  name: ARGUS Enterprise Authentication API
+  description: OAuth 2.0 token operations for API access
+  humanURL: https://www.altusgroup.com/solutions/argus-enterprise/
+  baseURL: https://api.argusenterprise.com/v1
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/argus-enterprise-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://www.altusgroup.com/argus/downloads/argus-enterprise/
+  - type: Authentication
+    url: https://www.altusgroup.com/support/start-using-argus-intelligence/
+- aid: argus-enterprise:argus-enterprise-cash-flows-api
+  name: ARGUS Enterprise Cash Flows API
+  description: Cash flow projections and analysis
+  humanURL: https://www.altusgroup.com/solutions/argus-enterprise/
+  baseURL: https://api.argusenterprise.com/v1
+  tags:
+  - Cash Flows
+  properties:
+  - type: OpenAPI
+    url: openapi/argus-enterprise-cash-flows-api-openapi.yml
+  - type: Documentation
+    url: https://www.altusgroup.com/argus/downloads/argus-enterprise/
+  - type: Authentication
+    url: https://www.altusgroup.com/support/start-using-argus-intelligence/
+- aid: argus-enterprise:argus-enterprise-events-api
+  name: ARGUS Enterprise Events API
+  description: View webhook event history and delivery logs
+  humanURL: https://www.altusgroup.com/solutions/argus-enterprise/
+  baseURL: https://api.argusenterprise.com/v1
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/argus-enterprise-events-api-openapi.yml
+  - type: Documentation
+    url: https://www.altusgroup.com/argus/downloads/argus-enterprise/
+  - type: Authentication
+    url: https://www.altusgroup.com/support/start-using-argus-intelligence/
+- aid: argus-enterprise:argus-enterprise-health-api
+  name: ARGUS Enterprise Health API
+  description: Webhook service health and status
+  humanURL: https://www.altusgroup.com/solutions/argus-enterprise/
+  baseURL: https://api.argusenterprise.com/v1
+  tags:
+  - Health
+  properties:
+  - type: OpenAPI
+    url: openapi/argus-enterprise-health-api-openapi.yml
+  - type: Documentation
+    url: https://www.altusgroup.com/argus/downloads/argus-enterprise/
+  - type: Authentication
+    url: https://www.altusgroup.com/support/start-using-argus-intelligence/
+- aid: argus-enterprise:argus-enterprise-leases-api
+  name: ARGUS Enterprise Leases API
+  description: Lease agreements and terms
+  humanURL: https://www.altusgroup.com/solutions/argus-enterprise/
+  baseURL: https://api.argusenterprise.com/v1
+  tags:
+  - Leases
+  properties:
+  - type: OpenAPI
+    url: openapi/argus-enterprise-leases-api-openapi.yml
+  - type: Documentation
+    url: https://www.altusgroup.com/argus/downloads/argus-enterprise/
+  - type: Authentication
+    url: https://www.altusgroup.com/support/start-using-argus-intelligence/
+- aid: argus-enterprise:argus-enterprise-portfolios-api
+  name: ARGUS Enterprise Portfolios API
+  description: Organize and manage property portfolios
+  humanURL: https://www.altusgroup.com/solutions/argus-enterprise/
+  baseURL: https://api.argusenterprise.com/v1
+  tags:
+  - Portfolios
+  properties:
+  - type: OpenAPI
+    url: openapi/argus-enterprise-portfolios-api-openapi.yml
+  - type: Documentation
+    url: https://www.altusgroup.com/argus/downloads/argus-enterprise/
+  - type: Authentication
+    url: https://www.altusgroup.com/support/start-using-argus-intelligence/
+- aid: argus-enterprise:argus-enterprise-properties-api
+  name: ARGUS Enterprise Properties API
+  description: Manage commercial real estate properties and assets
+  humanURL: https://www.altusgroup.com/solutions/argus-enterprise/
+  baseURL: https://api.argusenterprise.com/v1
+  tags:
+  - Properties
+  properties:
+  - type: OpenAPI
+    url: openapi/argus-enterprise-properties-api-openapi.yml
+  - type: Documentation
+    url: https://www.altusgroup.com/argus/downloads/argus-enterprise/
+  - type: Authentication
+    url: https://www.altusgroup.com/support/start-using-argus-intelligence/
+- aid: argus-enterprise:argus-enterprise-reports-api
+  name: ARGUS Enterprise Reports API
+  description: Generate and retrieve analytical reports
+  humanURL: https://www.altusgroup.com/solutions/argus-enterprise/
+  baseURL: https://api.argusenterprise.com/v1
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/argus-enterprise-reports-api-openapi.yml
+  - type: Documentation
+    url: https://www.altusgroup.com/argus/downloads/argus-enterprise/
+  - type: Authentication
+    url: https://www.altusgroup.com/support/start-using-argus-intelligence/
+- aid: argus-enterprise:argus-enterprise-subscriptions-api
+  name: ARGUS Enterprise Subscriptions API
+  description: Manage webhook subscriptions
+  humanURL: https://www.altusgroup.com/solutions/argus-enterprise/
+  baseURL: https://api.argusenterprise.com/v1
+  tags:
+  - Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/argus-enterprise-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: https://www.altusgroup.com/argus/downloads/argus-enterprise/
+  - type: Authentication
+    url: https://www.altusgroup.com/support/start-using-argus-intelligence/
+- aid: argus-enterprise:argus-enterprise-tenants-api
+  name: ARGUS Enterprise Tenants API
+  description: Tenant records and contact information
+  humanURL: https://www.altusgroup.com/solutions/argus-enterprise/
+  baseURL: https://api.argusenterprise.com/v1
+  tags:
+  - Tenants
+  properties:
+  - type: OpenAPI
+    url: openapi/argus-enterprise-tenants-api-openapi.yml
+  - type: Documentation
+    url: https://www.altusgroup.com/argus/downloads/argus-enterprise/
+  - type: Authentication
+    url: https://www.altusgroup.com/support/start-using-argus-intelligence/
+- aid: argus-enterprise:argus-enterprise-users-api
+  name: ARGUS Enterprise Users API
+  description: User management and access control
+  humanURL: https://www.altusgroup.com/solutions/argus-enterprise/
+  baseURL: https://api.argusenterprise.com/v1
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/argus-enterprise-users-api-openapi.yml
+  - type: Documentation
+    url: https://www.altusgroup.com/argus/downloads/argus-enterprise/
+  - type: Authentication
+    url: https://www.altusgroup.com/support/start-using-argus-intelligence/
+- aid: argus-enterprise:argus-enterprise-valuations-api
+  name: ARGUS Enterprise Valuations API
+  description: Property valuations and appraisal data
+  humanURL: https://www.altusgroup.com/solutions/argus-enterprise/
+  baseURL: https://api.argusenterprise.com/v1
+  tags:
+  - Valuations
+  properties:
+  - type: OpenAPI
+    url: openapi/argus-enterprise-valuations-api-openapi.yml
+  - type: Documentation
+    url: https://www.altusgroup.com/argus/downloads/argus-enterprise/
+  - type: Authentication
+    url: https://www.altusgroup.com/support/start-using-argus-intelligence/
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/argus-enterprise/overview
   - type: AgenticAccess
     url: agentic-access/argus-enterprise-agentic-access.yml
   - type: DomainSecurity
