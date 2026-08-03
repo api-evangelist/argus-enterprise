@@ -1,0 +1,112 @@
+{
+  "info": {
+    "_postman_id": "486c56f8-ab37-44b6-af87-e917fb4ae146",
+    "name": "Argus Enterprise Core Authentication Health API",
+    "description": "Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.\n\nContact Support:\n Name: Argus API Support\n Email: api-support@argusenterprise.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:04:45.000Z",
+    "updatedAt": "2026-07-28T01:04:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-486c56f8-ab37-44b6-af87-e917fb4ae146"
+  },
+  "item": [
+    {
+      "name": "health",
+      "item": [
+        {
+          "name": "Argus Enterprise Get Service Health",
+          "id": "2aa1e56c-781b-4e15-a86f-3d649b6ae197",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "health"
+              ]
+            },
+            "description": "Check the health status of the webhook service, including delivery queue depth and recent error rates."
+          },
+          "response": [
+            {
+              "id": "4bf288f6-58da-4cf1-a57f-448878d605e6",
+              "name": "Service health information",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/health",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "health"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"Healthy\",\n  \"queueDepth\": \"<integer>\",\n  \"recentErrorRate\": \"<double>\",\n  \"uptime\": \"<string>\",\n  \"lastChecked\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:04:45.000Z",
+              "updatedAt": "2026-07-28T01:04:45.000Z",
+              "uid": "35240-4bf288f6-58da-4cf1-a57f-448878d605e6"
+            }
+          ],
+          "createdAt": "2026-07-28T01:04:45.000Z",
+          "updatedAt": "2026-07-28T01:04:45.000Z",
+          "uid": "35240-2aa1e56c-781b-4e15-a86f-3d649b6ae197"
+        }
+      ],
+      "id": "d9c33543-05aa-41b5-8449-4c379fcca025",
+      "createdAt": "2026-07-28T01:04:45.000Z",
+      "updatedAt": "2026-07-28T01:04:45.000Z",
+      "uid": "35240-d9c33543-05aa-41b5-8449-4c379fcca025"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.argusenterprise.com/v1"
+    }
+  ]
+}

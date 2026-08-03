@@ -1,0 +1,1311 @@
+{
+  "info": {
+    "_postman_id": "07635574-90a4-49d9-8225-62999d47acda",
+    "name": "Argus Enterprise Core Authentication Subscriptions API",
+    "description": "Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.\n\nContact Support:\n Name: Argus API Support\n Email: api-support@argusenterprise.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:04:50.000Z",
+    "updatedAt": "2026-07-28T01:04:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-07635574-90a4-49d9-8225-62999d47acda"
+  },
+  "item": [
+    {
+      "name": "subscriptions",
+      "item": [
+        {
+          "name": "{subscriptionId}",
+          "item": [
+            {
+              "name": "pause",
+              "item": [
+                {
+                  "name": "Argus Enterprise Pause a Webhook Subscription",
+                  "id": "e6cde6f8-fce7-4bf9-a063-fda269efd410",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/subscriptions/:subscriptionId/pause",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscriptions",
+                        ":subscriptionId",
+                        "pause"
+                      ],
+                      "variable": [
+                        {
+                          "id": "da673a64-5fc8-4d32-9d12-e3919d9255b5",
+                          "key": "subscriptionId",
+                          "value": "<uuid>",
+                          "description": "(Required) Unique identifier of the webhook subscription"
+                        }
+                      ]
+                    },
+                    "description": "Temporarily pause a webhook subscription. Events will be queued and can be replayed when the subscription is resumed."
+                  },
+                  "response": [
+                    {
+                      "id": "31b066fa-e6bc-49f8-b7db-891846154448",
+                      "name": "Subscription paused successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/subscriptions/:subscriptionId/pause",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscriptions",
+                            ":subscriptionId",
+                            "pause"
+                          ],
+                          "variable": [
+                            {
+                              "key": "subscriptionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<uuid>\",\n  \"url\": \"<uri>\",\n  \"eventTypes\": [\n    \"portfolio.deleted\",\n    \"cashflow.updated\"\n  ],\n  \"status\": \"Paused\",\n  \"secret\": \"<string>\",\n  \"description\": \"<string>\",\n  \"retryPolicy\": {\n    \"maxRetries\": 5,\n    \"retryIntervalSeconds\": 60,\n    \"backoffMultiplier\": 2\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:04:50.000Z",
+                      "updatedAt": "2026-07-28T01:04:50.000Z",
+                      "uid": "35240-31b066fa-e6bc-49f8-b7db-891846154448"
+                    },
+                    {
+                      "id": "f63f5025-c42c-4b0a-8400-b1ea04e04542",
+                      "name": "Subscription not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/subscriptions/:subscriptionId/pause",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscriptions",
+                            ":subscriptionId",
+                            "pause"
+                          ],
+                          "variable": [
+                            {
+                              "key": "subscriptionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:04:50.000Z",
+                      "updatedAt": "2026-07-28T01:04:50.000Z",
+                      "uid": "35240-f63f5025-c42c-4b0a-8400-b1ea04e04542"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:04:50.000Z",
+                  "updatedAt": "2026-07-28T01:04:50.000Z",
+                  "uid": "35240-e6cde6f8-fce7-4bf9-a063-fda269efd410"
+                }
+              ],
+              "id": "dd25d6f1-2241-4c62-a0eb-e2ea6cd71524",
+              "createdAt": "2026-07-28T01:04:50.000Z",
+              "updatedAt": "2026-07-28T01:04:50.000Z",
+              "uid": "35240-dd25d6f1-2241-4c62-a0eb-e2ea6cd71524"
+            },
+            {
+              "name": "resume",
+              "item": [
+                {
+                  "name": "Argus Enterprise Resume a Webhook Subscription",
+                  "id": "a4c2b24d-4653-45d4-938b-72691683b2aa",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resume",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscriptions",
+                        ":subscriptionId",
+                        "resume"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a48f0c84-1857-4f3c-8ff0-1e0232910194",
+                          "key": "subscriptionId",
+                          "value": "<uuid>",
+                          "description": "(Required) Unique identifier of the webhook subscription"
+                        }
+                      ]
+                    },
+                    "description": "Resume a paused webhook subscription. Any queued events will be delivered to the configured URL."
+                  },
+                  "response": [
+                    {
+                      "id": "c43a3146-7860-4ec2-acfe-f8d462dcf73d",
+                      "name": "Subscription resumed successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resume",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscriptions",
+                            ":subscriptionId",
+                            "resume"
+                          ],
+                          "variable": [
+                            {
+                              "key": "subscriptionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<uuid>\",\n  \"url\": \"<uri>\",\n  \"eventTypes\": [\n    \"portfolio.deleted\",\n    \"cashflow.updated\"\n  ],\n  \"status\": \"Paused\",\n  \"secret\": \"<string>\",\n  \"description\": \"<string>\",\n  \"retryPolicy\": {\n    \"maxRetries\": 5,\n    \"retryIntervalSeconds\": 60,\n    \"backoffMultiplier\": 2\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:04:50.000Z",
+                      "updatedAt": "2026-07-28T01:04:50.000Z",
+                      "uid": "35240-c43a3146-7860-4ec2-acfe-f8d462dcf73d"
+                    },
+                    {
+                      "id": "14f8a46c-9c34-4022-aefa-a1b05fbbd7a7",
+                      "name": "Subscription not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resume",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscriptions",
+                            ":subscriptionId",
+                            "resume"
+                          ],
+                          "variable": [
+                            {
+                              "key": "subscriptionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:04:50.000Z",
+                      "updatedAt": "2026-07-28T01:04:50.000Z",
+                      "uid": "35240-14f8a46c-9c34-4022-aefa-a1b05fbbd7a7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:04:50.000Z",
+                  "updatedAt": "2026-07-28T01:04:50.000Z",
+                  "uid": "35240-a4c2b24d-4653-45d4-938b-72691683b2aa"
+                }
+              ],
+              "id": "2136ef80-84ae-46c7-b1c4-eb616a9e5899",
+              "createdAt": "2026-07-28T01:04:50.000Z",
+              "updatedAt": "2026-07-28T01:04:50.000Z",
+              "uid": "35240-2136ef80-84ae-46c7-b1c4-eb616a9e5899"
+            },
+            {
+              "name": "test",
+              "item": [
+                {
+                  "name": "Argus Enterprise Send a Test Event",
+                  "id": "34b8b08e-d7ad-41af-8a75-fe7d9424415b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/subscriptions/:subscriptionId/test",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscriptions",
+                        ":subscriptionId",
+                        "test"
+                      ],
+                      "variable": [
+                        {
+                          "id": "75762984-b719-4811-a95e-37fc4862769e",
+                          "key": "subscriptionId",
+                          "value": "<uuid>",
+                          "description": "(Required) Unique identifier of the webhook subscription"
+                        }
+                      ]
+                    },
+                    "description": "Send a test webhook event to the subscription endpoint to verify connectivity and payload handling."
+                  },
+                  "response": [
+                    {
+                      "id": "7c5c2b94-8f69-4d26-80e0-72e3447e610f",
+                      "name": "Test event sent successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/subscriptions/:subscriptionId/test",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscriptions",
+                            ":subscriptionId",
+                            "test"
+                          ],
+                          "variable": [
+                            {
+                              "key": "subscriptionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"responseCode\": \"<integer>\",\n  \"responseTime\": \"<integer>\",\n  \"errorMessage\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:04:50.000Z",
+                      "updatedAt": "2026-07-28T01:04:50.000Z",
+                      "uid": "35240-7c5c2b94-8f69-4d26-80e0-72e3447e610f"
+                    },
+                    {
+                      "id": "17064e37-897f-4b46-9eb7-14a0f03a3eab",
+                      "name": "Subscription not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/subscriptions/:subscriptionId/test",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscriptions",
+                            ":subscriptionId",
+                            "test"
+                          ],
+                          "variable": [
+                            {
+                              "key": "subscriptionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:04:50.000Z",
+                      "updatedAt": "2026-07-28T01:04:50.000Z",
+                      "uid": "35240-17064e37-897f-4b46-9eb7-14a0f03a3eab"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:04:50.000Z",
+                  "updatedAt": "2026-07-28T01:04:50.000Z",
+                  "uid": "35240-34b8b08e-d7ad-41af-8a75-fe7d9424415b"
+                }
+              ],
+              "id": "337dcb81-4ac2-487c-bb71-ab7276f2ba17",
+              "createdAt": "2026-07-28T01:04:50.000Z",
+              "updatedAt": "2026-07-28T01:04:50.000Z",
+              "uid": "35240-337dcb81-4ac2-487c-bb71-ab7276f2ba17"
+            },
+            {
+              "name": "Argus Enterprise Get a Webhook Subscription",
+              "id": "9bcbfb02-915d-40a0-aee2-0245c3db5abb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/subscriptions/:subscriptionId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a3bf9b53-3c36-4b08-9b30-e9121a47a37f",
+                      "key": "subscriptionId",
+                      "value": "<uuid>",
+                      "description": "(Required) Unique identifier of the webhook subscription"
+                    }
+                  ]
+                },
+                "description": "Retrieve detailed information about a specific webhook subscription."
+              },
+              "response": [
+                {
+                  "id": "d9727fd0-ffa7-468d-9eff-8a639c29d202",
+                  "name": "Subscription retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/subscriptions/:subscriptionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscriptions",
+                        ":subscriptionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "subscriptionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"url\": \"<uri>\",\n  \"eventTypes\": [\n    \"portfolio.deleted\",\n    \"cashflow.updated\"\n  ],\n  \"status\": \"Paused\",\n  \"secret\": \"<string>\",\n  \"description\": \"<string>\",\n  \"retryPolicy\": {\n    \"maxRetries\": 5,\n    \"retryIntervalSeconds\": 60,\n    \"backoffMultiplier\": 2\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:04:50.000Z",
+                  "updatedAt": "2026-07-28T01:04:50.000Z",
+                  "uid": "35240-d9727fd0-ffa7-468d-9eff-8a639c29d202"
+                },
+                {
+                  "id": "d62e7119-eb11-4a99-a61d-602da99d2fd2",
+                  "name": "Subscription not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/subscriptions/:subscriptionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscriptions",
+                        ":subscriptionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "subscriptionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:04:50.000Z",
+                  "updatedAt": "2026-07-28T01:04:50.000Z",
+                  "uid": "35240-d62e7119-eb11-4a99-a61d-602da99d2fd2"
+                }
+              ],
+              "createdAt": "2026-07-28T01:04:50.000Z",
+              "updatedAt": "2026-07-28T01:04:50.000Z",
+              "uid": "35240-9bcbfb02-915d-40a0-aee2-0245c3db5abb"
+            },
+            {
+              "name": "Argus Enterprise Update a Webhook Subscription",
+              "id": "bbb27167-08a7-49bb-bc8f-9f7c5646e00d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"eventTypes\": [\n    \"tenant.updated\"\n  ],\n  \"description\": \"<string>\",\n  \"retryPolicy\": {\n    \"maxRetries\": 5,\n    \"retryIntervalSeconds\": 60,\n    \"backoffMultiplier\": 2\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/subscriptions/:subscriptionId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "c57ae016-3c58-428f-8295-1c6ad90b1efc",
+                      "key": "subscriptionId",
+                      "value": "<uuid>",
+                      "description": "(Required) Unique identifier of the webhook subscription"
+                    }
+                  ]
+                },
+                "description": "Update the configuration of an existing webhook subscription."
+              },
+              "response": [
+                {
+                  "id": "58fea064-942b-41f5-b1e6-0b74d071ed42",
+                  "name": "Subscription updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"url\": \"<uri>\",\n  \"eventTypes\": [\n    \"tenant.updated\"\n  ],\n  \"description\": \"<string>\",\n  \"retryPolicy\": {\n    \"maxRetries\": 5,\n    \"retryIntervalSeconds\": 60,\n    \"backoffMultiplier\": 2\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/subscriptions/:subscriptionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscriptions",
+                        ":subscriptionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "subscriptionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"url\": \"<uri>\",\n  \"eventTypes\": [\n    \"portfolio.deleted\",\n    \"cashflow.updated\"\n  ],\n  \"status\": \"Paused\",\n  \"secret\": \"<string>\",\n  \"description\": \"<string>\",\n  \"retryPolicy\": {\n    \"maxRetries\": 5,\n    \"retryIntervalSeconds\": 60,\n    \"backoffMultiplier\": 2\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:04:50.000Z",
+                  "updatedAt": "2026-07-28T01:04:50.000Z",
+                  "uid": "35240-58fea064-942b-41f5-b1e6-0b74d071ed42"
+                },
+                {
+                  "id": "4aac7a30-1dc5-48f2-b6b1-20a751e43f2a",
+                  "name": "Invalid subscription data",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"url\": \"<uri>\",\n  \"eventTypes\": [\n    \"tenant.updated\"\n  ],\n  \"description\": \"<string>\",\n  \"retryPolicy\": {\n    \"maxRetries\": 5,\n    \"retryIntervalSeconds\": 60,\n    \"backoffMultiplier\": 2\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/subscriptions/:subscriptionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscriptions",
+                        ":subscriptionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "subscriptionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:04:50.000Z",
+                  "updatedAt": "2026-07-28T01:04:50.000Z",
+                  "uid": "35240-4aac7a30-1dc5-48f2-b6b1-20a751e43f2a"
+                },
+                {
+                  "id": "0de7c89e-6bbd-4997-84ac-ef2c5f5f2649",
+                  "name": "Subscription not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"url\": \"<uri>\",\n  \"eventTypes\": [\n    \"tenant.updated\"\n  ],\n  \"description\": \"<string>\",\n  \"retryPolicy\": {\n    \"maxRetries\": 5,\n    \"retryIntervalSeconds\": 60,\n    \"backoffMultiplier\": 2\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/subscriptions/:subscriptionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscriptions",
+                        ":subscriptionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "subscriptionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:04:50.000Z",
+                  "updatedAt": "2026-07-28T01:04:50.000Z",
+                  "uid": "35240-0de7c89e-6bbd-4997-84ac-ef2c5f5f2649"
+                }
+              ],
+              "createdAt": "2026-07-28T01:04:50.000Z",
+              "updatedAt": "2026-07-28T01:04:50.000Z",
+              "uid": "35240-bbb27167-08a7-49bb-bc8f-9f7c5646e00d"
+            },
+            {
+              "name": "Argus Enterprise Delete a Webhook Subscription",
+              "id": "b6fb3584-915b-4065-b0c5-fcf1d444e61c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/subscriptions/:subscriptionId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "02d42e90-b823-4e7f-a035-a33c05487048",
+                      "key": "subscriptionId",
+                      "value": "<uuid>",
+                      "description": "(Required) Unique identifier of the webhook subscription"
+                    }
+                  ]
+                },
+                "description": "Permanently delete a webhook subscription. No further events will be delivered to the configured URL."
+              },
+              "response": [
+                {
+                  "id": "32eac431-b80f-4743-8ee3-b211ecef2bd2",
+                  "name": "Subscription deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/subscriptions/:subscriptionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscriptions",
+                        ":subscriptionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "subscriptionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:04:50.000Z",
+                  "updatedAt": "2026-07-28T01:04:50.000Z",
+                  "uid": "35240-32eac431-b80f-4743-8ee3-b211ecef2bd2"
+                },
+                {
+                  "id": "67cb36cc-81d0-4113-8cb5-d3b540c93e9a",
+                  "name": "Subscription not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/subscriptions/:subscriptionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscriptions",
+                        ":subscriptionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "subscriptionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:04:50.000Z",
+                  "updatedAt": "2026-07-28T01:04:50.000Z",
+                  "uid": "35240-67cb36cc-81d0-4113-8cb5-d3b540c93e9a"
+                }
+              ],
+              "createdAt": "2026-07-28T01:04:50.000Z",
+              "updatedAt": "2026-07-28T01:04:50.000Z",
+              "uid": "35240-b6fb3584-915b-4065-b0c5-fcf1d444e61c"
+            }
+          ],
+          "id": "41529f39-e42c-40e5-a258-58680a2e49d4",
+          "createdAt": "2026-07-28T01:04:50.000Z",
+          "updatedAt": "2026-07-28T01:04:50.000Z",
+          "uid": "35240-41529f39-e42c-40e5-a258-58680a2e49d4"
+        },
+        {
+          "name": "Argus Enterprise List Webhook Subscriptions",
+          "id": "245e56fb-d17b-4589-bf45-74f541e85233",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/subscriptions?status=Paused&eventType=tenant.updated",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "subscriptions"
+              ],
+              "query": [
+                {
+                  "description": "Filter by subscription status",
+                  "key": "status",
+                  "value": "Paused"
+                },
+                {
+                  "description": "Filter by event type",
+                  "key": "eventType",
+                  "value": "tenant.updated"
+                }
+              ]
+            },
+            "description": "Retrieve all webhook subscriptions for the authenticated account, including their status and configured event types."
+          },
+          "response": [
+            {
+              "id": "054c63d0-b88d-4f82-bedc-e6de011b41e8",
+              "name": "Subscriptions retrieved successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/subscriptions?status=Paused&eventType=tenant.updated",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subscriptions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by subscription status",
+                      "key": "status",
+                      "value": "Paused"
+                    },
+                    {
+                      "description": "Filter by event type",
+                      "key": "eventType",
+                      "value": "tenant.updated"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<uuid>\",\n      \"url\": \"<uri>\",\n      \"eventTypes\": [\n        \"lease.created\",\n        \"property.created\"\n      ],\n      \"status\": \"Active\",\n      \"secret\": \"<string>\",\n      \"description\": \"<string>\",\n      \"retryPolicy\": {\n        \"maxRetries\": 5,\n        \"retryIntervalSeconds\": 60,\n        \"backoffMultiplier\": 2\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"url\": \"<uri>\",\n      \"eventTypes\": [\n        \"tenant.created\",\n        \"property.deleted\"\n      ],\n      \"status\": \"Disabled\",\n      \"secret\": \"<string>\",\n      \"description\": \"<string>\",\n      \"retryPolicy\": {\n        \"maxRetries\": 5,\n        \"retryIntervalSeconds\": 60,\n        \"backoffMultiplier\": 2\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:04:50.000Z",
+              "updatedAt": "2026-07-28T01:04:50.000Z",
+              "uid": "35240-054c63d0-b88d-4f82-bedc-e6de011b41e8"
+            },
+            {
+              "id": "a205945d-153c-4f90-9a28-ae6c095660e9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/subscriptions?status=Paused&eventType=tenant.updated",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subscriptions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by subscription status",
+                      "key": "status",
+                      "value": "Paused"
+                    },
+                    {
+                      "description": "Filter by event type",
+                      "key": "eventType",
+                      "value": "tenant.updated"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:04:50.000Z",
+              "updatedAt": "2026-07-28T01:04:50.000Z",
+              "uid": "35240-a205945d-153c-4f90-9a28-ae6c095660e9"
+            }
+          ],
+          "createdAt": "2026-07-28T01:04:50.000Z",
+          "updatedAt": "2026-07-28T01:04:50.000Z",
+          "uid": "35240-245e56fb-d17b-4589-bf45-74f541e85233"
+        },
+        {
+          "name": "Argus Enterprise Create a Webhook Subscription",
+          "id": "3e9763c7-c1e4-4281-a2fd-3e8db7645375",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<uri>\",\n  \"eventTypes\": [\n    \"tenant.updated\"\n  ],\n  \"description\": \"<string>\",\n  \"retryPolicy\": {\n    \"maxRetries\": 5,\n    \"retryIntervalSeconds\": 60,\n    \"backoffMultiplier\": 2\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/subscriptions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "subscriptions"
+              ]
+            },
+            "description": "Create a new webhook subscription to receive real-time notifications for specified event types. The target URL must be HTTPS and will receive a verification request before activation."
+          },
+          "response": [
+            {
+              "id": "09005943-ae69-4c48-9fe5-a2604843b7d5",
+              "name": "Subscription created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"eventTypes\": [\n    \"tenant.updated\"\n  ],\n  \"description\": \"<string>\",\n  \"retryPolicy\": {\n    \"maxRetries\": 5,\n    \"retryIntervalSeconds\": 60,\n    \"backoffMultiplier\": 2\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/subscriptions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subscriptions"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<uuid>\",\n  \"url\": \"<uri>\",\n  \"eventTypes\": [\n    \"portfolio.deleted\",\n    \"cashflow.updated\"\n  ],\n  \"status\": \"Paused\",\n  \"secret\": \"<string>\",\n  \"description\": \"<string>\",\n  \"retryPolicy\": {\n    \"maxRetries\": 5,\n    \"retryIntervalSeconds\": 60,\n    \"backoffMultiplier\": 2\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:04:50.000Z",
+              "updatedAt": "2026-07-28T01:04:50.000Z",
+              "uid": "35240-09005943-ae69-4c48-9fe5-a2604843b7d5"
+            },
+            {
+              "id": "21a57cc2-e5e8-47b3-85cb-13be83f17b40",
+              "name": "Invalid subscription data",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"eventTypes\": [\n    \"tenant.updated\"\n  ],\n  \"description\": \"<string>\",\n  \"retryPolicy\": {\n    \"maxRetries\": 5,\n    \"retryIntervalSeconds\": 60,\n    \"backoffMultiplier\": 2\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/subscriptions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subscriptions"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:04:50.000Z",
+              "updatedAt": "2026-07-28T01:04:50.000Z",
+              "uid": "35240-21a57cc2-e5e8-47b3-85cb-13be83f17b40"
+            },
+            {
+              "id": "a536b8c5-aeea-4bc0-9477-708d518935a5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"eventTypes\": [\n    \"tenant.updated\"\n  ],\n  \"description\": \"<string>\",\n  \"retryPolicy\": {\n    \"maxRetries\": 5,\n    \"retryIntervalSeconds\": 60,\n    \"backoffMultiplier\": 2\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/subscriptions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subscriptions"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:04:50.000Z",
+              "updatedAt": "2026-07-28T01:04:50.000Z",
+              "uid": "35240-a536b8c5-aeea-4bc0-9477-708d518935a5"
+            },
+            {
+              "id": "75dc2c87-81b0-47bf-9cef-a1c1bfc374f5",
+              "name": "Subscription already exists for this URL and event combination",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"eventTypes\": [\n    \"tenant.updated\"\n  ],\n  \"description\": \"<string>\",\n  \"retryPolicy\": {\n    \"maxRetries\": 5,\n    \"retryIntervalSeconds\": 60,\n    \"backoffMultiplier\": 2\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/subscriptions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subscriptions"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:04:50.000Z",
+              "updatedAt": "2026-07-28T01:04:50.000Z",
+              "uid": "35240-75dc2c87-81b0-47bf-9cef-a1c1bfc374f5"
+            }
+          ],
+          "createdAt": "2026-07-28T01:04:50.000Z",
+          "updatedAt": "2026-07-28T01:04:50.000Z",
+          "uid": "35240-3e9763c7-c1e4-4281-a2fd-3e8db7645375"
+        }
+      ],
+      "id": "0a7d172a-6b9b-4283-8f00-c44c556b8ccd",
+      "createdAt": "2026-07-28T01:04:50.000Z",
+      "updatedAt": "2026-07-28T01:04:50.000Z",
+      "uid": "35240-0a7d172a-6b9b-4283-8f00-c44c556b8ccd"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.argusenterprise.com/v1"
+    }
+  ]
+}

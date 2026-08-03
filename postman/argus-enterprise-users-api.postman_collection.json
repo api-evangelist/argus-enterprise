@@ -1,0 +1,362 @@
+{
+  "info": {
+    "_postman_id": "35e4e6d7-9743-4aea-ab90-e5545e197da4",
+    "name": "Argus Enterprise Core Authentication Users API",
+    "description": "Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.\n\nContact Support:\n Name: Argus API Support\n Email: api-support@argusenterprise.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:04:52.000Z",
+    "updatedAt": "2026-07-28T01:04:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-35e4e6d7-9743-4aea-ab90-e5545e197da4"
+  },
+  "item": [
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "{userId}",
+          "item": [
+            {
+              "name": "Argus Enterprise Get a User",
+              "id": "39ff0fe2-c128-4359-912e-7218d708259d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/:userId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":userId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "5c79d9d0-29c8-4535-9654-87e1154b6979",
+                      "key": "userId",
+                      "value": "<uuid>",
+                      "description": "(Required) Unique identifier of the user"
+                    }
+                  ]
+                },
+                "description": "Retrieve information about a specific user."
+              },
+              "response": [
+                {
+                  "id": "b84fcb20-32a4-4ff7-a7cd-fe58dcc76aa7",
+                  "name": "User retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:userId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":userId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "userId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"username\": \"<string>\",\n  \"email\": \"<email>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"role\": \"Viewer\",\n  \"lastLogin\": \"<dateTime>\",\n  \"active\": \"<boolean>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:04:52.000Z",
+                  "updatedAt": "2026-07-28T01:04:52.000Z",
+                  "uid": "35240-b84fcb20-32a4-4ff7-a7cd-fe58dcc76aa7"
+                },
+                {
+                  "id": "c0abeef8-c79c-4e0f-a45f-1014150404bc",
+                  "name": "User not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:userId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":userId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "userId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:04:52.000Z",
+                  "updatedAt": "2026-07-28T01:04:52.000Z",
+                  "uid": "35240-c0abeef8-c79c-4e0f-a45f-1014150404bc"
+                }
+              ],
+              "createdAt": "2026-07-28T01:04:52.000Z",
+              "updatedAt": "2026-07-28T01:04:52.000Z",
+              "uid": "35240-39ff0fe2-c128-4359-912e-7218d708259d"
+            }
+          ],
+          "id": "4cb03209-be21-4af6-a19d-a37858a99c35",
+          "createdAt": "2026-07-28T01:04:52.000Z",
+          "updatedAt": "2026-07-28T01:04:52.000Z",
+          "uid": "35240-4cb03209-be21-4af6-a19d-a37858a99c35"
+        },
+        {
+          "name": "Argus Enterprise List Users",
+          "id": "17df81b1-ab01-4bbe-a682-1864fc6ec475",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users?page=1&pageSize=25",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [
+                {
+                  "description": "Page number for pagination",
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "description": "Number of items per page",
+                  "key": "pageSize",
+                  "value": "25"
+                }
+              ]
+            },
+            "description": "Retrieve a list of users in the Argus Enterprise instance. Requires administrator permissions."
+          },
+          "response": [
+            {
+              "id": "d1349182-6a4c-4629-8e91-82ba5cb40742",
+              "name": "Users retrieved successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users?page=1&pageSize=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number for pagination",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of items per page",
+                      "key": "pageSize",
+                      "value": "25"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<uuid>\",\n      \"username\": \"<string>\",\n      \"email\": \"<email>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"role\": \"Admin\",\n      \"lastLogin\": \"<dateTime>\",\n      \"active\": \"<boolean>\",\n      \"createdAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"username\": \"<string>\",\n      \"email\": \"<email>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"role\": \"Admin\",\n      \"lastLogin\": \"<dateTime>\",\n      \"active\": \"<boolean>\",\n      \"createdAt\": \"<dateTime>\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"totalItems\": \"<integer>\",\n    \"totalPages\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:04:52.000Z",
+              "updatedAt": "2026-07-28T01:04:52.000Z",
+              "uid": "35240-d1349182-6a4c-4629-8e91-82ba5cb40742"
+            },
+            {
+              "id": "99ce999c-1ff2-48d1-856b-18d6ae7a11f7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users?page=1&pageSize=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number for pagination",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of items per page",
+                      "key": "pageSize",
+                      "value": "25"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:04:52.000Z",
+              "updatedAt": "2026-07-28T01:04:52.000Z",
+              "uid": "35240-99ce999c-1ff2-48d1-856b-18d6ae7a11f7"
+            },
+            {
+              "id": "eb287e47-b8fe-4385-859c-89f6618aded9",
+              "name": "Forbidden - requires admin access",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users?page=1&pageSize=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number for pagination",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of items per page",
+                      "key": "pageSize",
+                      "value": "25"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:04:52.000Z",
+              "updatedAt": "2026-07-28T01:04:52.000Z",
+              "uid": "35240-eb287e47-b8fe-4385-859c-89f6618aded9"
+            }
+          ],
+          "createdAt": "2026-07-28T01:04:52.000Z",
+          "updatedAt": "2026-07-28T01:04:52.000Z",
+          "uid": "35240-17df81b1-ab01-4bbe-a682-1864fc6ec475"
+        }
+      ],
+      "id": "5d18ba4c-d926-48a3-9d41-3bb2dfc15a51",
+      "createdAt": "2026-07-28T01:04:52.000Z",
+      "updatedAt": "2026-07-28T01:04:52.000Z",
+      "uid": "35240-5d18ba4c-d926-48a3-9d41-3bb2dfc15a51"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.argusenterprise.com/v1"
+    }
+  ]
+}

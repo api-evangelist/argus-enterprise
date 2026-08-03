@@ -1,0 +1,645 @@
+{
+  "info": {
+    "_postman_id": "9a9a8365-5459-43cb-a94a-c98b408bbdda",
+    "name": "Argus Enterprise Core Authentication Valuations API",
+    "description": "Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.\n\nContact Support:\n Name: Argus API Support\n Email: api-support@argusenterprise.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:04:53.000Z",
+    "updatedAt": "2026-07-28T01:04:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9a9a8365-5459-43cb-a94a-c98b408bbdda"
+  },
+  "item": [
+    {
+      "name": "properties",
+      "item": [
+        {
+          "name": "{propertyId}",
+          "item": [
+            {
+              "name": "valuations",
+              "item": [
+                {
+                  "name": "Argus Enterprise List Property Valuations",
+                  "id": "7a66d055-da45-47a5-8b7d-ff744ef60eec",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/properties/:propertyId/valuations?page=1&pageSize=25",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "properties",
+                        ":propertyId",
+                        "valuations"
+                      ],
+                      "query": [
+                        {
+                          "description": "Page number for pagination",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of items per page",
+                          "key": "pageSize",
+                          "value": "25"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "3e8c078b-c20c-482d-9188-00d83e2a5006",
+                          "key": "propertyId",
+                          "value": "<uuid>",
+                          "description": "(Required) Unique identifier of the property"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve all valuations associated with a specific property, including DCF analysis results, capitalization rates, and market value estimates."
+                  },
+                  "response": [
+                    {
+                      "id": "4eb40c95-c47b-4a7f-bd3d-75f592926db4",
+                      "name": "Valuations retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/properties/:propertyId/valuations?page=1&pageSize=25",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "properties",
+                            ":propertyId",
+                            "valuations"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number for pagination",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Number of items per page",
+                              "key": "pageSize",
+                              "value": "25"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "propertyId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<uuid>\",\n      \"propertyId\": \"<uuid>\",\n      \"valuationDate\": \"<date>\",\n      \"methodology\": \"DCF\",\n      \"marketValue\": \"<double>\",\n      \"capRate\": \"<double>\",\n      \"discountRate\": \"<double>\",\n      \"terminalCapRate\": \"<double>\",\n      \"analysisStartDate\": \"<date>\",\n      \"analysisEndDate\": \"<date>\",\n      \"netOperatingIncome\": \"<double>\",\n      \"netPresentValue\": \"<double>\",\n      \"internalRateOfReturn\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"createdBy\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"propertyId\": \"<uuid>\",\n      \"valuationDate\": \"<date>\",\n      \"methodology\": \"DCF\",\n      \"marketValue\": \"<double>\",\n      \"capRate\": \"<double>\",\n      \"discountRate\": \"<double>\",\n      \"terminalCapRate\": \"<double>\",\n      \"analysisStartDate\": \"<date>\",\n      \"analysisEndDate\": \"<date>\",\n      \"netOperatingIncome\": \"<double>\",\n      \"netPresentValue\": \"<double>\",\n      \"internalRateOfReturn\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"createdBy\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"totalItems\": \"<integer>\",\n    \"totalPages\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:04:53.000Z",
+                      "updatedAt": "2026-07-28T01:04:53.000Z",
+                      "uid": "35240-4eb40c95-c47b-4a7f-bd3d-75f592926db4"
+                    },
+                    {
+                      "id": "6ce76f7f-9933-42dd-861c-b0cc12ba38b7",
+                      "name": "Property not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/properties/:propertyId/valuations?page=1&pageSize=25",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "properties",
+                            ":propertyId",
+                            "valuations"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number for pagination",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Number of items per page",
+                              "key": "pageSize",
+                              "value": "25"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "propertyId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:04:53.000Z",
+                      "updatedAt": "2026-07-28T01:04:53.000Z",
+                      "uid": "35240-6ce76f7f-9933-42dd-861c-b0cc12ba38b7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:04:53.000Z",
+                  "updatedAt": "2026-07-28T01:04:53.000Z",
+                  "uid": "35240-7a66d055-da45-47a5-8b7d-ff744ef60eec"
+                },
+                {
+                  "name": "Argus Enterprise Create a Property Valuation",
+                  "id": "9c8b6dce-830b-4236-91aa-20e1282f52ac",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"valuationDate\": \"<date>\",\n  \"methodology\": \"ComparableSales\",\n  \"marketValue\": \"<double>\",\n  \"capRate\": \"<double>\",\n  \"discountRate\": \"<double>\",\n  \"terminalCapRate\": \"<double>\",\n  \"analysisStartDate\": \"<date>\",\n  \"analysisEndDate\": \"<date>\",\n  \"netOperatingIncome\": \"<double>\",\n  \"currency\": \"USD\",\n  \"notes\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/properties/:propertyId/valuations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "properties",
+                        ":propertyId",
+                        "valuations"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2bb8aaa9-8306-494b-80e1-be0935641ffc",
+                          "key": "propertyId",
+                          "value": "<uuid>",
+                          "description": "(Required) Unique identifier of the property"
+                        }
+                      ]
+                    },
+                    "description": "Create a new valuation for a property using DCF analysis, direct capitalization, or comparable sales methodology."
+                  },
+                  "response": [
+                    {
+                      "id": "ab0f0cd4-8cc8-4573-8061-f224e75b71b9",
+                      "name": "Valuation created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"valuationDate\": \"<date>\",\n  \"methodology\": \"ComparableSales\",\n  \"marketValue\": \"<double>\",\n  \"capRate\": \"<double>\",\n  \"discountRate\": \"<double>\",\n  \"terminalCapRate\": \"<double>\",\n  \"analysisStartDate\": \"<date>\",\n  \"analysisEndDate\": \"<date>\",\n  \"netOperatingIncome\": \"<double>\",\n  \"currency\": \"USD\",\n  \"notes\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/properties/:propertyId/valuations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "properties",
+                            ":propertyId",
+                            "valuations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "propertyId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<uuid>\",\n  \"propertyId\": \"<uuid>\",\n  \"valuationDate\": \"<date>\",\n  \"methodology\": \"ComparableSales\",\n  \"marketValue\": \"<double>\",\n  \"capRate\": \"<double>\",\n  \"discountRate\": \"<double>\",\n  \"terminalCapRate\": \"<double>\",\n  \"analysisStartDate\": \"<date>\",\n  \"analysisEndDate\": \"<date>\",\n  \"netOperatingIncome\": \"<double>\",\n  \"netPresentValue\": \"<double>\",\n  \"internalRateOfReturn\": \"<double>\",\n  \"currency\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"createdBy\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:04:53.000Z",
+                      "updatedAt": "2026-07-28T01:04:53.000Z",
+                      "uid": "35240-ab0f0cd4-8cc8-4573-8061-f224e75b71b9"
+                    },
+                    {
+                      "id": "22091a4d-d94d-4d29-ae4f-54078e91592d",
+                      "name": "Invalid valuation data",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"valuationDate\": \"<date>\",\n  \"methodology\": \"ComparableSales\",\n  \"marketValue\": \"<double>\",\n  \"capRate\": \"<double>\",\n  \"discountRate\": \"<double>\",\n  \"terminalCapRate\": \"<double>\",\n  \"analysisStartDate\": \"<date>\",\n  \"analysisEndDate\": \"<date>\",\n  \"netOperatingIncome\": \"<double>\",\n  \"currency\": \"USD\",\n  \"notes\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/properties/:propertyId/valuations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "properties",
+                            ":propertyId",
+                            "valuations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "propertyId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:04:53.000Z",
+                      "updatedAt": "2026-07-28T01:04:53.000Z",
+                      "uid": "35240-22091a4d-d94d-4d29-ae4f-54078e91592d"
+                    },
+                    {
+                      "id": "6364558d-675f-48dd-a1d5-ef9e9c10119c",
+                      "name": "Property not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"valuationDate\": \"<date>\",\n  \"methodology\": \"ComparableSales\",\n  \"marketValue\": \"<double>\",\n  \"capRate\": \"<double>\",\n  \"discountRate\": \"<double>\",\n  \"terminalCapRate\": \"<double>\",\n  \"analysisStartDate\": \"<date>\",\n  \"analysisEndDate\": \"<date>\",\n  \"netOperatingIncome\": \"<double>\",\n  \"currency\": \"USD\",\n  \"notes\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/properties/:propertyId/valuations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "properties",
+                            ":propertyId",
+                            "valuations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "propertyId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:04:53.000Z",
+                      "updatedAt": "2026-07-28T01:04:53.000Z",
+                      "uid": "35240-6364558d-675f-48dd-a1d5-ef9e9c10119c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:04:53.000Z",
+                  "updatedAt": "2026-07-28T01:04:53.000Z",
+                  "uid": "35240-9c8b6dce-830b-4236-91aa-20e1282f52ac"
+                }
+              ],
+              "id": "31a8112e-d302-464c-b726-064a751a8129",
+              "createdAt": "2026-07-28T01:04:53.000Z",
+              "updatedAt": "2026-07-28T01:04:53.000Z",
+              "uid": "35240-31a8112e-d302-464c-b726-064a751a8129"
+            }
+          ],
+          "id": "82172741-7005-4725-adaf-d6f4f6b7d138",
+          "createdAt": "2026-07-28T01:04:53.000Z",
+          "updatedAt": "2026-07-28T01:04:53.000Z",
+          "uid": "35240-82172741-7005-4725-adaf-d6f4f6b7d138"
+        }
+      ],
+      "id": "d11e94a3-20d1-487d-8f32-9df14f3140a5",
+      "createdAt": "2026-07-28T01:04:53.000Z",
+      "updatedAt": "2026-07-28T01:04:53.000Z",
+      "uid": "35240-d11e94a3-20d1-487d-8f32-9df14f3140a5"
+    },
+    {
+      "name": "valuations",
+      "item": [
+        {
+          "name": "Argus Enterprise List All Valuations",
+          "id": "21e775ec-5610-4998-9b70-fcd51f298628",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/valuations?page=1&pageSize=25&methodology=DirectCapitalization&valuationDateFrom=<date>&valuationDateTo=<date>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "valuations"
+              ],
+              "query": [
+                {
+                  "description": "Page number for pagination",
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "description": "Number of items per page",
+                  "key": "pageSize",
+                  "value": "25"
+                },
+                {
+                  "description": "Filter by valuation methodology",
+                  "key": "methodology",
+                  "value": "DirectCapitalization"
+                },
+                {
+                  "description": "Filter valuations from this date",
+                  "key": "valuationDateFrom",
+                  "value": "<date>"
+                },
+                {
+                  "description": "Filter valuations up to this date",
+                  "key": "valuationDateTo",
+                  "value": "<date>"
+                }
+              ]
+            },
+            "description": "Retrieve a paginated list of all valuations across properties, with optional filtering by valuation date range and methodology."
+          },
+          "response": [
+            {
+              "id": "d2b1e9c5-43b2-4cf3-b57b-14d6ac68cf3d",
+              "name": "Valuations retrieved successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/valuations?page=1&pageSize=25&methodology=DirectCapitalization&valuationDateFrom=<date>&valuationDateTo=<date>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "valuations"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number for pagination",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of items per page",
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Filter by valuation methodology",
+                      "key": "methodology",
+                      "value": "DirectCapitalization"
+                    },
+                    {
+                      "description": "Filter valuations from this date",
+                      "key": "valuationDateFrom",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Filter valuations up to this date",
+                      "key": "valuationDateTo",
+                      "value": "<date>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<uuid>\",\n      \"propertyId\": \"<uuid>\",\n      \"valuationDate\": \"<date>\",\n      \"methodology\": \"DCF\",\n      \"marketValue\": \"<double>\",\n      \"capRate\": \"<double>\",\n      \"discountRate\": \"<double>\",\n      \"terminalCapRate\": \"<double>\",\n      \"analysisStartDate\": \"<date>\",\n      \"analysisEndDate\": \"<date>\",\n      \"netOperatingIncome\": \"<double>\",\n      \"netPresentValue\": \"<double>\",\n      \"internalRateOfReturn\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"createdBy\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"propertyId\": \"<uuid>\",\n      \"valuationDate\": \"<date>\",\n      \"methodology\": \"DCF\",\n      \"marketValue\": \"<double>\",\n      \"capRate\": \"<double>\",\n      \"discountRate\": \"<double>\",\n      \"terminalCapRate\": \"<double>\",\n      \"analysisStartDate\": \"<date>\",\n      \"analysisEndDate\": \"<date>\",\n      \"netOperatingIncome\": \"<double>\",\n      \"netPresentValue\": \"<double>\",\n      \"internalRateOfReturn\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"createdBy\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"totalItems\": \"<integer>\",\n    \"totalPages\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:04:53.000Z",
+              "updatedAt": "2026-07-28T01:04:53.000Z",
+              "uid": "35240-d2b1e9c5-43b2-4cf3-b57b-14d6ac68cf3d"
+            },
+            {
+              "id": "7b63cd33-a0b9-4073-81a0-244f56972492",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/valuations?page=1&pageSize=25&methodology=DirectCapitalization&valuationDateFrom=<date>&valuationDateTo=<date>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "valuations"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number for pagination",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of items per page",
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Filter by valuation methodology",
+                      "key": "methodology",
+                      "value": "DirectCapitalization"
+                    },
+                    {
+                      "description": "Filter valuations from this date",
+                      "key": "valuationDateFrom",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Filter valuations up to this date",
+                      "key": "valuationDateTo",
+                      "value": "<date>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:04:53.000Z",
+              "updatedAt": "2026-07-28T01:04:53.000Z",
+              "uid": "35240-7b63cd33-a0b9-4073-81a0-244f56972492"
+            }
+          ],
+          "createdAt": "2026-07-28T01:04:53.000Z",
+          "updatedAt": "2026-07-28T01:04:53.000Z",
+          "uid": "35240-21e775ec-5610-4998-9b70-fcd51f298628"
+        }
+      ],
+      "id": "2fd122f7-0a0d-41d7-a9f9-968866482c40",
+      "createdAt": "2026-07-28T01:04:53.000Z",
+      "updatedAt": "2026-07-28T01:04:53.000Z",
+      "uid": "35240-2fd122f7-0a0d-41d7-a9f9-968866482c40"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.argusenterprise.com/v1"
+    }
+  ]
+}

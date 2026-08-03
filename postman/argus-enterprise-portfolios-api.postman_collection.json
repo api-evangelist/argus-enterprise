@@ -1,0 +1,975 @@
+{
+  "info": {
+    "_postman_id": "14fc2fb9-4fa7-48a1-9118-4a99ada3a194",
+    "name": "Argus Enterprise Core Authentication Portfolios API",
+    "description": "Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.\n\nContact Support:\n Name: Argus API Support\n Email: api-support@argusenterprise.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:04:47.000Z",
+    "updatedAt": "2026-07-28T01:04:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-14fc2fb9-4fa7-48a1-9118-4a99ada3a194"
+  },
+  "item": [
+    {
+      "name": "portfolios",
+      "item": [
+        {
+          "name": "{portfolioId}",
+          "item": [
+            {
+              "name": "properties",
+              "item": [
+                {
+                  "name": "Argus Enterprise List Portfolio Properties",
+                  "id": "7ed61ca2-2446-4567-834e-042f9a092b57",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/portfolios/:portfolioId/properties?page=1&pageSize=25",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "portfolios",
+                        ":portfolioId",
+                        "properties"
+                      ],
+                      "query": [
+                        {
+                          "description": "Page number for pagination",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of items per page",
+                          "key": "pageSize",
+                          "value": "25"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "578d3ab9-dac9-4413-ae58-d65fe8d57310",
+                          "key": "portfolioId",
+                          "value": "<uuid>",
+                          "description": "(Required) Unique identifier of the portfolio"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve all properties belonging to a specific portfolio."
+                  },
+                  "response": [
+                    {
+                      "id": "9e74b150-7ab2-457a-a638-5e52dc570418",
+                      "name": "Properties retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/portfolios/:portfolioId/properties?page=1&pageSize=25",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "portfolios",
+                            ":portfolioId",
+                            "properties"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number for pagination",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Number of items per page",
+                              "key": "pageSize",
+                              "value": "25"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "portfolioId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"propertyType\": \"Mixed-Use\",\n      \"status\": \"Archived\",\n      \"address\": {\n        \"street\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"grossArea\": \"<double>\",\n      \"netLeasableArea\": \"<double>\",\n      \"yearBuilt\": \"<integer>\",\n      \"numberOfUnits\": \"<integer>\",\n      \"purchasePrice\": \"<double>\",\n      \"purchaseDate\": \"<date>\",\n      \"currentMarketValue\": \"<double>\",\n      \"occupancyRate\": \"<double>\",\n      \"portfolioId\": \"<uuid>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"propertyType\": \"Office\",\n      \"status\": \"Archived\",\n      \"address\": {\n        \"street\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"grossArea\": \"<double>\",\n      \"netLeasableArea\": \"<double>\",\n      \"yearBuilt\": \"<integer>\",\n      \"numberOfUnits\": \"<integer>\",\n      \"purchasePrice\": \"<double>\",\n      \"purchaseDate\": \"<date>\",\n      \"currentMarketValue\": \"<double>\",\n      \"occupancyRate\": \"<double>\",\n      \"portfolioId\": \"<uuid>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"totalItems\": \"<integer>\",\n    \"totalPages\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:04:47.000Z",
+                      "updatedAt": "2026-07-28T01:04:47.000Z",
+                      "uid": "35240-9e74b150-7ab2-457a-a638-5e52dc570418"
+                    },
+                    {
+                      "id": "a22f743f-3e00-4c31-bb44-e81feb8f0c01",
+                      "name": "Portfolio not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/portfolios/:portfolioId/properties?page=1&pageSize=25",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "portfolios",
+                            ":portfolioId",
+                            "properties"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number for pagination",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Number of items per page",
+                              "key": "pageSize",
+                              "value": "25"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "portfolioId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:04:47.000Z",
+                      "updatedAt": "2026-07-28T01:04:47.000Z",
+                      "uid": "35240-a22f743f-3e00-4c31-bb44-e81feb8f0c01"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:04:47.000Z",
+                  "updatedAt": "2026-07-28T01:04:47.000Z",
+                  "uid": "35240-7ed61ca2-2446-4567-834e-042f9a092b57"
+                }
+              ],
+              "id": "d423abfe-f066-45a1-b0ad-81c9a034181e",
+              "createdAt": "2026-07-28T01:04:47.000Z",
+              "updatedAt": "2026-07-28T01:04:47.000Z",
+              "uid": "35240-d423abfe-f066-45a1-b0ad-81c9a034181e"
+            },
+            {
+              "name": "Argus Enterprise Get a Portfolio",
+              "id": "60c6720b-8b20-44c1-b253-b13bd62c0bf1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/portfolios/:portfolioId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "portfolios",
+                    ":portfolioId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "5ec986b2-c412-4381-bad4-837de8a071f4",
+                      "key": "portfolioId",
+                      "value": "<uuid>",
+                      "description": "(Required) Unique identifier of the portfolio"
+                    }
+                  ]
+                },
+                "description": "Retrieve detailed information about a specific portfolio."
+              },
+              "response": [
+                {
+                  "id": "115f182b-b5f7-4f69-9a66-eec1788fee77",
+                  "name": "Portfolio retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/portfolios/:portfolioId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "portfolios",
+                        ":portfolioId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "portfolioId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"strategy\": \"Opportunistic\",\n  \"totalProperties\": \"<integer>\",\n  \"totalMarketValue\": \"<double>\",\n  \"currency\": \"USD\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:04:47.000Z",
+                  "updatedAt": "2026-07-28T01:04:47.000Z",
+                  "uid": "35240-115f182b-b5f7-4f69-9a66-eec1788fee77"
+                },
+                {
+                  "id": "7f313fd6-e80d-4a8c-9cec-80600e083165",
+                  "name": "Portfolio not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/portfolios/:portfolioId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "portfolios",
+                        ":portfolioId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "portfolioId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:04:47.000Z",
+                  "updatedAt": "2026-07-28T01:04:47.000Z",
+                  "uid": "35240-7f313fd6-e80d-4a8c-9cec-80600e083165"
+                }
+              ],
+              "createdAt": "2026-07-28T01:04:47.000Z",
+              "updatedAt": "2026-07-28T01:04:47.000Z",
+              "uid": "35240-60c6720b-8b20-44c1-b253-b13bd62c0bf1"
+            },
+            {
+              "name": "Argus Enterprise Update a Portfolio",
+              "id": "be27e69e-f1d3-418d-be8d-7878d627cbac",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"strategy\": \"Opportunistic\",\n  \"currency\": \"USD\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/portfolios/:portfolioId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "portfolios",
+                    ":portfolioId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "2e611b75-0e68-4768-b136-04fb20fcc2bd",
+                      "key": "portfolioId",
+                      "value": "<uuid>",
+                      "description": "(Required) Unique identifier of the portfolio"
+                    }
+                  ]
+                },
+                "description": "Update an existing portfolio."
+              },
+              "response": [
+                {
+                  "id": "7c4ae7cc-3568-411b-87ee-fcd4ed7a17a6",
+                  "name": "Portfolio updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"strategy\": \"Opportunistic\",\n  \"currency\": \"USD\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/portfolios/:portfolioId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "portfolios",
+                        ":portfolioId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "portfolioId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"strategy\": \"Opportunistic\",\n  \"totalProperties\": \"<integer>\",\n  \"totalMarketValue\": \"<double>\",\n  \"currency\": \"USD\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:04:47.000Z",
+                  "updatedAt": "2026-07-28T01:04:47.000Z",
+                  "uid": "35240-7c4ae7cc-3568-411b-87ee-fcd4ed7a17a6"
+                },
+                {
+                  "id": "4840f6c0-5087-4b9b-bb59-1f8abf07c6b8",
+                  "name": "Invalid portfolio data",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"strategy\": \"Opportunistic\",\n  \"currency\": \"USD\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/portfolios/:portfolioId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "portfolios",
+                        ":portfolioId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "portfolioId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:04:47.000Z",
+                  "updatedAt": "2026-07-28T01:04:47.000Z",
+                  "uid": "35240-4840f6c0-5087-4b9b-bb59-1f8abf07c6b8"
+                },
+                {
+                  "id": "d8f8da36-3b2a-4578-99c7-faaefc5158d2",
+                  "name": "Portfolio not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"strategy\": \"Opportunistic\",\n  \"currency\": \"USD\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/portfolios/:portfolioId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "portfolios",
+                        ":portfolioId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "portfolioId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:04:47.000Z",
+                  "updatedAt": "2026-07-28T01:04:47.000Z",
+                  "uid": "35240-d8f8da36-3b2a-4578-99c7-faaefc5158d2"
+                }
+              ],
+              "createdAt": "2026-07-28T01:04:47.000Z",
+              "updatedAt": "2026-07-28T01:04:47.000Z",
+              "uid": "35240-be27e69e-f1d3-418d-be8d-7878d627cbac"
+            },
+            {
+              "name": "Argus Enterprise Delete a Portfolio",
+              "id": "1fd66a7a-a44b-4b6a-96b1-1c3bc02edc9a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/portfolios/:portfolioId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "portfolios",
+                    ":portfolioId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "ffe4cd89-5ab7-49b2-b665-c6090de6a1e7",
+                      "key": "portfolioId",
+                      "value": "<uuid>",
+                      "description": "(Required) Unique identifier of the portfolio"
+                    }
+                  ]
+                },
+                "description": "Delete a portfolio. Properties within the portfolio are not deleted."
+              },
+              "response": [
+                {
+                  "id": "c03dbedd-8d05-4c3f-9688-2ec0145840d3",
+                  "name": "Portfolio deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/portfolios/:portfolioId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "portfolios",
+                        ":portfolioId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "portfolioId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:04:47.000Z",
+                  "updatedAt": "2026-07-28T01:04:47.000Z",
+                  "uid": "35240-c03dbedd-8d05-4c3f-9688-2ec0145840d3"
+                },
+                {
+                  "id": "c4a9597a-56da-45a6-a34e-0a0fece747b3",
+                  "name": "Portfolio not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/portfolios/:portfolioId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "portfolios",
+                        ":portfolioId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "portfolioId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:04:47.000Z",
+                  "updatedAt": "2026-07-28T01:04:47.000Z",
+                  "uid": "35240-c4a9597a-56da-45a6-a34e-0a0fece747b3"
+                }
+              ],
+              "createdAt": "2026-07-28T01:04:47.000Z",
+              "updatedAt": "2026-07-28T01:04:47.000Z",
+              "uid": "35240-1fd66a7a-a44b-4b6a-96b1-1c3bc02edc9a"
+            }
+          ],
+          "id": "019744e0-e68f-462d-9929-55dca8348b5e",
+          "createdAt": "2026-07-28T01:04:47.000Z",
+          "updatedAt": "2026-07-28T01:04:47.000Z",
+          "uid": "35240-019744e0-e68f-462d-9929-55dca8348b5e"
+        },
+        {
+          "name": "Argus Enterprise List Portfolios",
+          "id": "e40558d9-de84-4737-aff7-ef99c133eed8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/portfolios?page=1&pageSize=25",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "portfolios"
+              ],
+              "query": [
+                {
+                  "description": "Page number for pagination",
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "description": "Number of items per page",
+                  "key": "pageSize",
+                  "value": "25"
+                }
+              ]
+            },
+            "description": "Retrieve a paginated list of property portfolios accessible to the authenticated user."
+          },
+          "response": [
+            {
+              "id": "22df41dc-c801-4552-b412-8d466bb9f882",
+              "name": "Portfolios retrieved successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/portfolios?page=1&pageSize=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "portfolios"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number for pagination",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of items per page",
+                      "key": "pageSize",
+                      "value": "25"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"strategy\": \"CorePlus\",\n      \"totalProperties\": \"<integer>\",\n      \"totalMarketValue\": \"<double>\",\n      \"currency\": \"USD\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"strategy\": \"Opportunistic\",\n      \"totalProperties\": \"<integer>\",\n      \"totalMarketValue\": \"<double>\",\n      \"currency\": \"USD\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"totalItems\": \"<integer>\",\n    \"totalPages\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:04:47.000Z",
+              "updatedAt": "2026-07-28T01:04:47.000Z",
+              "uid": "35240-22df41dc-c801-4552-b412-8d466bb9f882"
+            },
+            {
+              "id": "7afb81ab-32fa-4d80-9d81-197bb1987d6e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/portfolios?page=1&pageSize=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "portfolios"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number for pagination",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of items per page",
+                      "key": "pageSize",
+                      "value": "25"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:04:47.000Z",
+              "updatedAt": "2026-07-28T01:04:47.000Z",
+              "uid": "35240-7afb81ab-32fa-4d80-9d81-197bb1987d6e"
+            }
+          ],
+          "createdAt": "2026-07-28T01:04:47.000Z",
+          "updatedAt": "2026-07-28T01:04:47.000Z",
+          "uid": "35240-e40558d9-de84-4737-aff7-ef99c133eed8"
+        },
+        {
+          "name": "Argus Enterprise Create a Portfolio",
+          "id": "9220699c-db8a-40c0-8d11-472ff6555ec9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"strategy\": \"Opportunistic\",\n  \"currency\": \"USD\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/portfolios",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "portfolios"
+              ]
+            },
+            "description": "Create a new property portfolio for organizing assets."
+          },
+          "response": [
+            {
+              "id": "28a82736-6ab7-42a2-92a8-9bd3ba886a8e",
+              "name": "Portfolio created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"strategy\": \"Opportunistic\",\n  \"currency\": \"USD\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/portfolios",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "portfolios"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"strategy\": \"Opportunistic\",\n  \"totalProperties\": \"<integer>\",\n  \"totalMarketValue\": \"<double>\",\n  \"currency\": \"USD\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:04:47.000Z",
+              "updatedAt": "2026-07-28T01:04:47.000Z",
+              "uid": "35240-28a82736-6ab7-42a2-92a8-9bd3ba886a8e"
+            },
+            {
+              "id": "0a05d35f-a719-4fe9-8aa7-a79069348a1a",
+              "name": "Invalid portfolio data",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"strategy\": \"Opportunistic\",\n  \"currency\": \"USD\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/portfolios",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "portfolios"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:04:47.000Z",
+              "updatedAt": "2026-07-28T01:04:47.000Z",
+              "uid": "35240-0a05d35f-a719-4fe9-8aa7-a79069348a1a"
+            }
+          ],
+          "createdAt": "2026-07-28T01:04:47.000Z",
+          "updatedAt": "2026-07-28T01:04:47.000Z",
+          "uid": "35240-9220699c-db8a-40c0-8d11-472ff6555ec9"
+        }
+      ],
+      "id": "59c67e94-9a33-40b9-99cd-b3dec7d9aa20",
+      "createdAt": "2026-07-28T01:04:47.000Z",
+      "updatedAt": "2026-07-28T01:04:47.000Z",
+      "uid": "35240-59c67e94-9a33-40b9-99cd-b3dec7d9aa20"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.argusenterprise.com/v1"
+    }
+  ]
+}

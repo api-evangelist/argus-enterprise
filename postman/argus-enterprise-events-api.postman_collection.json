@@ -1,0 +1,525 @@
+{
+  "info": {
+    "_postman_id": "6c8dc477-69bc-40b4-b049-9f2a9524fcd9",
+    "name": "Argus Enterprise Core Authentication Events API",
+    "description": "Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.\n\nContact Support:\n Name: Argus API Support\n Email: api-support@argusenterprise.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:04:44.000Z",
+    "updatedAt": "2026-07-28T01:04:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6c8dc477-69bc-40b4-b049-9f2a9524fcd9"
+  },
+  "item": [
+    {
+      "name": "events",
+      "item": [
+        {
+          "name": "{eventId}",
+          "item": [
+            {
+              "name": "retry",
+              "item": [
+                {
+                  "name": "Argus Enterprise Retry Event Delivery",
+                  "id": "886ce443-0970-4df1-9ef9-6c59c22b9898",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:eventId/retry",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":eventId",
+                        "retry"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c7a7f9b8-9135-49b6-acf2-f0c1e6b6a8ae",
+                          "key": "eventId",
+                          "value": "<uuid>",
+                          "description": "(Required) Unique identifier of the webhook event"
+                        }
+                      ]
+                    },
+                    "description": "Manually retry delivery of a failed webhook event."
+                  },
+                  "response": [
+                    {
+                      "id": "0c7c6bb0-6e98-4c28-8840-55aa8b9ae83f",
+                      "name": "Retry initiated",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/events/:eventId/retry",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "events",
+                            ":eventId",
+                            "retry"
+                          ],
+                          "variable": [
+                            {
+                              "key": "eventId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<uuid>\",\n  \"subscriptionId\": \"<uuid>\",\n  \"eventType\": \"<string>\",\n  \"status\": \"Pending\",\n  \"payload\": {\n    \"eventId\": \"<uuid>\",\n    \"eventType\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"resourceType\": \"<string>\",\n    \"resourceId\": \"<uuid>\",\n    \"data\": {}\n  },\n  \"deliveryAttempts\": [\n    {\n      \"attemptNumber\": \"<integer>\",\n      \"timestamp\": \"<dateTime>\",\n      \"responseCode\": \"<integer>\",\n      \"responseTime\": \"<integer>\",\n      \"success\": \"<boolean>\",\n      \"errorMessage\": \"<string>\"\n    },\n    {\n      \"attemptNumber\": \"<integer>\",\n      \"timestamp\": \"<dateTime>\",\n      \"responseCode\": \"<integer>\",\n      \"responseTime\": \"<integer>\",\n      \"success\": \"<boolean>\",\n      \"errorMessage\": \"<string>\"\n    }\n  ],\n  \"createdAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:04:44.000Z",
+                      "updatedAt": "2026-07-28T01:04:44.000Z",
+                      "uid": "35240-0c7c6bb0-6e98-4c28-8840-55aa8b9ae83f"
+                    },
+                    {
+                      "id": "e4a8c45b-92a4-4583-b606-8f41b42f70f6",
+                      "name": "Event not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/events/:eventId/retry",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "events",
+                            ":eventId",
+                            "retry"
+                          ],
+                          "variable": [
+                            {
+                              "key": "eventId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:04:44.000Z",
+                      "updatedAt": "2026-07-28T01:04:44.000Z",
+                      "uid": "35240-e4a8c45b-92a4-4583-b606-8f41b42f70f6"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:04:44.000Z",
+                  "updatedAt": "2026-07-28T01:04:44.000Z",
+                  "uid": "35240-886ce443-0970-4df1-9ef9-6c59c22b9898"
+                }
+              ],
+              "id": "a3470a3c-bde9-453d-a63c-55b9e858ee0e",
+              "createdAt": "2026-07-28T01:04:44.000Z",
+              "updatedAt": "2026-07-28T01:04:44.000Z",
+              "uid": "35240-a3470a3c-bde9-453d-a63c-55b9e858ee0e"
+            },
+            {
+              "name": "Argus Enterprise Get a Webhook Event",
+              "id": "3b090176-4f59-4044-8ef9-1ba1356195c1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events/:eventId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events",
+                    ":eventId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "04dd668d-0bef-4472-a007-761aa8caca69",
+                      "key": "eventId",
+                      "value": "<uuid>",
+                      "description": "(Required) Unique identifier of the webhook event"
+                    }
+                  ]
+                },
+                "description": "Retrieve details about a specific webhook event, including the payload, delivery attempts, and response information."
+              },
+              "response": [
+                {
+                  "id": "9c295c63-a9a7-4ff3-af3f-d0843e532c67",
+                  "name": "Event retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:eventId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":eventId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"subscriptionId\": \"<uuid>\",\n  \"eventType\": \"<string>\",\n  \"status\": \"Pending\",\n  \"payload\": {\n    \"eventId\": \"<uuid>\",\n    \"eventType\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"resourceType\": \"<string>\",\n    \"resourceId\": \"<uuid>\",\n    \"data\": {}\n  },\n  \"deliveryAttempts\": [\n    {\n      \"attemptNumber\": \"<integer>\",\n      \"timestamp\": \"<dateTime>\",\n      \"responseCode\": \"<integer>\",\n      \"responseTime\": \"<integer>\",\n      \"success\": \"<boolean>\",\n      \"errorMessage\": \"<string>\"\n    },\n    {\n      \"attemptNumber\": \"<integer>\",\n      \"timestamp\": \"<dateTime>\",\n      \"responseCode\": \"<integer>\",\n      \"responseTime\": \"<integer>\",\n      \"success\": \"<boolean>\",\n      \"errorMessage\": \"<string>\"\n    }\n  ],\n  \"createdAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:04:44.000Z",
+                  "updatedAt": "2026-07-28T01:04:44.000Z",
+                  "uid": "35240-9c295c63-a9a7-4ff3-af3f-d0843e532c67"
+                },
+                {
+                  "id": "bb3ba221-3c55-43b6-b6dd-13059c0a4e31",
+                  "name": "Event not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:eventId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":eventId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:04:44.000Z",
+                  "updatedAt": "2026-07-28T01:04:44.000Z",
+                  "uid": "35240-bb3ba221-3c55-43b6-b6dd-13059c0a4e31"
+                }
+              ],
+              "createdAt": "2026-07-28T01:04:44.000Z",
+              "updatedAt": "2026-07-28T01:04:44.000Z",
+              "uid": "35240-3b090176-4f59-4044-8ef9-1ba1356195c1"
+            }
+          ],
+          "id": "6e2e758b-7e10-4e7b-a51d-61b14254c6c0",
+          "createdAt": "2026-07-28T01:04:44.000Z",
+          "updatedAt": "2026-07-28T01:04:44.000Z",
+          "uid": "35240-6e2e758b-7e10-4e7b-a51d-61b14254c6c0"
+        },
+        {
+          "name": "Argus Enterprise List Webhook Events",
+          "id": "978242f3-b7e0-40c5-8d48-18fb331e8cfb",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/events?subscriptionId=<uuid>&eventType=<string>&status=Delivered&from=<dateTime>&to=<dateTime>&page=1&pageSize=25",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "events"
+              ],
+              "query": [
+                {
+                  "description": "Filter by subscription",
+                  "key": "subscriptionId",
+                  "value": "<uuid>"
+                },
+                {
+                  "description": "Filter by event type",
+                  "key": "eventType",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by delivery status",
+                  "key": "status",
+                  "value": "Delivered"
+                },
+                {
+                  "description": "Start of date range",
+                  "key": "from",
+                  "value": "<dateTime>"
+                },
+                {
+                  "description": "End of date range",
+                  "key": "to",
+                  "value": "<dateTime>"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "25"
+                }
+              ]
+            },
+            "description": "Retrieve a paginated list of webhook events with delivery status, filterable by event type, subscription, and date range."
+          },
+          "response": [
+            {
+              "id": "41e0eb51-0880-47a6-b7e9-387a7ccda154",
+              "name": "Events retrieved successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?subscriptionId=<uuid>&eventType=<string>&status=Delivered&from=<dateTime>&to=<dateTime>&page=1&pageSize=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by subscription",
+                      "key": "subscriptionId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "description": "Filter by event type",
+                      "key": "eventType",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by delivery status",
+                      "key": "status",
+                      "value": "Delivered"
+                    },
+                    {
+                      "description": "Start of date range",
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "End of date range",
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<uuid>\",\n      \"subscriptionId\": \"<uuid>\",\n      \"eventType\": \"<string>\",\n      \"status\": \"Delivered\",\n      \"payload\": {\n        \"eventId\": \"<uuid>\",\n        \"eventType\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"resourceType\": \"<string>\",\n        \"resourceId\": \"<uuid>\",\n        \"data\": {}\n      },\n      \"deliveryAttempts\": [\n        {\n          \"attemptNumber\": \"<integer>\",\n          \"timestamp\": \"<dateTime>\",\n          \"responseCode\": \"<integer>\",\n          \"responseTime\": \"<integer>\",\n          \"success\": \"<boolean>\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"attemptNumber\": \"<integer>\",\n          \"timestamp\": \"<dateTime>\",\n          \"responseCode\": \"<integer>\",\n          \"responseTime\": \"<integer>\",\n          \"success\": \"<boolean>\",\n          \"errorMessage\": \"<string>\"\n        }\n      ],\n      \"createdAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"subscriptionId\": \"<uuid>\",\n      \"eventType\": \"<string>\",\n      \"status\": \"Retrying\",\n      \"payload\": {\n        \"eventId\": \"<uuid>\",\n        \"eventType\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"resourceType\": \"<string>\",\n        \"resourceId\": \"<uuid>\",\n        \"data\": {}\n      },\n      \"deliveryAttempts\": [\n        {\n          \"attemptNumber\": \"<integer>\",\n          \"timestamp\": \"<dateTime>\",\n          \"responseCode\": \"<integer>\",\n          \"responseTime\": \"<integer>\",\n          \"success\": \"<boolean>\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"attemptNumber\": \"<integer>\",\n          \"timestamp\": \"<dateTime>\",\n          \"responseCode\": \"<integer>\",\n          \"responseTime\": \"<integer>\",\n          \"success\": \"<boolean>\",\n          \"errorMessage\": \"<string>\"\n        }\n      ],\n      \"createdAt\": \"<dateTime>\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"totalItems\": \"<integer>\",\n    \"totalPages\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:04:44.000Z",
+              "updatedAt": "2026-07-28T01:04:44.000Z",
+              "uid": "35240-41e0eb51-0880-47a6-b7e9-387a7ccda154"
+            },
+            {
+              "id": "45b46a06-f1fe-4705-8c90-ee2e4d0c7e2f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?subscriptionId=<uuid>&eventType=<string>&status=Delivered&from=<dateTime>&to=<dateTime>&page=1&pageSize=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by subscription",
+                      "key": "subscriptionId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "description": "Filter by event type",
+                      "key": "eventType",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by delivery status",
+                      "key": "status",
+                      "value": "Delivered"
+                    },
+                    {
+                      "description": "Start of date range",
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "End of date range",
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:04:44.000Z",
+              "updatedAt": "2026-07-28T01:04:44.000Z",
+              "uid": "35240-45b46a06-f1fe-4705-8c90-ee2e4d0c7e2f"
+            }
+          ],
+          "createdAt": "2026-07-28T01:04:44.000Z",
+          "updatedAt": "2026-07-28T01:04:44.000Z",
+          "uid": "35240-978242f3-b7e0-40c5-8d48-18fb331e8cfb"
+        }
+      ],
+      "id": "eed9ee03-a94c-44ef-90b2-be06fc36c805",
+      "createdAt": "2026-07-28T01:04:44.000Z",
+      "updatedAt": "2026-07-28T01:04:44.000Z",
+      "uid": "35240-eed9ee03-a94c-44ef-90b2-be06fc36c805"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.argusenterprise.com/v1"
+    }
+  ]
+}

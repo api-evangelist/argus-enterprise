@@ -1,0 +1,702 @@
+{
+  "info": {
+    "_postman_id": "7f5cdbd7-5a61-4f56-b644-c8be56442ed8",
+    "name": "Argus Enterprise Core Authentication Tenants API",
+    "description": "Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.\n\nContact Support:\n Name: Argus API Support\n Email: api-support@argusenterprise.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:04:51.000Z",
+    "updatedAt": "2026-07-28T01:04:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7f5cdbd7-5a61-4f56-b644-c8be56442ed8"
+  },
+  "item": [
+    {
+      "name": "tenants",
+      "item": [
+        {
+          "name": "{tenantId}",
+          "item": [
+            {
+              "name": "Argus Enterprise Get a Tenant",
+              "id": "18a119d8-25ce-4f81-8b31-4dd22bed0521",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tenants/:tenantId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tenants",
+                    ":tenantId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d17964c0-0b11-42c9-8a6d-e66d98ea5434",
+                      "key": "tenantId",
+                      "value": "<uuid>",
+                      "description": "(Required) Unique identifier of the tenant"
+                    }
+                  ]
+                },
+                "description": "Retrieve detailed information about a specific tenant."
+              },
+              "response": [
+                {
+                  "id": "14234225-c199-4771-8c49-3b46da73a9db",
+                  "name": "Tenant retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tenants/:tenantId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tenants",
+                        ":tenantId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tenantId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"creditRating\": \"<string>\",\n  \"contactName\": \"<string>\",\n  \"contactEmail\": \"<email>\",\n  \"contactPhone\": \"<string>\",\n  \"address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"activeLeases\": \"<integer>\",\n  \"totalLeasedArea\": \"<double>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:04:51.000Z",
+                  "updatedAt": "2026-07-28T01:04:51.000Z",
+                  "uid": "35240-14234225-c199-4771-8c49-3b46da73a9db"
+                },
+                {
+                  "id": "203b75c7-9065-4758-9b05-44d8986669e1",
+                  "name": "Tenant not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tenants/:tenantId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tenants",
+                        ":tenantId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tenantId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:04:51.000Z",
+                  "updatedAt": "2026-07-28T01:04:51.000Z",
+                  "uid": "35240-203b75c7-9065-4758-9b05-44d8986669e1"
+                }
+              ],
+              "createdAt": "2026-07-28T01:04:51.000Z",
+              "updatedAt": "2026-07-28T01:04:51.000Z",
+              "uid": "35240-18a119d8-25ce-4f81-8b31-4dd22bed0521"
+            },
+            {
+              "name": "Argus Enterprise Update a Tenant",
+              "id": "2ca243d1-5109-4da9-a1a8-194a9497dfe9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"creditRating\": \"<string>\",\n  \"contactName\": \"<string>\",\n  \"contactEmail\": \"<email>\",\n  \"contactPhone\": \"<string>\",\n  \"address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tenants/:tenantId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tenants",
+                    ":tenantId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "5284841c-b3cd-40f6-b927-5c09a641be7d",
+                      "key": "tenantId",
+                      "value": "<uuid>",
+                      "description": "(Required) Unique identifier of the tenant"
+                    }
+                  ]
+                },
+                "description": "Update an existing tenant record."
+              },
+              "response": [
+                {
+                  "id": "17546399-a51d-42d5-9b24-82df48889975",
+                  "name": "Tenant updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"creditRating\": \"<string>\",\n  \"contactName\": \"<string>\",\n  \"contactEmail\": \"<email>\",\n  \"contactPhone\": \"<string>\",\n  \"address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tenants/:tenantId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tenants",
+                        ":tenantId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tenantId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"creditRating\": \"<string>\",\n  \"contactName\": \"<string>\",\n  \"contactEmail\": \"<email>\",\n  \"contactPhone\": \"<string>\",\n  \"address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"activeLeases\": \"<integer>\",\n  \"totalLeasedArea\": \"<double>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:04:51.000Z",
+                  "updatedAt": "2026-07-28T01:04:51.000Z",
+                  "uid": "35240-17546399-a51d-42d5-9b24-82df48889975"
+                },
+                {
+                  "id": "a7c9038f-901d-4c4d-a41d-dbeaaa3c69d1",
+                  "name": "Invalid tenant data",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"creditRating\": \"<string>\",\n  \"contactName\": \"<string>\",\n  \"contactEmail\": \"<email>\",\n  \"contactPhone\": \"<string>\",\n  \"address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tenants/:tenantId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tenants",
+                        ":tenantId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tenantId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:04:51.000Z",
+                  "updatedAt": "2026-07-28T01:04:51.000Z",
+                  "uid": "35240-a7c9038f-901d-4c4d-a41d-dbeaaa3c69d1"
+                },
+                {
+                  "id": "fb974e9d-1aaf-4e92-8782-e43c7677e396",
+                  "name": "Tenant not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"creditRating\": \"<string>\",\n  \"contactName\": \"<string>\",\n  \"contactEmail\": \"<email>\",\n  \"contactPhone\": \"<string>\",\n  \"address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tenants/:tenantId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tenants",
+                        ":tenantId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tenantId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:04:51.000Z",
+                  "updatedAt": "2026-07-28T01:04:51.000Z",
+                  "uid": "35240-fb974e9d-1aaf-4e92-8782-e43c7677e396"
+                }
+              ],
+              "createdAt": "2026-07-28T01:04:51.000Z",
+              "updatedAt": "2026-07-28T01:04:51.000Z",
+              "uid": "35240-2ca243d1-5109-4da9-a1a8-194a9497dfe9"
+            }
+          ],
+          "id": "84a04c55-c198-4a54-802b-683361f46dd7",
+          "createdAt": "2026-07-28T01:04:51.000Z",
+          "updatedAt": "2026-07-28T01:04:51.000Z",
+          "uid": "35240-84a04c55-c198-4a54-802b-683361f46dd7"
+        },
+        {
+          "name": "Argus Enterprise List Tenants",
+          "id": "5830f085-7ca9-4d87-86b5-3737c937c88d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tenants?page=1&pageSize=25&search=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tenants"
+              ],
+              "query": [
+                {
+                  "description": "Page number for pagination",
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "description": "Number of items per page",
+                  "key": "pageSize",
+                  "value": "25"
+                },
+                {
+                  "description": "Search tenants by name",
+                  "key": "search",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieve a paginated list of tenants across all properties accessible to the authenticated user."
+          },
+          "response": [
+            {
+              "id": "bf03103e-7aad-4749-8d96-dffce7880cbc",
+              "name": "Tenants retrieved successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tenants?page=1&pageSize=25&search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tenants"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number for pagination",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of items per page",
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Search tenants by name",
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"industry\": \"<string>\",\n      \"creditRating\": \"<string>\",\n      \"contactName\": \"<string>\",\n      \"contactEmail\": \"<email>\",\n      \"contactPhone\": \"<string>\",\n      \"address\": {\n        \"street\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"activeLeases\": \"<integer>\",\n      \"totalLeasedArea\": \"<double>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"industry\": \"<string>\",\n      \"creditRating\": \"<string>\",\n      \"contactName\": \"<string>\",\n      \"contactEmail\": \"<email>\",\n      \"contactPhone\": \"<string>\",\n      \"address\": {\n        \"street\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"activeLeases\": \"<integer>\",\n      \"totalLeasedArea\": \"<double>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"totalItems\": \"<integer>\",\n    \"totalPages\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:04:51.000Z",
+              "updatedAt": "2026-07-28T01:04:51.000Z",
+              "uid": "35240-bf03103e-7aad-4749-8d96-dffce7880cbc"
+            },
+            {
+              "id": "0f0ee211-106f-471f-9adf-6dc5072d3959",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tenants?page=1&pageSize=25&search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tenants"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number for pagination",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of items per page",
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Search tenants by name",
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:04:51.000Z",
+              "updatedAt": "2026-07-28T01:04:51.000Z",
+              "uid": "35240-0f0ee211-106f-471f-9adf-6dc5072d3959"
+            }
+          ],
+          "createdAt": "2026-07-28T01:04:51.000Z",
+          "updatedAt": "2026-07-28T01:04:51.000Z",
+          "uid": "35240-5830f085-7ca9-4d87-86b5-3737c937c88d"
+        },
+        {
+          "name": "Argus Enterprise Create a Tenant",
+          "id": "18ee8f4d-8ebf-4e61-9929-4cf72f632548",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"creditRating\": \"<string>\",\n  \"contactName\": \"<string>\",\n  \"contactEmail\": \"<email>\",\n  \"contactPhone\": \"<string>\",\n  \"address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tenants",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tenants"
+              ]
+            },
+            "description": "Create a new tenant record."
+          },
+          "response": [
+            {
+              "id": "e3406879-dba8-47ed-ae6b-6f276dd49383",
+              "name": "Tenant created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"creditRating\": \"<string>\",\n  \"contactName\": \"<string>\",\n  \"contactEmail\": \"<email>\",\n  \"contactPhone\": \"<string>\",\n  \"address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tenants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tenants"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"creditRating\": \"<string>\",\n  \"contactName\": \"<string>\",\n  \"contactEmail\": \"<email>\",\n  \"contactPhone\": \"<string>\",\n  \"address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"activeLeases\": \"<integer>\",\n  \"totalLeasedArea\": \"<double>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:04:51.000Z",
+              "updatedAt": "2026-07-28T01:04:51.000Z",
+              "uid": "35240-e3406879-dba8-47ed-ae6b-6f276dd49383"
+            },
+            {
+              "id": "2b4ebeb7-591b-4f8e-83f4-432c0a4f9836",
+              "name": "Invalid tenant data",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"creditRating\": \"<string>\",\n  \"contactName\": \"<string>\",\n  \"contactEmail\": \"<email>\",\n  \"contactPhone\": \"<string>\",\n  \"address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tenants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tenants"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:04:51.000Z",
+              "updatedAt": "2026-07-28T01:04:51.000Z",
+              "uid": "35240-2b4ebeb7-591b-4f8e-83f4-432c0a4f9836"
+            }
+          ],
+          "createdAt": "2026-07-28T01:04:51.000Z",
+          "updatedAt": "2026-07-28T01:04:51.000Z",
+          "uid": "35240-18ee8f4d-8ebf-4e61-9929-4cf72f632548"
+        }
+      ],
+      "id": "68208454-c999-4544-9a58-b4ad8d85426c",
+      "createdAt": "2026-07-28T01:04:51.000Z",
+      "updatedAt": "2026-07-28T01:04:51.000Z",
+      "uid": "35240-68208454-c999-4544-9a58-b4ad8d85426c"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.argusenterprise.com/v1"
+    }
+  ]
+}

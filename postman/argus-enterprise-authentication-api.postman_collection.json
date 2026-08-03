@@ -1,0 +1,229 @@
+{
+  "info": {
+    "_postman_id": "5c681c10-3cfa-45b8-92d8-dd9daf4f0eed",
+    "name": "Argus Enterprise Core Authentication API",
+    "description": "Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.\n\nContact Support:\n Name: Argus API Support\n Email: api-support@argusenterprise.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:04:39.000Z",
+    "updatedAt": "2026-07-28T01:04:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5c681c10-3cfa-45b8-92d8-dd9daf4f0eed"
+  },
+  "item": [
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "token",
+          "item": [
+            {
+              "name": "Argus Enterprise Obtain Access Token",
+              "id": "83233f92-61c9-4cb1-b9c1-48ed74f62c6c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) OAuth 2.0 grant type",
+                      "key": "grant_type",
+                      "value": "client_credentials"
+                    },
+                    {
+                      "description": "(Required) API client identifier",
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) API client secret",
+                      "key": "client_secret",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth/token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "token"
+                  ]
+                },
+                "description": "Authenticate using OAuth 2.0 Client Credentials grant to obtain a bearer token for accessing Argus Enterprise APIs."
+              },
+              "response": [
+                {
+                  "id": "3380e43b-8784-416d-b1a9-024d3020cbbd",
+                  "name": "Access token returned successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) OAuth 2.0 grant type",
+                          "key": "grant_type",
+                          "value": "client_credentials"
+                        },
+                        {
+                          "description": "(Required) API client identifier",
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) API client secret",
+                          "key": "client_secret",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"access_token\": \"<string>\",\n  \"token_type\": \"Bearer\",\n  \"expires_in\": \"<integer>\",\n  \"scope\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:04:40.000Z",
+                  "updatedAt": "2026-07-28T01:04:40.000Z",
+                  "uid": "35240-3380e43b-8784-416d-b1a9-024d3020cbbd"
+                },
+                {
+                  "id": "1dbed491-18fb-40d0-9c6e-7fe221dc1850",
+                  "name": "Invalid credentials",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) OAuth 2.0 grant type",
+                          "key": "grant_type",
+                          "value": "client_credentials"
+                        },
+                        {
+                          "description": "(Required) API client identifier",
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) API client secret",
+                          "key": "client_secret",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:04:40.000Z",
+                  "updatedAt": "2026-07-28T01:04:40.000Z",
+                  "uid": "35240-1dbed491-18fb-40d0-9c6e-7fe221dc1850"
+                }
+              ],
+              "createdAt": "2026-07-28T01:04:40.000Z",
+              "updatedAt": "2026-07-28T01:04:40.000Z",
+              "uid": "35240-83233f92-61c9-4cb1-b9c1-48ed74f62c6c"
+            }
+          ],
+          "id": "571e0e11-f72f-402f-919c-7cc656b58635",
+          "createdAt": "2026-07-28T01:04:40.000Z",
+          "updatedAt": "2026-07-28T01:04:40.000Z",
+          "uid": "35240-571e0e11-f72f-402f-919c-7cc656b58635"
+        }
+      ],
+      "id": "c329c4c0-f8cf-47f4-9c6b-d78cc6cd0dc9",
+      "createdAt": "2026-07-28T01:04:40.000Z",
+      "updatedAt": "2026-07-28T01:04:40.000Z",
+      "uid": "35240-c329c4c0-f8cf-47f4-9c6b-d78cc6cd0dc9"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.argusenterprise.com/v1"
+    }
+  ]
+}

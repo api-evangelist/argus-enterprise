@@ -1,0 +1,238 @@
+{
+  "info": {
+    "_postman_id": "539a1096-8472-40d8-b9b4-0e4879bc1515",
+    "name": "Argus Enterprise Core Authentication Cash Flows API",
+    "description": "Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.\n\nContact Support:\n Name: Argus API Support\n Email: api-support@argusenterprise.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:04:43.000Z",
+    "updatedAt": "2026-07-28T01:04:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-539a1096-8472-40d8-b9b4-0e4879bc1515"
+  },
+  "item": [
+    {
+      "name": "properties",
+      "item": [
+        {
+          "name": "{propertyId}",
+          "item": [
+            {
+              "name": "cashflows",
+              "item": [
+                {
+                  "name": "Argus Enterprise List Property Cash Flows",
+                  "id": "5bc62805-8e1a-43a5-b67e-632e0b81530b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/properties/:propertyId/cashflows?startDate=<date>&endDate=<date>&frequency=Monthly",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "properties",
+                        ":propertyId",
+                        "cashflows"
+                      ],
+                      "query": [
+                        {
+                          "description": "Start date for cash flow projections",
+                          "key": "startDate",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "End date for cash flow projections",
+                          "key": "endDate",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Cash flow reporting frequency",
+                          "key": "frequency",
+                          "value": "Monthly"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "afa94854-0d94-4af0-84ec-68ffaff5f6f4",
+                          "key": "propertyId",
+                          "value": "<uuid>",
+                          "description": "(Required) Unique identifier of the property"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve projected cash flows for a property over the analysis period, including income streams, operating expenses, capital expenditures, and net operating income."
+                  },
+                  "response": [
+                    {
+                      "id": "a049767d-b3c4-42a4-be43-12c30f230d55",
+                      "name": "Cash flows retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/properties/:propertyId/cashflows?startDate=<date>&endDate=<date>&frequency=Monthly",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "properties",
+                            ":propertyId",
+                            "cashflows"
+                          ],
+                          "query": [
+                            {
+                              "description": "Start date for cash flow projections",
+                              "key": "startDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "End date for cash flow projections",
+                              "key": "endDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "Cash flow reporting frequency",
+                              "key": "frequency",
+                              "value": "Monthly"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "propertyId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"propertyId\": \"<uuid>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"frequency\": \"Annual\",\n  \"currency\": \"<string>\",\n  \"periods\": [\n    {\n      \"periodStart\": \"<date>\",\n      \"periodEnd\": \"<date>\",\n      \"grossPotentialRent\": \"<double>\",\n      \"vacancyLoss\": \"<double>\",\n      \"effectiveGrossIncome\": \"<double>\",\n      \"otherIncome\": \"<double>\",\n      \"totalRevenue\": \"<double>\",\n      \"operatingExpenses\": \"<double>\",\n      \"netOperatingIncome\": \"<double>\",\n      \"capitalExpenditures\": \"<double>\",\n      \"tenantImprovements\": \"<double>\",\n      \"leasingCommissions\": \"<double>\",\n      \"debtService\": \"<double>\",\n      \"cashFlowBeforeDebt\": \"<double>\",\n      \"cashFlowAfterDebt\": \"<double>\"\n    },\n    {\n      \"periodStart\": \"<date>\",\n      \"periodEnd\": \"<date>\",\n      \"grossPotentialRent\": \"<double>\",\n      \"vacancyLoss\": \"<double>\",\n      \"effectiveGrossIncome\": \"<double>\",\n      \"otherIncome\": \"<double>\",\n      \"totalRevenue\": \"<double>\",\n      \"operatingExpenses\": \"<double>\",\n      \"netOperatingIncome\": \"<double>\",\n      \"capitalExpenditures\": \"<double>\",\n      \"tenantImprovements\": \"<double>\",\n      \"leasingCommissions\": \"<double>\",\n      \"debtService\": \"<double>\",\n      \"cashFlowBeforeDebt\": \"<double>\",\n      \"cashFlowAfterDebt\": \"<double>\"\n    }\n  ],\n  \"summary\": {\n    \"totalRevenue\": \"<double>\",\n    \"totalExpenses\": \"<double>\",\n    \"totalNOI\": \"<double>\",\n    \"totalCapEx\": \"<double>\",\n    \"averageOccupancy\": \"<double>\",\n    \"irr\": \"<double>\",\n    \"npv\": \"<double>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:04:44.000Z",
+                      "updatedAt": "2026-07-28T01:04:44.000Z",
+                      "uid": "35240-a049767d-b3c4-42a4-be43-12c30f230d55"
+                    },
+                    {
+                      "id": "574f2a89-0f4a-497f-9433-234c3d524a68",
+                      "name": "Property not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/properties/:propertyId/cashflows?startDate=<date>&endDate=<date>&frequency=Monthly",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "properties",
+                            ":propertyId",
+                            "cashflows"
+                          ],
+                          "query": [
+                            {
+                              "description": "Start date for cash flow projections",
+                              "key": "startDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "End date for cash flow projections",
+                              "key": "endDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "Cash flow reporting frequency",
+                              "key": "frequency",
+                              "value": "Monthly"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "propertyId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:04:44.000Z",
+                      "updatedAt": "2026-07-28T01:04:44.000Z",
+                      "uid": "35240-574f2a89-0f4a-497f-9433-234c3d524a68"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:04:44.000Z",
+                  "updatedAt": "2026-07-28T01:04:44.000Z",
+                  "uid": "35240-5bc62805-8e1a-43a5-b67e-632e0b81530b"
+                }
+              ],
+              "id": "b80d1fd9-7772-45e6-8592-a75ba945fb6b",
+              "createdAt": "2026-07-28T01:04:44.000Z",
+              "updatedAt": "2026-07-28T01:04:44.000Z",
+              "uid": "35240-b80d1fd9-7772-45e6-8592-a75ba945fb6b"
+            }
+          ],
+          "id": "3964a693-8eb4-47cf-834e-452478b55959",
+          "createdAt": "2026-07-28T01:04:44.000Z",
+          "updatedAt": "2026-07-28T01:04:44.000Z",
+          "uid": "35240-3964a693-8eb4-47cf-834e-452478b55959"
+        }
+      ],
+      "id": "8d0172b0-08dc-4bce-814a-2565f69d0293",
+      "createdAt": "2026-07-28T01:04:44.000Z",
+      "updatedAt": "2026-07-28T01:04:44.000Z",
+      "uid": "35240-8d0172b0-08dc-4bce-814a-2565f69d0293"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.argusenterprise.com/v1"
+    }
+  ]
+}
