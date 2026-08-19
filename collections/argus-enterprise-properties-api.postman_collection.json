@@ -1,0 +1,991 @@
+{
+  "item": [
+    {
+      "id": "8ef3e67e-d99a-45f5-a0b8-b03b1c5a4967",
+      "name": "Properties",
+      "description": {
+        "content": "Manage commercial real estate properties and assets",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "61aca0e6-5398-430a-89a9-b9770e7fb664",
+          "name": "Argus Enterprise List Properties",
+          "request": {
+            "name": "Argus Enterprise List Properties",
+            "description": {
+              "content": "Retrieve a paginated list of commercial real estate properties accessible to the authenticated user, with optional filtering by portfolio, property type, and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "properties"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "25",
+                  "description": "Number of items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "portfolioId",
+                  "value": "<uuid>",
+                  "description": "Filter by portfolio identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "propertyType",
+                  "value": "<string>",
+                  "description": "Filter by property type"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by property status"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b47a5dae-6c20-4374-8cca-48ffc05097a1",
+              "name": "Properties retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "portfolioId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "propertyType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"4fbff7f0-3395-4f3c-569d-15c3e208aeb4\",\n      \"name\": \"string\",\n      \"propertyType\": \"Other\",\n      \"status\": \"Pending\",\n      \"address\": {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"grossArea\": 4153.628438342746,\n      \"netLeasableArea\": 5718.752480993039,\n      \"yearBuilt\": 8648,\n      \"numberOfUnits\": 961,\n      \"purchasePrice\": 6451.952853387629,\n      \"purchaseDate\": \"1986-11-30\",\n      \"currentMarketValue\": 5533.004210932478,\n      \"occupancyRate\": 1819.7583206710433,\n      \"portfolioId\": \"061fd7a9-9d2b-dc70-5c52-2c6831f5b1aa\",\n      \"createdAt\": \"1950-10-14T04:02:47.693Z\",\n      \"updatedAt\": \"2015-10-01T00:06:11.753Z\"\n    },\n    {\n      \"id\": \"1dc03520-840f-66e9-5f4a-f723db003d55\",\n      \"name\": \"string\",\n      \"propertyType\": \"Other\",\n      \"status\": \"Archived\",\n      \"address\": {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"grossArea\": 4732.253448112542,\n      \"netLeasableArea\": 5811.48341599216,\n      \"yearBuilt\": 4142,\n      \"numberOfUnits\": 5475,\n      \"purchasePrice\": 5842.0624693985,\n      \"purchaseDate\": \"2020-04-30\",\n      \"currentMarketValue\": 1581.2449554634068,\n      \"occupancyRate\": 9600.592830495085,\n      \"portfolioId\": \"0a598d7e-91e2-c23f-5d0f-915dd514c2e3\",\n      \"createdAt\": \"1976-06-25T09:25:44.185Z\",\n      \"updatedAt\": \"1982-10-21T22:09:34.538Z\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": 7914,\n    \"pageSize\": 1630,\n    \"totalItems\": 992,\n    \"totalPages\": 1080\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3d7239b-bfb2-4533-bc9f-b09aa5d0ba74",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "portfolioId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "propertyType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "06ffb3b9-c77e-4f99-a379-0e00042d88b7",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "portfolioId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "propertyType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7039368f-8c9a-49ae-a38f-ebea22c1fec7",
+          "name": "Argus Enterprise Create a Property",
+          "request": {
+            "name": "Argus Enterprise Create a Property",
+            "description": {
+              "content": "Create a new commercial real estate property record in the system.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "properties"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"propertyType\": \"<string>\",\n  \"address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"status\": \"Active\",\n  \"grossArea\": \"<double>\",\n  \"netLeasableArea\": \"<double>\",\n  \"yearBuilt\": \"<integer>\",\n  \"numberOfUnits\": \"<integer>\",\n  \"purchasePrice\": \"<double>\",\n  \"purchaseDate\": \"<date>\",\n  \"portfolioId\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f443e011-7e33-4865-a4a8-ea098c686204",
+              "name": "Property created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"propertyType\": \"<string>\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  },\n  \"status\": \"Active\",\n  \"grossArea\": \"<double>\",\n  \"netLeasableArea\": \"<double>\",\n  \"yearBuilt\": \"<integer>\",\n  \"numberOfUnits\": \"<integer>\",\n  \"purchasePrice\": \"<double>\",\n  \"purchaseDate\": \"<date>\",\n  \"portfolioId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"40218dcd-7c16-9c26-0233-0620d0da6ba0\",\n  \"name\": \"string\",\n  \"propertyType\": \"Land\",\n  \"status\": \"Archived\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  },\n  \"grossArea\": 2710.9470087824884,\n  \"netLeasableArea\": 321.32587205425,\n  \"yearBuilt\": 9851,\n  \"numberOfUnits\": 1169,\n  \"purchasePrice\": 3799.1312856184,\n  \"purchaseDate\": \"1975-03-25\",\n  \"currentMarketValue\": 7308.127720594626,\n  \"occupancyRate\": 3494.0717806779653,\n  \"portfolioId\": \"023488cd-a253-2889-8b91-444713092809\",\n  \"createdAt\": \"1975-10-04T11:14:21.712Z\",\n  \"updatedAt\": \"2022-12-29T12:54:49.584Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a23c34a-d18d-4c38-b339-abf02ac8477c",
+              "name": "Invalid property data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"propertyType\": \"<string>\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  },\n  \"status\": \"Active\",\n  \"grossArea\": \"<double>\",\n  \"netLeasableArea\": \"<double>\",\n  \"yearBuilt\": \"<integer>\",\n  \"numberOfUnits\": \"<integer>\",\n  \"purchasePrice\": \"<double>\",\n  \"purchaseDate\": \"<date>\",\n  \"portfolioId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "374eab43-7df7-4406-b9f2-685c5b097cb4",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"propertyType\": \"<string>\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  },\n  \"status\": \"Active\",\n  \"grossArea\": \"<double>\",\n  \"netLeasableArea\": \"<double>\",\n  \"yearBuilt\": \"<integer>\",\n  \"numberOfUnits\": \"<integer>\",\n  \"purchasePrice\": \"<double>\",\n  \"purchaseDate\": \"<date>\",\n  \"portfolioId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f53c623e-949b-48bc-809d-2f93cb2efd36",
+          "name": "Argus Enterprise Get a Property",
+          "request": {
+            "name": "Argus Enterprise Get a Property",
+            "description": {
+              "content": "Retrieve detailed information about a specific property.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "properties",
+                ":propertyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "propertyId",
+                  "description": "(Required) Unique identifier of the property"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "40bc8255-9765-4e27-a305-2fbbd400e06f",
+              "name": "Property retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"40218dcd-7c16-9c26-0233-0620d0da6ba0\",\n  \"name\": \"string\",\n  \"propertyType\": \"Land\",\n  \"status\": \"Archived\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  },\n  \"grossArea\": 2710.9470087824884,\n  \"netLeasableArea\": 321.32587205425,\n  \"yearBuilt\": 9851,\n  \"numberOfUnits\": 1169,\n  \"purchasePrice\": 3799.1312856184,\n  \"purchaseDate\": \"1975-03-25\",\n  \"currentMarketValue\": 7308.127720594626,\n  \"occupancyRate\": 3494.0717806779653,\n  \"portfolioId\": \"023488cd-a253-2889-8b91-444713092809\",\n  \"createdAt\": \"1975-10-04T11:14:21.712Z\",\n  \"updatedAt\": \"2022-12-29T12:54:49.584Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd544bbc-8b39-48db-8678-c63b3062f153",
+              "name": "Property not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c6a8623c-9375-452f-8941-5bc5c6299aed",
+          "name": "Argus Enterprise Update a Property",
+          "request": {
+            "name": "Argus Enterprise Update a Property",
+            "description": {
+              "content": "Update an existing property record with new information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "properties",
+                ":propertyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "propertyId",
+                  "description": "(Required) Unique identifier of the property"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"propertyType\": \"<string>\",\n  \"address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"status\": \"Active\",\n  \"grossArea\": \"<double>\",\n  \"netLeasableArea\": \"<double>\",\n  \"yearBuilt\": \"<integer>\",\n  \"numberOfUnits\": \"<integer>\",\n  \"purchasePrice\": \"<double>\",\n  \"purchaseDate\": \"<date>\",\n  \"portfolioId\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8d059460-f527-42f6-b9d6-cfe78e820e59",
+              "name": "Property updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"propertyType\": \"<string>\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  },\n  \"status\": \"Active\",\n  \"grossArea\": \"<double>\",\n  \"netLeasableArea\": \"<double>\",\n  \"yearBuilt\": \"<integer>\",\n  \"numberOfUnits\": \"<integer>\",\n  \"purchasePrice\": \"<double>\",\n  \"purchaseDate\": \"<date>\",\n  \"portfolioId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"40218dcd-7c16-9c26-0233-0620d0da6ba0\",\n  \"name\": \"string\",\n  \"propertyType\": \"Land\",\n  \"status\": \"Archived\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  },\n  \"grossArea\": 2710.9470087824884,\n  \"netLeasableArea\": 321.32587205425,\n  \"yearBuilt\": 9851,\n  \"numberOfUnits\": 1169,\n  \"purchasePrice\": 3799.1312856184,\n  \"purchaseDate\": \"1975-03-25\",\n  \"currentMarketValue\": 7308.127720594626,\n  \"occupancyRate\": 3494.0717806779653,\n  \"portfolioId\": \"023488cd-a253-2889-8b91-444713092809\",\n  \"createdAt\": \"1975-10-04T11:14:21.712Z\",\n  \"updatedAt\": \"2022-12-29T12:54:49.584Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff4530c5-7f3c-4094-a68b-84f4e6ce0a60",
+              "name": "Invalid property data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"propertyType\": \"<string>\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  },\n  \"status\": \"Active\",\n  \"grossArea\": \"<double>\",\n  \"netLeasableArea\": \"<double>\",\n  \"yearBuilt\": \"<integer>\",\n  \"numberOfUnits\": \"<integer>\",\n  \"purchasePrice\": \"<double>\",\n  \"purchaseDate\": \"<date>\",\n  \"portfolioId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "faad1283-c9c5-44e3-bfd8-0233857ee3bb",
+              "name": "Property not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"propertyType\": \"<string>\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  },\n  \"status\": \"Active\",\n  \"grossArea\": \"<double>\",\n  \"netLeasableArea\": \"<double>\",\n  \"yearBuilt\": \"<integer>\",\n  \"numberOfUnits\": \"<integer>\",\n  \"purchasePrice\": \"<double>\",\n  \"purchaseDate\": \"<date>\",\n  \"portfolioId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "663ae971-dd00-472d-8547-5873d79f9c4d",
+          "name": "Argus Enterprise Delete a Property",
+          "request": {
+            "name": "Argus Enterprise Delete a Property",
+            "description": {
+              "content": "Delete a property record. This action cannot be undone.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "properties",
+                ":propertyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "propertyId",
+                  "description": "(Required) Unique identifier of the property"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "340916c3-491a-42f5-90ab-ea699ccf5868",
+              "name": "Property deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f096eb78-f83c-41b8-a023-666ab6a0c841",
+              "name": "Property not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.argusenterprise.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "06022063-6484-444a-94a2-32686145da67",
+    "name": "Argus Enterprise Core Authentication Properties API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.\n\nContact Support:\n Name: Argus API Support\n Email: api-support@argusenterprise.com",
+      "type": "text/plain"
+    }
+  }
+}

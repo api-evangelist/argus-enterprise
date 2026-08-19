@@ -1,0 +1,121 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Argus Enterprise Core Authentication Valuations API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Valuations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Argus Enterprise List Property Valuations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/properties/:propertyId/valuations",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the property"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              }
+            ]
+          },
+          "docs": "Retrieve all valuations associated with a specific property, including DCF analysis results, capitalization rates, and market value estimates."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Create a Property Valuation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.argusenterprise.com/v1/properties/:propertyId/valuations",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the property"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new valuation for a property using DCF analysis, direct capitalization, or comparable sales methodology."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise List All Valuations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/valuations",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "methodology",
+                "value": "",
+                "type": "query",
+                "description": "Filter by valuation methodology"
+              },
+              {
+                "name": "valuationDateFrom",
+                "value": "",
+                "type": "query",
+                "description": "Filter valuations from this date"
+              },
+              {
+                "name": "valuationDateTo",
+                "value": "",
+                "type": "query",
+                "description": "Filter valuations up to this date"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of all valuations across properties, with optional filtering by valuation date range and methodology."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

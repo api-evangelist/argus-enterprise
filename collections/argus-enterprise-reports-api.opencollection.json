@@ -1,0 +1,114 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Argus Enterprise Core Authentication Reports API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Argus Enterprise List Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/reports",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "reportType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by report type"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of available reports, including property-level, portfolio-level, and custom analytics reports."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Generate a Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.argusenterprise.com/v1/reports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate a new analytical report based on specified parameters including report type, date range, and target properties or portfolios."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Get a Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/reports/:reportId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the report"
+              }
+            ]
+          },
+          "docs": "Retrieve the status and results of a previously generated report."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Download a Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/reports/:reportId/download",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the report"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Output format for the report"
+              }
+            ]
+          },
+          "docs": "Download the report output file in the specified format."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

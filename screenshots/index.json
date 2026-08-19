@@ -6,5 +6,14 @@
     "source_type": "Portal",
     "file": "argus-enterprise-2026-06-20T172428.png",
     "bytes": 20515
+  },
+  {
+    "repo": "argus-enterprise",
+    "captured_at": "2026-08-17T082506",
+    "source_url": "https://altusgroup.com",
+    "source_type": "root-domain",
+    "file": "argus-enterprise-2026-08-17T082506.png",
+    "bytes": 247863,
+    "capture": "playwright-local"
   }
 ]

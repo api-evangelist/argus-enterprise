@@ -1,0 +1,163 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Argus Enterprise Core Authentication Leases API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Leases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Argus Enterprise List Property Leases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/properties/:propertyId/leases",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the property"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by lease status"
+              }
+            ]
+          },
+          "docs": "Retrieve all lease agreements associated with a property, including tenant details, rent schedules, and lease terms."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Create a Lease",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.argusenterprise.com/v1/properties/:propertyId/leases",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the property"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new lease agreement for a property."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Get a Lease",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/properties/:propertyId/leases/:leaseId",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the property"
+              },
+              {
+                "name": "leaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the lease"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific lease."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Update a Lease",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.argusenterprise.com/v1/properties/:propertyId/leases/:leaseId",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the property"
+              },
+              {
+                "name": "leaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the lease"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing lease agreement."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Delete a Lease",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.argusenterprise.com/v1/properties/:propertyId/leases/:leaseId",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the property"
+              },
+              {
+                "name": "leaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the lease"
+              }
+            ]
+          },
+          "docs": "Delete a lease record. This action cannot be undone."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

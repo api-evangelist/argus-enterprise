@@ -1,0 +1,182 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Argus Enterprise Core Authentication Subscriptions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Argus Enterprise List Webhook Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/subscriptions",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by subscription status"
+              },
+              {
+                "name": "eventType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by event type"
+              }
+            ]
+          },
+          "docs": "Retrieve all webhook subscriptions for the authenticated account, including their status and configured event types."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Create a Webhook Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.argusenterprise.com/v1/subscriptions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new webhook subscription to receive real-time notifications for specified event types. The target URL must be HTTPS and will receive a verification request before activation."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Get a Webhook Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/subscriptions/:subscriptionId",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the webhook subscription"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific webhook subscription."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Update a Webhook Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.argusenterprise.com/v1/subscriptions/:subscriptionId",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the webhook subscription"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the configuration of an existing webhook subscription."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Delete a Webhook Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.argusenterprise.com/v1/subscriptions/:subscriptionId",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the webhook subscription"
+              }
+            ]
+          },
+          "docs": "Permanently delete a webhook subscription. No further events will be delivered to the configured URL."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Pause a Webhook Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.argusenterprise.com/v1/subscriptions/:subscriptionId/pause",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the webhook subscription"
+              }
+            ]
+          },
+          "docs": "Temporarily pause a webhook subscription. Events will be queued and can be replayed when the subscription is resumed."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Resume a Webhook Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.argusenterprise.com/v1/subscriptions/:subscriptionId/resume",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the webhook subscription"
+              }
+            ]
+          },
+          "docs": "Resume a paused webhook subscription. Any queued events will be delivered to the configured URL."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Send a Test Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.argusenterprise.com/v1/subscriptions/:subscriptionId/test",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the webhook subscription"
+              }
+            ]
+          },
+          "docs": "Send a test webhook event to the subscription endpoint to verify connectivity and payload handling."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

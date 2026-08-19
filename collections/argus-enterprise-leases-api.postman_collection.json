@@ -1,0 +1,1063 @@
+{
+  "item": [
+    {
+      "id": "aa0b71fb-4bfb-47cf-ab3b-0eae08d89e3d",
+      "name": "Leases",
+      "description": {
+        "content": "Lease agreements and terms",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1c6e57b6-9d69-468a-b52e-d1cb4575a349",
+          "name": "Argus Enterprise List Property Leases",
+          "request": {
+            "name": "Argus Enterprise List Property Leases",
+            "description": {
+              "content": "Retrieve all lease agreements associated with a property, including tenant details, rent schedules, and lease terms.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "properties",
+                ":propertyId",
+                "leases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "25",
+                  "description": "Number of items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by lease status"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "propertyId",
+                  "description": "(Required) Unique identifier of the property"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "29f9d410-5b13-4c38-b6d4-042023ee10bd",
+              "name": "Leases retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId",
+                    "leases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"c711f762-1498-6100-4d21-c4a41ec96622\",\n      \"propertyId\": \"fa225555-6682-d4cd-dd1b-e35c6941e978\",\n      \"tenantId\": \"4e381955-b43e-27cb-aa64-7499285bce68\",\n      \"tenantName\": \"string\",\n      \"unitNumber\": \"string\",\n      \"leaseType\": \"TripleNet\",\n      \"status\": \"Active\",\n      \"startDate\": \"1955-12-07\",\n      \"endDate\": \"2020-08-10\",\n      \"leasedArea\": 6443.759886902545,\n      \"baseRent\": 7805.924128021093,\n      \"rentFrequency\": \"Annual\",\n      \"rentPerSquareFoot\": 1678.797749941966,\n      \"escalationRate\": 6912.194181548454,\n      \"escalationType\": \"MarketReset\",\n      \"securityDeposit\": 2387.1401781754385,\n      \"tenantImprovementAllowance\": 9118.35307970866,\n      \"options\": [\n        {\n          \"optionType\": \"Termination\",\n          \"noticeDate\": \"1964-10-16\",\n          \"exerciseDate\": \"1962-08-16\",\n          \"termMonths\": 7431,\n          \"rentAdjustment\": \"string\"\n        },\n        {\n          \"optionType\": \"Renewal\",\n          \"noticeDate\": \"1970-05-27\",\n          \"exerciseDate\": \"1965-09-15\",\n          \"termMonths\": 9352,\n          \"rentAdjustment\": \"string\"\n        }\n      ],\n      \"currency\": \"string\",\n      \"createdAt\": \"1987-08-13T04:03:32.979Z\",\n      \"updatedAt\": \"1978-05-11T04:14:00.583Z\"\n    },\n    {\n      \"id\": \"dc1bf1f6-c6fa-30e3-3fbe-a6ab73150ad4\",\n      \"propertyId\": \"80340fc0-a58c-5746-f658-090955c6af61\",\n      \"tenantId\": \"4c7a329c-ca1a-1ee4-e29b-f899a36ab256\",\n      \"tenantName\": \"string\",\n      \"unitNumber\": \"string\",\n      \"leaseType\": \"DoubleNet\",\n      \"status\": \"Expired\",\n      \"startDate\": \"1971-07-12\",\n      \"endDate\": \"1966-05-15\",\n      \"leasedArea\": 4185.721472664853,\n      \"baseRent\": 42.369304050220435,\n      \"rentFrequency\": \"Monthly\",\n      \"rentPerSquareFoot\": 5684.64467721723,\n      \"escalationRate\": 8213.099577047382,\n      \"escalationType\": \"StepUp\",\n      \"securityDeposit\": 2038.5253300059026,\n      \"tenantImprovementAllowance\": 418.1585058447934,\n      \"options\": [\n        {\n          \"optionType\": \"Renewal\",\n          \"noticeDate\": \"2022-03-08\",\n          \"exerciseDate\": \"1983-01-26\",\n          \"termMonths\": 150,\n          \"rentAdjustment\": \"string\"\n        },\n        {\n          \"optionType\": \"Renewal\",\n          \"noticeDate\": \"1992-02-13\",\n          \"exerciseDate\": \"1962-06-29\",\n          \"termMonths\": 8012,\n          \"rentAdjustment\": \"string\"\n        }\n      ],\n      \"currency\": \"string\",\n      \"createdAt\": \"1965-01-11T02:08:18.592Z\",\n      \"updatedAt\": \"1973-04-24T23:46:47.119Z\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": 7951,\n    \"pageSize\": 9045,\n    \"totalItems\": 7308,\n    \"totalPages\": 1016\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3cf6b18c-be9e-4d75-a91d-259659692378",
+              "name": "Property not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId",
+                    "leases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bdfdf3e5-d807-44ea-8ef9-a38298cad8f1",
+          "name": "Argus Enterprise Create a Lease",
+          "request": {
+            "name": "Argus Enterprise Create a Lease",
+            "description": {
+              "content": "Create a new lease agreement for a property.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "properties",
+                ":propertyId",
+                "leases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "propertyId",
+                  "description": "(Required) Unique identifier of the property"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenantId\": \"<uuid>\",\n  \"leaseType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"baseRent\": \"<double>\",\n  \"unitNumber\": \"<string>\",\n  \"status\": \"Active\",\n  \"leasedArea\": \"<double>\",\n  \"rentFrequency\": \"Monthly\",\n  \"escalationRate\": \"<double>\",\n  \"escalationType\": \"<string>\",\n  \"securityDeposit\": \"<double>\",\n  \"tenantImprovementAllowance\": \"<double>\",\n  \"currency\": \"USD\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "66a46d2d-e739-4ce8-b2d7-a4e27716be82",
+              "name": "Lease created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId",
+                    "leases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantId\": \"<uuid>\",\n  \"leaseType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"baseRent\": \"<double>\",\n  \"unitNumber\": \"<string>\",\n  \"status\": \"Active\",\n  \"leasedArea\": \"<double>\",\n  \"rentFrequency\": \"Monthly\",\n  \"escalationRate\": \"<double>\",\n  \"escalationType\": \"<string>\",\n  \"securityDeposit\": \"<double>\",\n  \"tenantImprovementAllowance\": \"<double>\",\n  \"currency\": \"USD\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"bde7f433-a149-363a-bf4a-e79b557663d4\",\n  \"propertyId\": \"64bc6315-0115-9b13-db48-c74395fad826\",\n  \"tenantId\": \"bdf1f371-7dca-15de-1395-b9d55568fafe\",\n  \"tenantName\": \"string\",\n  \"unitNumber\": \"string\",\n  \"leaseType\": \"DoubleNet\",\n  \"status\": \"Pending\",\n  \"startDate\": \"1949-04-20\",\n  \"endDate\": \"1963-01-15\",\n  \"leasedArea\": 9218.475193693694,\n  \"baseRent\": 5319.738248207643,\n  \"rentFrequency\": \"Quarterly\",\n  \"rentPerSquareFoot\": 9078.455261774183,\n  \"escalationRate\": 7550.164075815542,\n  \"escalationType\": \"MarketReset\",\n  \"securityDeposit\": 9199.864250690307,\n  \"tenantImprovementAllowance\": 7493.203679198571,\n  \"options\": [\n    {\n      \"optionType\": \"Expansion\",\n      \"noticeDate\": \"2009-09-25\",\n      \"exerciseDate\": \"1992-07-11\",\n      \"termMonths\": 7238,\n      \"rentAdjustment\": \"string\"\n    },\n    {\n      \"optionType\": \"PurchaseOption\",\n      \"noticeDate\": \"2020-04-09\",\n      \"exerciseDate\": \"1967-05-08\",\n      \"termMonths\": 2778,\n      \"rentAdjustment\": \"string\"\n    }\n  ],\n  \"currency\": \"string\",\n  \"createdAt\": \"1949-03-30T15:33:04.458Z\",\n  \"updatedAt\": \"1966-11-27T04:38:41.936Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c8c23808-f17e-488c-b506-f67859e00eb4",
+              "name": "Invalid lease data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId",
+                    "leases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantId\": \"<uuid>\",\n  \"leaseType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"baseRent\": \"<double>\",\n  \"unitNumber\": \"<string>\",\n  \"status\": \"Active\",\n  \"leasedArea\": \"<double>\",\n  \"rentFrequency\": \"Monthly\",\n  \"escalationRate\": \"<double>\",\n  \"escalationType\": \"<string>\",\n  \"securityDeposit\": \"<double>\",\n  \"tenantImprovementAllowance\": \"<double>\",\n  \"currency\": \"USD\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e8d597c6-fd4a-4949-9c9e-07d2b82ece79",
+              "name": "Property not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId",
+                    "leases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantId\": \"<uuid>\",\n  \"leaseType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"baseRent\": \"<double>\",\n  \"unitNumber\": \"<string>\",\n  \"status\": \"Active\",\n  \"leasedArea\": \"<double>\",\n  \"rentFrequency\": \"Monthly\",\n  \"escalationRate\": \"<double>\",\n  \"escalationType\": \"<string>\",\n  \"securityDeposit\": \"<double>\",\n  \"tenantImprovementAllowance\": \"<double>\",\n  \"currency\": \"USD\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "783c41f8-8f27-4371-9b96-195b1599d58d",
+          "name": "Argus Enterprise Get a Lease",
+          "request": {
+            "name": "Argus Enterprise Get a Lease",
+            "description": {
+              "content": "Retrieve detailed information about a specific lease.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "properties",
+                ":propertyId",
+                "leases",
+                ":leaseId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "propertyId",
+                  "description": "(Required) Unique identifier of the property"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "leaseId",
+                  "description": "(Required) Unique identifier of the lease"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3cb93f16-4d49-4f2c-b9c3-480c3ce4bed2",
+              "name": "Lease retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId",
+                    "leases",
+                    ":leaseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "leaseId",
+                      "description": "(Required) Unique identifier of the lease"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"bde7f433-a149-363a-bf4a-e79b557663d4\",\n  \"propertyId\": \"64bc6315-0115-9b13-db48-c74395fad826\",\n  \"tenantId\": \"bdf1f371-7dca-15de-1395-b9d55568fafe\",\n  \"tenantName\": \"string\",\n  \"unitNumber\": \"string\",\n  \"leaseType\": \"DoubleNet\",\n  \"status\": \"Pending\",\n  \"startDate\": \"1949-04-20\",\n  \"endDate\": \"1963-01-15\",\n  \"leasedArea\": 9218.475193693694,\n  \"baseRent\": 5319.738248207643,\n  \"rentFrequency\": \"Quarterly\",\n  \"rentPerSquareFoot\": 9078.455261774183,\n  \"escalationRate\": 7550.164075815542,\n  \"escalationType\": \"MarketReset\",\n  \"securityDeposit\": 9199.864250690307,\n  \"tenantImprovementAllowance\": 7493.203679198571,\n  \"options\": [\n    {\n      \"optionType\": \"Expansion\",\n      \"noticeDate\": \"2009-09-25\",\n      \"exerciseDate\": \"1992-07-11\",\n      \"termMonths\": 7238,\n      \"rentAdjustment\": \"string\"\n    },\n    {\n      \"optionType\": \"PurchaseOption\",\n      \"noticeDate\": \"2020-04-09\",\n      \"exerciseDate\": \"1967-05-08\",\n      \"termMonths\": 2778,\n      \"rentAdjustment\": \"string\"\n    }\n  ],\n  \"currency\": \"string\",\n  \"createdAt\": \"1949-03-30T15:33:04.458Z\",\n  \"updatedAt\": \"1966-11-27T04:38:41.936Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba16d010-b966-43df-b152-3ed2f0dedc79",
+              "name": "Lease not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId",
+                    "leases",
+                    ":leaseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "leaseId",
+                      "description": "(Required) Unique identifier of the lease"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "146e8f20-126f-4a79-9f0a-a420a681fce4",
+          "name": "Argus Enterprise Update a Lease",
+          "request": {
+            "name": "Argus Enterprise Update a Lease",
+            "description": {
+              "content": "Update an existing lease agreement.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "properties",
+                ":propertyId",
+                "leases",
+                ":leaseId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "propertyId",
+                  "description": "(Required) Unique identifier of the property"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "leaseId",
+                  "description": "(Required) Unique identifier of the lease"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenantId\": \"<uuid>\",\n  \"leaseType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"baseRent\": \"<double>\",\n  \"unitNumber\": \"<string>\",\n  \"status\": \"Active\",\n  \"leasedArea\": \"<double>\",\n  \"rentFrequency\": \"Monthly\",\n  \"escalationRate\": \"<double>\",\n  \"escalationType\": \"<string>\",\n  \"securityDeposit\": \"<double>\",\n  \"tenantImprovementAllowance\": \"<double>\",\n  \"currency\": \"USD\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d2d26d30-1f08-43d3-ba1c-20f84b7267f0",
+              "name": "Lease updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId",
+                    "leases",
+                    ":leaseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "leaseId",
+                      "description": "(Required) Unique identifier of the lease"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantId\": \"<uuid>\",\n  \"leaseType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"baseRent\": \"<double>\",\n  \"unitNumber\": \"<string>\",\n  \"status\": \"Active\",\n  \"leasedArea\": \"<double>\",\n  \"rentFrequency\": \"Monthly\",\n  \"escalationRate\": \"<double>\",\n  \"escalationType\": \"<string>\",\n  \"securityDeposit\": \"<double>\",\n  \"tenantImprovementAllowance\": \"<double>\",\n  \"currency\": \"USD\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"bde7f433-a149-363a-bf4a-e79b557663d4\",\n  \"propertyId\": \"64bc6315-0115-9b13-db48-c74395fad826\",\n  \"tenantId\": \"bdf1f371-7dca-15de-1395-b9d55568fafe\",\n  \"tenantName\": \"string\",\n  \"unitNumber\": \"string\",\n  \"leaseType\": \"DoubleNet\",\n  \"status\": \"Pending\",\n  \"startDate\": \"1949-04-20\",\n  \"endDate\": \"1963-01-15\",\n  \"leasedArea\": 9218.475193693694,\n  \"baseRent\": 5319.738248207643,\n  \"rentFrequency\": \"Quarterly\",\n  \"rentPerSquareFoot\": 9078.455261774183,\n  \"escalationRate\": 7550.164075815542,\n  \"escalationType\": \"MarketReset\",\n  \"securityDeposit\": 9199.864250690307,\n  \"tenantImprovementAllowance\": 7493.203679198571,\n  \"options\": [\n    {\n      \"optionType\": \"Expansion\",\n      \"noticeDate\": \"2009-09-25\",\n      \"exerciseDate\": \"1992-07-11\",\n      \"termMonths\": 7238,\n      \"rentAdjustment\": \"string\"\n    },\n    {\n      \"optionType\": \"PurchaseOption\",\n      \"noticeDate\": \"2020-04-09\",\n      \"exerciseDate\": \"1967-05-08\",\n      \"termMonths\": 2778,\n      \"rentAdjustment\": \"string\"\n    }\n  ],\n  \"currency\": \"string\",\n  \"createdAt\": \"1949-03-30T15:33:04.458Z\",\n  \"updatedAt\": \"1966-11-27T04:38:41.936Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47aa95b8-97a9-4abc-916b-4b3f4f2f013a",
+              "name": "Invalid lease data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId",
+                    "leases",
+                    ":leaseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "leaseId",
+                      "description": "(Required) Unique identifier of the lease"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantId\": \"<uuid>\",\n  \"leaseType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"baseRent\": \"<double>\",\n  \"unitNumber\": \"<string>\",\n  \"status\": \"Active\",\n  \"leasedArea\": \"<double>\",\n  \"rentFrequency\": \"Monthly\",\n  \"escalationRate\": \"<double>\",\n  \"escalationType\": \"<string>\",\n  \"securityDeposit\": \"<double>\",\n  \"tenantImprovementAllowance\": \"<double>\",\n  \"currency\": \"USD\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5ed2a774-c620-4fd1-84e3-f36e689ccb18",
+              "name": "Lease not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId",
+                    "leases",
+                    ":leaseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "leaseId",
+                      "description": "(Required) Unique identifier of the lease"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantId\": \"<uuid>\",\n  \"leaseType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"baseRent\": \"<double>\",\n  \"unitNumber\": \"<string>\",\n  \"status\": \"Active\",\n  \"leasedArea\": \"<double>\",\n  \"rentFrequency\": \"Monthly\",\n  \"escalationRate\": \"<double>\",\n  \"escalationType\": \"<string>\",\n  \"securityDeposit\": \"<double>\",\n  \"tenantImprovementAllowance\": \"<double>\",\n  \"currency\": \"USD\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5282d630-9422-4627-8032-4282fa4cbbf8",
+          "name": "Argus Enterprise Delete a Lease",
+          "request": {
+            "name": "Argus Enterprise Delete a Lease",
+            "description": {
+              "content": "Delete a lease record. This action cannot be undone.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "properties",
+                ":propertyId",
+                "leases",
+                ":leaseId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "propertyId",
+                  "description": "(Required) Unique identifier of the property"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "leaseId",
+                  "description": "(Required) Unique identifier of the lease"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "25f43c93-ebcd-4010-a189-0df92c2c92de",
+              "name": "Lease deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId",
+                    "leases",
+                    ":leaseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "leaseId",
+                      "description": "(Required) Unique identifier of the lease"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "30e823b9-c1c9-4d86-84d4-9c4838d06ec9",
+              "name": "Lease not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId",
+                    "leases",
+                    ":leaseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "leaseId",
+                      "description": "(Required) Unique identifier of the lease"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.argusenterprise.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d1c2e814-d704-4b97-8642-06ad34c5a42d",
+    "name": "Argus Enterprise Core Authentication Leases API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.\n\nContact Support:\n Name: Argus API Support\n Email: api-support@argusenterprise.com",
+      "type": "text/plain"
+    }
+  }
+}

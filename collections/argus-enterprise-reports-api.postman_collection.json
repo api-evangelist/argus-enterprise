@@ -1,0 +1,605 @@
+{
+  "item": [
+    {
+      "id": "2b99d3c1-dc48-405f-96b6-c92c205b8502",
+      "name": "Reports",
+      "description": {
+        "content": "Generate and retrieve analytical reports",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2cf7288a-a54c-42d7-a9e9-22c11bfce72f",
+          "name": "Argus Enterprise List Reports",
+          "request": {
+            "name": "Argus Enterprise List Reports",
+            "description": {
+              "content": "Retrieve a list of available reports, including property-level, portfolio-level, and custom analytics reports.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "25",
+                  "description": "Number of items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "reportType",
+                  "value": "<string>",
+                  "description": "Filter by report type"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4947bc48-df40-47d3-abae-7a8562cd3b32",
+              "name": "Reports retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "reportType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"455dbd06-e2ae-9d95-7bde-6388500c70c2\",\n      \"reportType\": \"PortfolioSummary\",\n      \"title\": \"string\",\n      \"status\": \"Completed\",\n      \"generatedAt\": \"1993-08-26T06:33:02.055Z\",\n      \"downloadUrl\": \"https://lYuqrChYzYmvNQVkaspIVYFqCEvJ.iikvlwbXjTnb4Ed6MQGv5wUCs\",\n      \"parameters\": {},\n      \"createdBy\": \"string\"\n    },\n    {\n      \"id\": \"e9b9f8b7-bf9a-209f-1e60-009e1e1cfde3\",\n      \"reportType\": \"CashFlowAnalysis\",\n      \"title\": \"string\",\n      \"status\": \"Pending\",\n      \"generatedAt\": \"1952-05-31T00:23:41.387Z\",\n      \"downloadUrl\": \"https://PpYRcenYnMqoeIWIQ.ewkDj3X\",\n      \"parameters\": {},\n      \"createdBy\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": 9739,\n    \"pageSize\": 9574,\n    \"totalItems\": 5839,\n    \"totalPages\": 9382\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4f1da551-d16b-4963-8a3a-38d1d8771123",
+          "name": "Argus Enterprise Generate a Report",
+          "request": {
+            "name": "Argus Enterprise Generate a Report",
+            "description": {
+              "content": "Generate a new analytical report based on specified parameters including report type, date range, and target properties or portfolios.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reportType\": \"<string>\",\n  \"title\": \"<string>\",\n  \"propertyIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"portfolioIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"outputFormat\": \"PDF\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "43b31a8b-1a71-459a-9871-a02c143d3f44",
+              "name": "Report generation initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportType\": \"<string>\",\n  \"title\": \"<string>\",\n  \"propertyIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"portfolioIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"outputFormat\": \"PDF\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"613eafde-701f-e518-c93a-6cac2f72e8d8\",\n  \"reportType\": \"PropertySummary\",\n  \"title\": \"string\",\n  \"status\": \"Completed\",\n  \"generatedAt\": \"1961-03-10T08:49:15.412Z\",\n  \"downloadUrl\": \"https://JjpVEYZzMBsMo.wpCTmo99pmBByLCWsMBbgY7BIlktH,Cs9un1WsBNlN8nSL\",\n  \"parameters\": {},\n  \"createdBy\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f229ebe-a5ec-4647-8316-ccb4acc4a277",
+              "name": "Invalid report request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportType\": \"<string>\",\n  \"title\": \"<string>\",\n  \"propertyIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"portfolioIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"outputFormat\": \"PDF\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "794be26e-ffe5-4d0e-8e12-6273aa563e7d",
+          "name": "Argus Enterprise Get a Report",
+          "request": {
+            "name": "Argus Enterprise Get a Report",
+            "description": {
+              "content": "Retrieve the status and results of a previously generated report.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports",
+                ":reportId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "reportId",
+                  "description": "(Required) Unique identifier of the report"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "73433fb6-7af4-4b4d-ace9-a0cb37b08050",
+              "name": "Report retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "reportId",
+                      "description": "(Required) Unique identifier of the report"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"613eafde-701f-e518-c93a-6cac2f72e8d8\",\n  \"reportType\": \"PropertySummary\",\n  \"title\": \"string\",\n  \"status\": \"Completed\",\n  \"generatedAt\": \"1961-03-10T08:49:15.412Z\",\n  \"downloadUrl\": \"https://JjpVEYZzMBsMo.wpCTmo99pmBByLCWsMBbgY7BIlktH,Cs9un1WsBNlN8nSL\",\n  \"parameters\": {},\n  \"createdBy\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "483b3b80-b705-40a2-afc9-9c16d1962009",
+              "name": "Report not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "reportId",
+                      "description": "(Required) Unique identifier of the report"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "677d59eb-4df8-4ae5-8f5e-402f42ab03f6",
+          "name": "Argus Enterprise Download a Report",
+          "request": {
+            "name": "Argus Enterprise Download a Report",
+            "description": {
+              "content": "Download the report output file in the specified format.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports",
+                ":reportId",
+                "download"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "PDF",
+                  "description": "Output format for the report"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "reportId",
+                  "description": "(Required) Unique identifier of the report"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "194309ca-c5e3-427f-9bd8-bce3352dc51e",
+              "name": "Report file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    ":reportId",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "PDF"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "reportId",
+                      "description": "(Required) Unique identifier of the report"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/pdf"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/pdf"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9a169d7c-82a8-4478-819d-a7160fa0d906",
+              "name": "Report not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    ":reportId",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "PDF"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "reportId",
+                      "description": "(Required) Unique identifier of the report"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.argusenterprise.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2b217d15-1037-4973-915f-0f9ce4026bae",
+    "name": "Argus Enterprise Core Authentication Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.\n\nContact Support:\n Name: Argus API Support\n Email: api-support@argusenterprise.com",
+      "type": "text/plain"
+    }
+  }
+}

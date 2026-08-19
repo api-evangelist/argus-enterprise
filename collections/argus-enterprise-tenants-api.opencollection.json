@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Argus Enterprise Core Authentication Tenants API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tenants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Argus Enterprise List Tenants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/tenants",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search tenants by name"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of tenants across all properties accessible to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Create a Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.argusenterprise.com/v1/tenants",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new tenant record."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Get a Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/tenants/:tenantId",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the tenant"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific tenant."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Update a Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.argusenterprise.com/v1/tenants/:tenantId",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the tenant"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing tenant record."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

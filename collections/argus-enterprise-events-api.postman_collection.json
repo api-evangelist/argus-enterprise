@@ -1,0 +1,548 @@
+{
+  "item": [
+    {
+      "id": "cd201780-ac30-4308-a9ee-2ca9e5518f35",
+      "name": "Events",
+      "description": {
+        "content": "View webhook event history and delivery logs",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7f8a9e19-d996-4c4d-a155-f1df38ce3e32",
+          "name": "Argus Enterprise List Webhook Events",
+          "request": {
+            "name": "Argus Enterprise List Webhook Events",
+            "description": {
+              "content": "Retrieve a paginated list of webhook events with delivery status, filterable by event type, subscription, and date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "subscriptionId",
+                  "value": "<uuid>",
+                  "description": "Filter by subscription"
+                },
+                {
+                  "disabled": false,
+                  "key": "eventType",
+                  "value": "<string>",
+                  "description": "Filter by event type"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by delivery status"
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "Start of date range"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "End of date range"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "25"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7d64a85d-56c9-4fa9-aca5-a0506c8a40dd",
+              "name": "Events retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "subscriptionId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "eventType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"a2ac9664-dfd0-5c70-8fa1-d8b49d7f139a\",\n      \"subscriptionId\": \"12ea0e42-f88c-37c1-15d6-3df4df592f3b\",\n      \"eventType\": \"string\",\n      \"status\": \"Failed\",\n      \"payload\": {\n        \"eventId\": \"c39f8abf-4ab8-ac70-9b0c-cd13e288713c\",\n        \"eventType\": \"string\",\n        \"timestamp\": \"1986-07-17T15:23:39.480Z\",\n        \"resourceType\": \"string\",\n        \"resourceId\": \"8ca9cb3d-6002-3af3-e18a-7eb21fed2b40\",\n        \"data\": {}\n      },\n      \"deliveryAttempts\": [\n        {\n          \"attemptNumber\": 4471,\n          \"timestamp\": \"1982-04-24T21:11:34.671Z\",\n          \"responseCode\": 63,\n          \"responseTime\": 8,\n          \"success\": false,\n          \"errorMessage\": \"string\"\n        },\n        {\n          \"attemptNumber\": 9137,\n          \"timestamp\": \"2010-10-10T04:20:47.281Z\",\n          \"responseCode\": 3046,\n          \"responseTime\": 336,\n          \"success\": false,\n          \"errorMessage\": \"string\"\n        }\n      ],\n      \"createdAt\": \"1977-07-13T10:45:53.588Z\"\n    },\n    {\n      \"id\": \"d6421ada-5c78-d8bc-e841-a453d26e495f\",\n      \"subscriptionId\": \"191256bf-032c-ba0a-3417-50008b806c30\",\n      \"eventType\": \"string\",\n      \"status\": \"Pending\",\n      \"payload\": {\n        \"eventId\": \"f34652e9-9053-2228-ba78-c5ca7eda040d\",\n        \"eventType\": \"string\",\n        \"timestamp\": \"2021-05-24T22:10:19.262Z\",\n        \"resourceType\": \"string\",\n        \"resourceId\": \"ef8d868f-a3b5-6ef1-5c5c-baa4656aa689\",\n        \"data\": {}\n      },\n      \"deliveryAttempts\": [\n        {\n          \"attemptNumber\": 2324,\n          \"timestamp\": \"2016-05-20T04:08:24.950Z\",\n          \"responseCode\": 7971,\n          \"responseTime\": 1141,\n          \"success\": false,\n          \"errorMessage\": \"string\"\n        },\n        {\n          \"attemptNumber\": 3216,\n          \"timestamp\": \"2017-03-24T23:08:19.992Z\",\n          \"responseCode\": 6913,\n          \"responseTime\": 8576,\n          \"success\": true,\n          \"errorMessage\": \"string\"\n        }\n      ],\n      \"createdAt\": \"1973-01-15T06:58:27.287Z\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": 7575,\n    \"pageSize\": 9610,\n    \"totalItems\": 1773,\n    \"totalPages\": 8700\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8dc9e9d7-23f6-4539-96fb-012cb48643d6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "subscriptionId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "eventType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "01ac9001-713c-4bfb-b4cf-1c55b4affccd",
+          "name": "Argus Enterprise Get a Webhook Event",
+          "request": {
+            "name": "Argus Enterprise Get a Webhook Event",
+            "description": {
+              "content": "Retrieve details about a specific webhook event, including the payload, delivery attempts, and response information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                ":eventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "eventId",
+                  "description": "(Required) Unique identifier of the webhook event"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2fb284f8-3a23-4eb5-9b9f-2592406a3f3e",
+              "name": "Event retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "eventId",
+                      "description": "(Required) Unique identifier of the webhook event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"59c40725-2a42-4eb4-2707-bd02e543c280\",\n  \"subscriptionId\": \"d57a8072-8bcd-1014-1571-2cf76b9eeb74\",\n  \"eventType\": \"string\",\n  \"status\": \"Failed\",\n  \"payload\": {\n    \"eventId\": \"3da2ab20-dee7-c070-98f2-7be09c4e5e8d\",\n    \"eventType\": \"string\",\n    \"timestamp\": \"1974-08-08T14:54:10.754Z\",\n    \"resourceType\": \"string\",\n    \"resourceId\": \"da9085a8-8f2f-50d2-dfd2-2c88abc8bd3e\",\n    \"data\": {}\n  },\n  \"deliveryAttempts\": [\n    {\n      \"attemptNumber\": 9133,\n      \"timestamp\": \"1986-06-06T23:49:00.362Z\",\n      \"responseCode\": 202,\n      \"responseTime\": 1226,\n      \"success\": true,\n      \"errorMessage\": \"string\"\n    },\n    {\n      \"attemptNumber\": 1575,\n      \"timestamp\": \"1962-06-05T21:36:14.595Z\",\n      \"responseCode\": 6316,\n      \"responseTime\": 2389,\n      \"success\": false,\n      \"errorMessage\": \"string\"\n    }\n  ],\n  \"createdAt\": \"2024-02-16T00:30:01.211Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa0bcfa9-5ac4-470e-8660-0b83fe99355c",
+              "name": "Event not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "eventId",
+                      "description": "(Required) Unique identifier of the webhook event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93ec94df-137e-42a2-90bc-a91e4471c043",
+          "name": "Argus Enterprise Retry Event Delivery",
+          "request": {
+            "name": "Argus Enterprise Retry Event Delivery",
+            "description": {
+              "content": "Manually retry delivery of a failed webhook event.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                ":eventId",
+                "retry"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "eventId",
+                  "description": "(Required) Unique identifier of the webhook event"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cdfa6887-9a18-45ca-8b55-4c4785fcfd36",
+              "name": "Retry initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventId",
+                    "retry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "eventId",
+                      "description": "(Required) Unique identifier of the webhook event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"59c40725-2a42-4eb4-2707-bd02e543c280\",\n  \"subscriptionId\": \"d57a8072-8bcd-1014-1571-2cf76b9eeb74\",\n  \"eventType\": \"string\",\n  \"status\": \"Failed\",\n  \"payload\": {\n    \"eventId\": \"3da2ab20-dee7-c070-98f2-7be09c4e5e8d\",\n    \"eventType\": \"string\",\n    \"timestamp\": \"1974-08-08T14:54:10.754Z\",\n    \"resourceType\": \"string\",\n    \"resourceId\": \"da9085a8-8f2f-50d2-dfd2-2c88abc8bd3e\",\n    \"data\": {}\n  },\n  \"deliveryAttempts\": [\n    {\n      \"attemptNumber\": 9133,\n      \"timestamp\": \"1986-06-06T23:49:00.362Z\",\n      \"responseCode\": 202,\n      \"responseTime\": 1226,\n      \"success\": true,\n      \"errorMessage\": \"string\"\n    },\n    {\n      \"attemptNumber\": 1575,\n      \"timestamp\": \"1962-06-05T21:36:14.595Z\",\n      \"responseCode\": 6316,\n      \"responseTime\": 2389,\n      \"success\": false,\n      \"errorMessage\": \"string\"\n    }\n  ],\n  \"createdAt\": \"2024-02-16T00:30:01.211Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25e39f65-4a01-4fc5-86ee-3a6788ac1fcc",
+              "name": "Event not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventId",
+                    "retry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "eventId",
+                      "description": "(Required) Unique identifier of the webhook event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.argusenterprise.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "92118089-ccb0-423b-b856-555b371f61e9",
+    "name": "Argus Enterprise Core Authentication Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.\n\nContact Support:\n Name: Argus API Support\n Email: api-support@argusenterprise.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Argus Enterprise Core Authentication Properties API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Properties",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Argus Enterprise List Properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/properties",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "portfolioId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by portfolio identifier"
+              },
+              {
+                "name": "propertyType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by property type"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by property status"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of commercial real estate properties accessible to the authenticated user, with optional filtering by portfolio, property type, and status."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Create a Property",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.argusenterprise.com/v1/properties",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new commercial real estate property record in the system."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Get a Property",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/properties/:propertyId",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the property"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific property."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Update a Property",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.argusenterprise.com/v1/properties/:propertyId",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the property"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing property record with new information."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Delete a Property",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.argusenterprise.com/v1/properties/:propertyId",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the property"
+              }
+            ]
+          },
+          "docs": "Delete a property record. This action cannot be undone."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

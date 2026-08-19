@@ -1,0 +1,642 @@
+{
+  "item": [
+    {
+      "id": "260c8e52-7fd0-49bb-a604-8aeb4c542ac4",
+      "name": "Valuations",
+      "description": {
+        "content": "Property valuations and appraisal data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ac1c79b4-4638-4827-a0a1-6e4294a03c41",
+          "name": "Argus Enterprise List Property Valuations",
+          "request": {
+            "name": "Argus Enterprise List Property Valuations",
+            "description": {
+              "content": "Retrieve all valuations associated with a specific property, including DCF analysis results, capitalization rates, and market value estimates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "properties",
+                ":propertyId",
+                "valuations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "25",
+                  "description": "Number of items per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "propertyId",
+                  "description": "(Required) Unique identifier of the property"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c861fc3-441d-4646-9a7f-78999608d1de",
+              "name": "Valuations retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId",
+                    "valuations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"3228be09-55bc-7a6f-2c28-b46b8fa06d8d\",\n      \"propertyId\": \"95baa2f4-7f3c-f80e-e0f7-3698908ad8e8\",\n      \"valuationDate\": \"2013-03-18\",\n      \"methodology\": \"DirectCapitalization\",\n      \"marketValue\": 8897.803617332467,\n      \"capRate\": 6409.776204653161,\n      \"discountRate\": 8730.632904034446,\n      \"terminalCapRate\": 1162.501669466588,\n      \"analysisStartDate\": \"1970-12-17\",\n      \"analysisEndDate\": \"1959-05-03\",\n      \"netOperatingIncome\": 3266.289487228464,\n      \"netPresentValue\": 2761.91500619841,\n      \"internalRateOfReturn\": 1223.6104039637862,\n      \"currency\": \"string\",\n      \"notes\": \"string\",\n      \"createdBy\": \"string\",\n      \"createdAt\": \"1959-03-20T09:27:31.919Z\",\n      \"updatedAt\": \"2006-03-05T05:29:28.861Z\"\n    },\n    {\n      \"id\": \"6ee20fbf-4d45-be3a-172f-92d281f001a2\",\n      \"propertyId\": \"aa5e91dd-61a0-3575-be27-7120da665c12\",\n      \"valuationDate\": \"1951-10-03\",\n      \"methodology\": \"DirectCapitalization\",\n      \"marketValue\": 5779.839762449006,\n      \"capRate\": 690.1350584194677,\n      \"discountRate\": 2651.838665503364,\n      \"terminalCapRate\": 1036.6920353412734,\n      \"analysisStartDate\": \"1978-01-02\",\n      \"analysisEndDate\": \"1950-11-13\",\n      \"netOperatingIncome\": 7822.880902662315,\n      \"netPresentValue\": 5590.527960460336,\n      \"internalRateOfReturn\": 7941.7247068005,\n      \"currency\": \"string\",\n      \"notes\": \"string\",\n      \"createdBy\": \"string\",\n      \"createdAt\": \"1953-03-15T01:56:50.190Z\",\n      \"updatedAt\": \"2004-06-22T00:41:00.035Z\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": 7546,\n    \"pageSize\": 5883,\n    \"totalItems\": 6073,\n    \"totalPages\": 9621\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d03fb7b-d4a0-4326-b323-52e9fda2bc01",
+              "name": "Property not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId",
+                    "valuations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d5a6c7a-f2ab-435e-813a-060014dc7c11",
+          "name": "Argus Enterprise Create a Property Valuation",
+          "request": {
+            "name": "Argus Enterprise Create a Property Valuation",
+            "description": {
+              "content": "Create a new valuation for a property using DCF analysis, direct capitalization, or comparable sales methodology.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "properties",
+                ":propertyId",
+                "valuations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "propertyId",
+                  "description": "(Required) Unique identifier of the property"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"valuationDate\": \"<date>\",\n  \"methodology\": \"<string>\",\n  \"marketValue\": \"<double>\",\n  \"capRate\": \"<double>\",\n  \"discountRate\": \"<double>\",\n  \"terminalCapRate\": \"<double>\",\n  \"analysisStartDate\": \"<date>\",\n  \"analysisEndDate\": \"<date>\",\n  \"netOperatingIncome\": \"<double>\",\n  \"currency\": \"USD\",\n  \"notes\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "39545183-3963-4b95-9abb-d924fd076914",
+              "name": "Valuation created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId",
+                    "valuations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"valuationDate\": \"<date>\",\n  \"methodology\": \"<string>\",\n  \"marketValue\": \"<double>\",\n  \"capRate\": \"<double>\",\n  \"discountRate\": \"<double>\",\n  \"terminalCapRate\": \"<double>\",\n  \"analysisStartDate\": \"<date>\",\n  \"analysisEndDate\": \"<date>\",\n  \"netOperatingIncome\": \"<double>\",\n  \"currency\": \"USD\",\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ddd424c7-aeaa-9a42-99ed-06621b485827\",\n  \"propertyId\": \"f664cd35-0d74-e209-f7e5-6e40e64e2706\",\n  \"valuationDate\": \"2001-03-27\",\n  \"methodology\": \"DirectCapitalization\",\n  \"marketValue\": 6957.380886264867,\n  \"capRate\": 4168.134891679936,\n  \"discountRate\": 1256.8122754913225,\n  \"terminalCapRate\": 3303.363365955859,\n  \"analysisStartDate\": \"2025-12-29\",\n  \"analysisEndDate\": \"1995-01-22\",\n  \"netOperatingIncome\": 6114.408499489478,\n  \"netPresentValue\": 3450.2911213665666,\n  \"internalRateOfReturn\": 1803.0340444669434,\n  \"currency\": \"string\",\n  \"notes\": \"string\",\n  \"createdBy\": \"string\",\n  \"createdAt\": \"2001-11-02T05:20:53.507Z\",\n  \"updatedAt\": \"1969-02-04T12:06:23.667Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "79f2827a-9d7e-405c-a6c1-6ce0a2ccda3c",
+              "name": "Invalid valuation data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId",
+                    "valuations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"valuationDate\": \"<date>\",\n  \"methodology\": \"<string>\",\n  \"marketValue\": \"<double>\",\n  \"capRate\": \"<double>\",\n  \"discountRate\": \"<double>\",\n  \"terminalCapRate\": \"<double>\",\n  \"analysisStartDate\": \"<date>\",\n  \"analysisEndDate\": \"<date>\",\n  \"netOperatingIncome\": \"<double>\",\n  \"currency\": \"USD\",\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a84ffcc0-115b-4d87-9657-15449381ed19",
+              "name": "Property not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId",
+                    "valuations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"valuationDate\": \"<date>\",\n  \"methodology\": \"<string>\",\n  \"marketValue\": \"<double>\",\n  \"capRate\": \"<double>\",\n  \"discountRate\": \"<double>\",\n  \"terminalCapRate\": \"<double>\",\n  \"analysisStartDate\": \"<date>\",\n  \"analysisEndDate\": \"<date>\",\n  \"netOperatingIncome\": \"<double>\",\n  \"currency\": \"USD\",\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5dbacf12-eb24-4967-bb0d-f7e79c9d86f2",
+          "name": "Argus Enterprise List All Valuations",
+          "request": {
+            "name": "Argus Enterprise List All Valuations",
+            "description": {
+              "content": "Retrieve a paginated list of all valuations across properties, with optional filtering by valuation date range and methodology.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "valuations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "25",
+                  "description": "Number of items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "methodology",
+                  "value": "<string>",
+                  "description": "Filter by valuation methodology"
+                },
+                {
+                  "disabled": false,
+                  "key": "valuationDateFrom",
+                  "value": "<date>",
+                  "description": "Filter valuations from this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "valuationDateTo",
+                  "value": "<date>",
+                  "description": "Filter valuations up to this date"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "29d61560-0493-4bbf-8b5f-d67262259288",
+              "name": "Valuations retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "valuations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "methodology",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "valuationDateFrom",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "valuationDateTo",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"3228be09-55bc-7a6f-2c28-b46b8fa06d8d\",\n      \"propertyId\": \"95baa2f4-7f3c-f80e-e0f7-3698908ad8e8\",\n      \"valuationDate\": \"2013-03-18\",\n      \"methodology\": \"DirectCapitalization\",\n      \"marketValue\": 8897.803617332467,\n      \"capRate\": 6409.776204653161,\n      \"discountRate\": 8730.632904034446,\n      \"terminalCapRate\": 1162.501669466588,\n      \"analysisStartDate\": \"1970-12-17\",\n      \"analysisEndDate\": \"1959-05-03\",\n      \"netOperatingIncome\": 3266.289487228464,\n      \"netPresentValue\": 2761.91500619841,\n      \"internalRateOfReturn\": 1223.6104039637862,\n      \"currency\": \"string\",\n      \"notes\": \"string\",\n      \"createdBy\": \"string\",\n      \"createdAt\": \"1959-03-20T09:27:31.919Z\",\n      \"updatedAt\": \"2006-03-05T05:29:28.861Z\"\n    },\n    {\n      \"id\": \"6ee20fbf-4d45-be3a-172f-92d281f001a2\",\n      \"propertyId\": \"aa5e91dd-61a0-3575-be27-7120da665c12\",\n      \"valuationDate\": \"1951-10-03\",\n      \"methodology\": \"DirectCapitalization\",\n      \"marketValue\": 5779.839762449006,\n      \"capRate\": 690.1350584194677,\n      \"discountRate\": 2651.838665503364,\n      \"terminalCapRate\": 1036.6920353412734,\n      \"analysisStartDate\": \"1978-01-02\",\n      \"analysisEndDate\": \"1950-11-13\",\n      \"netOperatingIncome\": 7822.880902662315,\n      \"netPresentValue\": 5590.527960460336,\n      \"internalRateOfReturn\": 7941.7247068005,\n      \"currency\": \"string\",\n      \"notes\": \"string\",\n      \"createdBy\": \"string\",\n      \"createdAt\": \"1953-03-15T01:56:50.190Z\",\n      \"updatedAt\": \"2004-06-22T00:41:00.035Z\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": 7546,\n    \"pageSize\": 5883,\n    \"totalItems\": 6073,\n    \"totalPages\": 9621\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab2019ed-43a7-4fd4-bfaa-e79efc4d50af",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "valuations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "methodology",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "valuationDateFrom",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "valuationDateTo",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.argusenterprise.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2c1a7fbd-f4bd-4bdb-ba8e-11485f16ce40",
+    "name": "Argus Enterprise Core Authentication Valuations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.\n\nContact Support:\n Name: Argus API Support\n Email: api-support@argusenterprise.com",
+      "type": "text/plain"
+    }
+  }
+}

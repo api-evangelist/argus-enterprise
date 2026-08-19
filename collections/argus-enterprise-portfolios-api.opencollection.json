@@ -1,0 +1,156 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Argus Enterprise Core Authentication Portfolios API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Portfolios",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Argus Enterprise List Portfolios",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/portfolios",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of property portfolios accessible to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Create a Portfolio",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.argusenterprise.com/v1/portfolios",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new property portfolio for organizing assets."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Get a Portfolio",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/portfolios/:portfolioId",
+            "params": [
+              {
+                "name": "portfolioId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the portfolio"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific portfolio."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Update a Portfolio",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.argusenterprise.com/v1/portfolios/:portfolioId",
+            "params": [
+              {
+                "name": "portfolioId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the portfolio"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing portfolio."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Delete a Portfolio",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.argusenterprise.com/v1/portfolios/:portfolioId",
+            "params": [
+              {
+                "name": "portfolioId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the portfolio"
+              }
+            ]
+          },
+          "docs": "Delete a portfolio. Properties within the portfolio are not deleted."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise List Portfolio Properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/portfolios/:portfolioId/properties",
+            "params": [
+              {
+                "name": "portfolioId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the portfolio"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              }
+            ]
+          },
+          "docs": "Retrieve all properties belonging to a specific portfolio."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

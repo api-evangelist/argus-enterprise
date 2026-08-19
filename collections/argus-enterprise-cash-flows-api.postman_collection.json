@@ -1,0 +1,233 @@
+{
+  "item": [
+    {
+      "id": "056a1e59-43f3-44e6-8a42-8e6566b2ba1e",
+      "name": "Cash Flows",
+      "description": {
+        "content": "Cash flow projections and analysis",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fabe9f00-fb8d-45b8-86b1-77a07d62d5bd",
+          "name": "Argus Enterprise List Property Cash Flows",
+          "request": {
+            "name": "Argus Enterprise List Property Cash Flows",
+            "description": {
+              "content": "Retrieve projected cash flows for a property over the analysis period, including income streams, operating expenses, capital expenditures, and net operating income.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "properties",
+                ":propertyId",
+                "cashflows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>",
+                  "description": "Start date for cash flow projections"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>",
+                  "description": "End date for cash flow projections"
+                },
+                {
+                  "disabled": false,
+                  "key": "frequency",
+                  "value": "<string>",
+                  "description": "Cash flow reporting frequency"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "propertyId",
+                  "description": "(Required) Unique identifier of the property"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0fa4c6ff-0c7a-49d9-bc2b-bc5e1c8ce88a",
+              "name": "Cash flows retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId",
+                    "cashflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "frequency",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"propertyId\": \"f132bd8d-c728-da52-35ca-328e2ef3b032\",\n  \"startDate\": \"2024-06-08\",\n  \"endDate\": \"2017-06-08\",\n  \"frequency\": \"Quarterly\",\n  \"currency\": \"string\",\n  \"periods\": [\n    {\n      \"periodStart\": \"1947-01-31\",\n      \"periodEnd\": \"1976-04-23\",\n      \"grossPotentialRent\": 6048.8660908288375,\n      \"vacancyLoss\": 4807.275051563605,\n      \"effectiveGrossIncome\": 8097.454117824764,\n      \"otherIncome\": 2934.1439036864567,\n      \"totalRevenue\": 9897.138937161371,\n      \"operatingExpenses\": 1597.60423418143,\n      \"netOperatingIncome\": 617.4996227657525,\n      \"capitalExpenditures\": 3370.8014065940006,\n      \"tenantImprovements\": 9107.453492733952,\n      \"leasingCommissions\": 8718.557818694577,\n      \"debtService\": 4243.204486424939,\n      \"cashFlowBeforeDebt\": 4259.79084577494,\n      \"cashFlowAfterDebt\": 1481.0009136281155\n    },\n    {\n      \"periodStart\": \"1960-01-11\",\n      \"periodEnd\": \"2021-05-02\",\n      \"grossPotentialRent\": 5592.124883053344,\n      \"vacancyLoss\": 80.3647846144262,\n      \"effectiveGrossIncome\": 3198.2380155816804,\n      \"otherIncome\": 7731.1433018034095,\n      \"totalRevenue\": 3326.7881624280303,\n      \"operatingExpenses\": 2075.8043207749356,\n      \"netOperatingIncome\": 8393.877068398677,\n      \"capitalExpenditures\": 5417.856337064038,\n      \"tenantImprovements\": 5824.064531094725,\n      \"leasingCommissions\": 7370.05613547274,\n      \"debtService\": 7098.38217730261,\n      \"cashFlowBeforeDebt\": 8406.705211397912,\n      \"cashFlowAfterDebt\": 1664.8209741814712\n    }\n  ],\n  \"summary\": {\n    \"totalRevenue\": 1160.1428542792257,\n    \"totalExpenses\": 7651.969252526493,\n    \"totalNOI\": 924.0031005988125,\n    \"totalCapEx\": 8233.471285681646,\n    \"averageOccupancy\": 9579.705887436885,\n    \"irr\": 1366.9080623412078,\n    \"npv\": 9178.431839919598\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8a5c09b-d188-4cec-93a9-5251966aa56d",
+              "name": "Property not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId",
+                    "cashflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "frequency",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "propertyId",
+                      "description": "(Required) Unique identifier of the property"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.argusenterprise.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6660318f-bae2-40e5-8498-eaf4a8c404e6",
+    "name": "Argus Enterprise Core Authentication Cash Flows API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.\n\nContact Support:\n Name: Argus API Support\n Email: api-support@argusenterprise.com",
+      "type": "text/plain"
+    }
+  }
+}

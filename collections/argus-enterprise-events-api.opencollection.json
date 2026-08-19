@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Argus Enterprise Core Authentication Events API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Argus Enterprise List Webhook Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/events",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by subscription"
+              },
+              {
+                "name": "eventType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by event type"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by delivery status"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Start of date range"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End of date range"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of webhook events with delivery status, filterable by event type, subscription, and date range."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Get a Webhook Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.argusenterprise.com/v1/events/:eventId",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the webhook event"
+              }
+            ]
+          },
+          "docs": "Retrieve details about a specific webhook event, including the payload, delivery attempts, and response information."
+        },
+        {
+          "info": {
+            "name": "Argus Enterprise Retry Event Delivery",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.argusenterprise.com/v1/events/:eventId/retry",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the webhook event"
+              }
+            ]
+          },
+          "docs": "Manually retry delivery of a failed webhook event."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
