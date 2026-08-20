@@ -26,6 +26,13 @@ tags:
   - Asset Management
   - Cash Flow Modeling
   - Commercial Real Estate
+  - Portfolio-Management
+  - Valuation
+tags_raw:
+  - Altus Group
+  - Asset Management
+  - Cash Flow Modeling
+  - Commercial Real Estate
   - Portfolio Management
   - Valuation
 url: https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/apis.yml
@@ -67,6 +74,8 @@ apis:
   humanURL: https://www.altusgroup.com/solutions/argus-enterprise/
   baseURL: https://api.argusenterprise.com/v1
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -109,6 +118,8 @@ apis:
   humanURL: https://www.altusgroup.com/solutions/argus-enterprise/
   baseURL: https://api.argusenterprise.com/v1
   tags:
+  - Portfolio
+  tags_raw:
   - Portfolios
   properties:
   - type: OpenAPI
@@ -151,6 +162,8 @@ apis:
   humanURL: https://www.altusgroup.com/solutions/argus-enterprise/
   baseURL: https://api.argusenterprise.com/v1
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
@@ -179,6 +192,8 @@ apis:
   humanURL: https://www.altusgroup.com/solutions/argus-enterprise/
   baseURL: https://api.argusenterprise.com/v1
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
