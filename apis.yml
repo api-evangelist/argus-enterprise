@@ -7,6 +7,18 @@ description: >-
   reports. Trusted by real estate investors, portfolio managers, valuation professionals, and asset managers worldwide
   and taught at 200+ universities.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -217,6 +229,9 @@ apis:
   - type: Authentication
     url: https://www.altusgroup.com/support/start-using-argus-intelligence/
 common:
+  - type: CapabilityMap
+    url: capabilities/argus-enterprise-capability-edges.yml
+    name: ARGUS Enterprise Business Capability Map
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/argus-enterprise/overview
   - type: AgenticAccess
