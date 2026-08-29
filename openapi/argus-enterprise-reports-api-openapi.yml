@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Argus Enterprise Core Authentication Reports API
+  title: Argus Enterprise Core Reports API
   description: Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.
   version: '1.0'
   contact:
@@ -163,6 +163,15 @@ components:
         type: string
         format: uuid
   schemas:
+    ReportList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Report'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     ReportRequest:
       type: object
       required:
@@ -205,15 +214,21 @@ components:
           - Excel
           - CSV
           default: PDF
-    ReportList:
+    Pagination:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Report'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+        page:
+          type: integer
+          description: Current page number
+        pageSize:
+          type: integer
+          description: Number of items per page
+        totalItems:
+          type: integer
+          description: Total number of items
+        totalPages:
+          type: integer
+          description: Total number of pages
     Report:
       type: object
       properties:
@@ -257,21 +272,6 @@ components:
         createdBy:
           type: string
           description: Username of the report creator
-    Pagination:
-      type: object
-      properties:
-        page:
-          type: integer
-          description: Current page number
-        pageSize:
-          type: integer
-          description: Number of items per page
-        totalItems:
-          type: integer
-          description: Total number of items
-        totalPages:
-          type: integer
-          description: Total number of pages
   securitySchemes:
     bearerAuth:
       type: http

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Argus Enterprise Core Authentication Cash Flows API
+  title: Argus Enterprise Core Cash Flows API
   description: Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.
   version: '1.0'
   contact:
@@ -60,15 +60,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    propertyId:
-      name: propertyId
-      in: path
-      required: true
-      description: Unique identifier of the property
-      schema:
-        type: string
-        format: uuid
   schemas:
     CashFlowSummary:
       type: object
@@ -196,6 +187,15 @@ components:
           description: Individual cash flow periods
         summary:
           $ref: '#/components/schemas/CashFlowSummary'
+  parameters:
+    propertyId:
+      name: propertyId
+      in: path
+      required: true
+      description: Unique identifier of the property
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     bearerAuth:
       type: http

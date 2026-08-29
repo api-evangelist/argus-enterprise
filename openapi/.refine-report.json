@@ -1,36 +1,43 @@
 {
   "provider": "argus-enterprise",
   "sources": [
-    "argus-enterprise-authentication-api-openapi.yml",
-    "argus-enterprise-cash-flows-api-openapi.yml",
-    "argus-enterprise-events-api-openapi.yml",
-    "argus-enterprise-health-api-openapi.yml",
-    "argus-enterprise-leases-api-openapi.yml",
-    "argus-enterprise-portfolios-api-openapi.yml",
-    "argus-enterprise-properties-api-openapi.yml",
-    "argus-enterprise-reports-api-openapi.yml",
-    "argus-enterprise-subscriptions-api-openapi.yml",
-    "argus-enterprise-tenants-api-openapi.yml",
-    "argus-enterprise-users-api-openapi.yml",
-    "argus-enterprise-valuations-api-openapi.yml"
+    "_original/argus-enterprise-core-openapi.yml",
+    "_original/argus-enterprise-webhooks-openapi.yml"
   ],
   "outputs": [
     "argus-enterprise-authentication-api-openapi.yml",
     "argus-enterprise-cash-flows-api-openapi.yml",
-    "argus-enterprise-events-api-openapi.yml",
-    "argus-enterprise-health-api-openapi.yml",
     "argus-enterprise-leases-api-openapi.yml",
     "argus-enterprise-portfolios-api-openapi.yml",
     "argus-enterprise-properties-api-openapi.yml",
     "argus-enterprise-reports-api-openapi.yml",
-    "argus-enterprise-subscriptions-api-openapi.yml",
     "argus-enterprise-tenants-api-openapi.yml",
     "argus-enterprise-users-api-openapi.yml",
-    "argus-enterprise-valuations-api-openapi.yml"
+    "argus-enterprise-valuations-api-openapi.yml",
+    "argus-enterprise-events-api-openapi.yml",
+    "argus-enterprise-health-api-openapi.yml",
+    "argus-enterprise-subscriptions-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "argus-enterprise-core-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "argus-enterprise-webhooks-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+  ],
+  "skipped": [
+    "argus-enterprise-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "argus-enterprise-cash-flows-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "argus-enterprise-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "argus-enterprise-health-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "argus-enterprise-leases-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "argus-enterprise-portfolios-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "argus-enterprise-properties-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "argus-enterprise-reports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "argus-enterprise-subscriptions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "argus-enterprise-tenants-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "argus-enterprise-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "argus-enterprise-valuations-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

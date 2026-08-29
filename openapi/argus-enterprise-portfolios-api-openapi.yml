@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Argus Enterprise Core Authentication Portfolios API
+  title: Argus Enterprise Core Portfolios API
   description: Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.
   version: '1.0'
   contact:
@@ -153,63 +153,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Portfolio:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: Unique portfolio identifier
-        name:
-          type: string
-          description: Portfolio name
-        description:
-          type: string
-          description: Portfolio description
-        strategy:
-          type: string
-          enum:
-          - Core
-          - CorePlus
-          - ValueAdd
-          - Opportunistic
-          description: Investment strategy classification
-        totalProperties:
-          type: integer
-          description: Number of properties in the portfolio
-        totalMarketValue:
-          type: number
-          format: double
-          description: Aggregate market value of all properties
-        currency:
-          type: string
-          description: Currency code (ISO 4217)
-          default: USD
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-    PortfolioInput:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        strategy:
-          type: string
-          enum:
-          - Core
-          - CorePlus
-          - ValueAdd
-          - Opportunistic
-        currency:
-          type: string
-          default: USD
     Address:
       type: object
       properties:
@@ -228,15 +171,6 @@ components:
         country:
           type: string
           description: Country code (ISO 3166-1 alpha-2)
-    PortfolioList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Portfolio'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     PropertyList:
       type: object
       properties:
@@ -246,21 +180,6 @@ components:
             $ref: '#/components/schemas/Property'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    Pagination:
-      type: object
-      properties:
-        page:
-          type: integer
-          description: Current page number
-        pageSize:
-          type: integer
-          description: Number of items per page
-        totalItems:
-          type: integer
-          description: Total number of items
-        totalPages:
-          type: integer
-          description: Total number of pages
     Property:
       type: object
       properties:
@@ -334,7 +253,104 @@ components:
           type: string
           format: date-time
           description: Record last update timestamp
+    Portfolio:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique portfolio identifier
+        name:
+          type: string
+          description: Portfolio name
+        description:
+          type: string
+          description: Portfolio description
+        strategy:
+          type: string
+          enum:
+          - Core
+          - CorePlus
+          - ValueAdd
+          - Opportunistic
+          description: Investment strategy classification
+        totalProperties:
+          type: integer
+          description: Number of properties in the portfolio
+        totalMarketValue:
+          type: number
+          format: double
+          description: Aggregate market value of all properties
+        currency:
+          type: string
+          description: Currency code (ISO 4217)
+          default: USD
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    PortfolioInput:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        strategy:
+          type: string
+          enum:
+          - Core
+          - CorePlus
+          - ValueAdd
+          - Opportunistic
+        currency:
+          type: string
+          default: USD
+    PortfolioList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Portfolio'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Current page number
+        pageSize:
+          type: integer
+          description: Number of items per page
+        totalItems:
+          type: integer
+          description: Total number of items
+        totalPages:
+          type: integer
+          description: Total number of pages
   parameters:
+    pageParam:
+      name: page
+      in: query
+      description: Page number for pagination
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    portfolioId:
+      name: portfolioId
+      in: path
+      required: true
+      description: Unique identifier of the portfolio
+      schema:
+        type: string
+        format: uuid
     pageSizeParam:
       name: pageSize
       in: query
@@ -344,22 +360,6 @@ components:
         minimum: 1
         maximum: 100
         default: 25
-    portfolioId:
-      name: portfolioId
-      in: path
-      required: true
-      description: Unique identifier of the portfolio
-      schema:
-        type: string
-        format: uuid
-    pageParam:
-      name: page
-      in: query
-      description: Page number for pagination
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
   securitySchemes:
     bearerAuth:
       type: http

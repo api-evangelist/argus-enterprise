@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Argus Enterprise Core Authentication Health API
-  description: Core REST API for the ARGUS Enterprise platform by Altus Group, providing programmatic access to commercial real estate investment management capabilities including property data, portfolio management, cash flow projections, valuations, tenants, leases, and reporting. ARGUS Enterprise is an industry-standard platform for commercial real estate valuation and asset management used by investors, appraisers, and portfolio managers.
+  title: Argus Enterprise Webhook Health API
+  description: Webhook service for the ARGUS Enterprise platform by Altus Group, enabling real-time event notifications for property changes, valuation updates, lease events, portfolio modifications, and report completions. Integrators can subscribe to specific event types and receive HTTP POST callbacks when events occur in the system.
   version: '1.0'
   contact:
     name: Argus API Support
@@ -9,8 +9,8 @@ info:
     url: https://support.argusenterprise.com
   termsOfService: https://www.altusgroup.com/terms-of-use
 servers:
-- url: https://api.argusenterprise.com/v1
-  description: Argus Enterprise Production
+- url: https://webhooks.argusenterprise.com/v1
+  description: Argus Enterprise Webhooks Production
 security:
 - bearerAuth: []
 tags:
@@ -66,7 +66,7 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: OAuth 2.0 Bearer token obtained from the /auth/token endpoint using client credentials.
+      description: OAuth 2.0 Bearer token obtained from the Argus Enterprise Core API authentication endpoint.
 externalDocs:
-  description: Argus Enterprise API Documentation
-  url: https://docs.argusenterprise.com/api/v1
+  description: Argus Enterprise Webhook Documentation
+  url: https://docs.argusenterprise.com/webhooks
