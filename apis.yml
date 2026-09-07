@@ -322,3 +322,5 @@ common:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-parent: argus
+x-relationship: product

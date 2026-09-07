@@ -6,12 +6,10 @@
       "feed_url": "https://www.altusgroup.com/insights/",
       "title": "",
       "saved": 0,
-      "method": "none",
-      "nature": "undetermined",
-      "nature_basis": null
+      "method": "none"
     }
   ],
-  "fetched": "2026-08-30T22:33:40Z",
+  "fetched": "2026-09-06T19:17:18Z",
   "post_count": 15,
   "feed_nature": "undetermined",
   "feed_nature_basis": null,
