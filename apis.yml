@@ -221,6 +221,8 @@ apis:
   humanURL: https://www.altusgroup.com/solutions/argus-enterprise/
   baseURL: https://api.argusenterprise.com/v1
   tags:
+  - Valuation
+  tags_raw:
   - Valuations
   properties:
   - type: OpenAPI
