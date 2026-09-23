@@ -64,6 +64,15 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    UserList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     User:
       type: object
       properties:
@@ -101,15 +110,6 @@ components:
         createdAt:
           type: string
           format: date-time
-    UserList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     Pagination:
       type: object
       properties:
@@ -126,14 +126,14 @@ components:
           type: integer
           description: Total number of pages
   parameters:
-    pageParam:
-      name: page
-      in: query
-      description: Page number for pagination
+    userId:
+      name: userId
+      in: path
+      required: true
+      description: Unique identifier of the user
       schema:
-        type: integer
-        minimum: 1
-        default: 1
+        type: string
+        format: uuid
     pageSizeParam:
       name: pageSize
       in: query
@@ -143,14 +143,14 @@ components:
         minimum: 1
         maximum: 100
         default: 25
-    userId:
-      name: userId
-      in: path
-      required: true
-      description: Unique identifier of the user
+    pageParam:
+      name: page
+      in: query
+      description: Page number for pagination
       schema:
-        type: string
-        format: uuid
+        type: integer
+        minimum: 1
+        default: 1
   securitySchemes:
     bearerAuth:
       type: http

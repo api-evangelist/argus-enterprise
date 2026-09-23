@@ -153,24 +153,53 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Address:
+    Portfolio:
       type: object
       properties:
-        street:
+        id:
           type: string
-          description: Street address
-        city:
+          format: uuid
+          description: Unique portfolio identifier
+        name:
           type: string
-          description: City
-        state:
+          description: Portfolio name
+        description:
           type: string
-          description: State or province
-        postalCode:
+          description: Portfolio description
+        strategy:
           type: string
-          description: Postal or ZIP code
-        country:
+          enum:
+          - Core
+          - CorePlus
+          - ValueAdd
+          - Opportunistic
+          description: Investment strategy classification
+        totalProperties:
+          type: integer
+          description: Number of properties in the portfolio
+        totalMarketValue:
+          type: number
+          format: double
+          description: Aggregate market value of all properties
+        currency:
           type: string
-          description: Country code (ISO 3166-1 alpha-2)
+          description: Currency code (ISO 4217)
+          default: USD
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    PortfolioList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Portfolio'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     PropertyList:
       type: object
       properties:
@@ -253,44 +282,6 @@ components:
           type: string
           format: date-time
           description: Record last update timestamp
-    Portfolio:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: Unique portfolio identifier
-        name:
-          type: string
-          description: Portfolio name
-        description:
-          type: string
-          description: Portfolio description
-        strategy:
-          type: string
-          enum:
-          - Core
-          - CorePlus
-          - ValueAdd
-          - Opportunistic
-          description: Investment strategy classification
-        totalProperties:
-          type: integer
-          description: Number of properties in the portfolio
-        totalMarketValue:
-          type: number
-          format: double
-          description: Aggregate market value of all properties
-        currency:
-          type: string
-          description: Currency code (ISO 4217)
-          default: USD
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
     PortfolioInput:
       type: object
       required:
@@ -310,15 +301,6 @@ components:
         currency:
           type: string
           default: USD
-    PortfolioList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Portfolio'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     Pagination:
       type: object
       properties:
@@ -334,23 +316,25 @@ components:
         totalPages:
           type: integer
           description: Total number of pages
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+          description: Street address
+        city:
+          type: string
+          description: City
+        state:
+          type: string
+          description: State or province
+        postalCode:
+          type: string
+          description: Postal or ZIP code
+        country:
+          type: string
+          description: Country code (ISO 3166-1 alpha-2)
   parameters:
-    pageParam:
-      name: page
-      in: query
-      description: Page number for pagination
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    portfolioId:
-      name: portfolioId
-      in: path
-      required: true
-      description: Unique identifier of the portfolio
-      schema:
-        type: string
-        format: uuid
     pageSizeParam:
       name: pageSize
       in: query
@@ -360,6 +344,22 @@ components:
         minimum: 1
         maximum: 100
         default: 25
+    portfolioId:
+      name: portfolioId
+      in: path
+      required: true
+      description: Unique identifier of the portfolio
+      schema:
+        type: string
+        format: uuid
+    pageParam:
+      name: page
+      in: query
+      description: Page number for pagination
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
   securitySchemes:
     bearerAuth:
       type: http

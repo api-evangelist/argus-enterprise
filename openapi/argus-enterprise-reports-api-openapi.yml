@@ -137,6 +137,14 @@ paths:
         dispatcher: FALLBACK
 components:
   parameters:
+    reportId:
+      name: reportId
+      in: path
+      required: true
+      description: Unique identifier of the report
+      schema:
+        type: string
+        format: uuid
     pageSizeParam:
       name: pageSize
       in: query
@@ -154,14 +162,6 @@ components:
         type: integer
         minimum: 1
         default: 1
-    reportId:
-      name: reportId
-      in: path
-      required: true
-      description: Unique identifier of the report
-      schema:
-        type: string
-        format: uuid
   schemas:
     ReportList:
       type: object
@@ -172,6 +172,21 @@ components:
             $ref: '#/components/schemas/Report'
         pagination:
           $ref: '#/components/schemas/Pagination'
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Current page number
+        pageSize:
+          type: integer
+          description: Number of items per page
+        totalItems:
+          type: integer
+          description: Total number of items
+        totalPages:
+          type: integer
+          description: Total number of pages
     ReportRequest:
       type: object
       required:
@@ -214,21 +229,6 @@ components:
           - Excel
           - CSV
           default: PDF
-    Pagination:
-      type: object
-      properties:
-        page:
-          type: integer
-          description: Current page number
-        pageSize:
-          type: integer
-          description: Number of items per page
-        totalItems:
-          type: integer
-          description: Total number of items
-        totalPages:
-          type: integer
-          description: Total number of pages
     Report:
       type: object
       properties:

@@ -119,59 +119,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Address:
-      type: object
-      properties:
-        street:
-          type: string
-          description: Street address
-        city:
-          type: string
-          description: City
-        state:
-          type: string
-          description: State or province
-        postalCode:
-          type: string
-          description: Postal or ZIP code
-        country:
-          type: string
-          description: Country code (ISO 3166-1 alpha-2)
-    TenantInput:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        industry:
-          type: string
-        creditRating:
-          type: string
-        contactName:
-          type: string
-        contactEmail:
-          type: string
-          format: email
-        contactPhone:
-          type: string
-        address:
-          $ref: '#/components/schemas/Address'
-    Pagination:
-      type: object
-      properties:
-        page:
-          type: integer
-          description: Current page number
-        pageSize:
-          type: integer
-          description: Number of items per page
-        totalItems:
-          type: integer
-          description: Total number of items
-        totalPages:
-          type: integer
-          description: Total number of pages
     TenantList:
       type: object
       properties:
@@ -222,7 +169,69 @@ components:
         updatedAt:
           type: string
           format: date-time
+    TenantInput:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        industry:
+          type: string
+        creditRating:
+          type: string
+        contactName:
+          type: string
+        contactEmail:
+          type: string
+          format: email
+        contactPhone:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Current page number
+        pageSize:
+          type: integer
+          description: Number of items per page
+        totalItems:
+          type: integer
+          description: Total number of items
+        totalPages:
+          type: integer
+          description: Total number of pages
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+          description: Street address
+        city:
+          type: string
+          description: City
+        state:
+          type: string
+          description: State or province
+        postalCode:
+          type: string
+          description: Postal or ZIP code
+        country:
+          type: string
+          description: Country code (ISO 3166-1 alpha-2)
   parameters:
+    pageSizeParam:
+      name: pageSize
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
     pageParam:
       name: page
       in: query
@@ -239,15 +248,6 @@ components:
       schema:
         type: string
         format: uuid
-    pageSizeParam:
-      name: pageSize
-      in: query
-      description: Number of items per page
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 25
   securitySchemes:
     bearerAuth:
       type: http

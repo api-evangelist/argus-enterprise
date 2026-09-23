@@ -186,30 +186,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-    ValuationList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Valuation'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    Pagination:
-      type: object
-      properties:
-        page:
-          type: integer
-          description: Current page number
-        pageSize:
-          type: integer
-          description: Number of items per page
-        totalItems:
-          type: integer
-          description: Total number of items
-        totalPages:
-          type: integer
-          description: Total number of pages
     ValuationInput:
       type: object
       required:
@@ -251,23 +227,31 @@ components:
           default: USD
         notes:
           type: string
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Current page number
+        pageSize:
+          type: integer
+          description: Number of items per page
+        totalItems:
+          type: integer
+          description: Total number of items
+        totalPages:
+          type: integer
+          description: Total number of pages
+    ValuationList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Valuation'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
   parameters:
-    pageParam:
-      name: page
-      in: query
-      description: Page number for pagination
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    propertyId:
-      name: propertyId
-      in: path
-      required: true
-      description: Unique identifier of the property
-      schema:
-        type: string
-        format: uuid
     pageSizeParam:
       name: pageSize
       in: query
@@ -277,6 +261,22 @@ components:
         minimum: 1
         maximum: 100
         default: 25
+    propertyId:
+      name: propertyId
+      in: path
+      required: true
+      description: Unique identifier of the property
+      schema:
+        type: string
+        format: uuid
+    pageParam:
+      name: page
+      in: query
+      description: Page number for pagination
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
   securitySchemes:
     bearerAuth:
       type: http

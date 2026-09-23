@@ -225,16 +225,61 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    subscriptionId:
-      name: subscriptionId
-      in: path
-      required: true
-      description: Unique identifier of the webhook subscription
-      schema:
-        type: string
-        format: uuid
   schemas:
+    Subscription:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique subscription identifier
+        url:
+          type: string
+          format: uri
+          description: HTTPS endpoint URL for webhook delivery
+        eventTypes:
+          type: array
+          items:
+            type: string
+            enum:
+            - property.created
+            - property.updated
+            - property.deleted
+            - valuation.created
+            - valuation.updated
+            - lease.created
+            - lease.updated
+            - lease.expired
+            - portfolio.created
+            - portfolio.updated
+            - portfolio.deleted
+            - report.completed
+            - report.failed
+            - cashflow.updated
+            - tenant.created
+            - tenant.updated
+          description: Event types this subscription receives
+        status:
+          type: string
+          enum:
+          - Active
+          - Paused
+          - Disabled
+          description: Current subscription status
+        secret:
+          type: string
+          description: Shared secret for HMAC-SHA256 signature verification of webhook payloads (only returned on creation)
+        description:
+          type: string
+          description: Human-readable description of the subscription
+        retryPolicy:
+          $ref: '#/components/schemas/RetryPolicy'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
     RetryPolicy:
       type: object
       properties:
@@ -315,60 +360,15 @@ components:
           type: string
         retryPolicy:
           $ref: '#/components/schemas/RetryPolicy'
-    Subscription:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: Unique subscription identifier
-        url:
-          type: string
-          format: uri
-          description: HTTPS endpoint URL for webhook delivery
-        eventTypes:
-          type: array
-          items:
-            type: string
-            enum:
-            - property.created
-            - property.updated
-            - property.deleted
-            - valuation.created
-            - valuation.updated
-            - lease.created
-            - lease.updated
-            - lease.expired
-            - portfolio.created
-            - portfolio.updated
-            - portfolio.deleted
-            - report.completed
-            - report.failed
-            - cashflow.updated
-            - tenant.created
-            - tenant.updated
-          description: Event types this subscription receives
-        status:
-          type: string
-          enum:
-          - Active
-          - Paused
-          - Disabled
-          description: Current subscription status
-        secret:
-          type: string
-          description: Shared secret for HMAC-SHA256 signature verification of webhook payloads (only returned on creation)
-        description:
-          type: string
-          description: Human-readable description of the subscription
-        retryPolicy:
-          $ref: '#/components/schemas/RetryPolicy'
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
+  parameters:
+    subscriptionId:
+      name: subscriptionId
+      in: path
+      required: true
+      description: Unique identifier of the webhook subscription
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     bearerAuth:
       type: http

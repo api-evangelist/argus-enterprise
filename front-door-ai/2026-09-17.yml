@@ -1,0 +1,31 @@
+# Front Door AI Index — argus-enterprise — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: argus-enterprise
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.altusgroup.com
+  final_host: www.altusgroup.com
+  ownership: unresolved
+  owner: null
+  shares_host_with:
+  - argus
+  - argus-developer
+  inherited_from: null
+  verdict: scored
+  score: null
+  host_score: 8
+  density: null
+  words: 990
+  tiers:
+    agentic: 2
+    core: 6
+    model: 0
+  ambiguous: 18
+  top_terms:
+    intelligence: 17
+    AI: 6
+    AI agent: 1
+    agent: 1
+    agentic: 1
