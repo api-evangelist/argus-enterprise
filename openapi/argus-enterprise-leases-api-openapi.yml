@@ -147,6 +147,15 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    LeaseList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Lease'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     LeaseOption:
       type: object
       properties:
@@ -172,6 +181,21 @@ components:
         rentAdjustment:
           type: string
           description: Description of rent adjustment terms
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Current page number
+        pageSize:
+          type: integer
+          description: Number of items per page
+        totalItems:
+          type: integer
+          description: Total number of items
+        totalPages:
+          type: integer
+          description: Total number of pages
     LeaseInput:
       type: object
       required:
@@ -240,15 +264,6 @@ components:
         currency:
           type: string
           default: USD
-    LeaseList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Lease'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     Lease:
       type: object
       properties:
@@ -348,22 +363,15 @@ components:
         updatedAt:
           type: string
           format: date-time
-    Pagination:
-      type: object
-      properties:
-        page:
-          type: integer
-          description: Current page number
-        pageSize:
-          type: integer
-          description: Number of items per page
-        totalItems:
-          type: integer
-          description: Total number of items
-        totalPages:
-          type: integer
-          description: Total number of pages
   parameters:
+    propertyId:
+      name: propertyId
+      in: path
+      required: true
+      description: Unique identifier of the property
+      schema:
+        type: string
+        format: uuid
     pageSizeParam:
       name: pageSize
       in: query
@@ -378,14 +386,6 @@ components:
       in: path
       required: true
       description: Unique identifier of the lease
-      schema:
-        type: string
-        format: uuid
-    propertyId:
-      name: propertyId
-      in: path
-      required: true
-      description: Unique identifier of the property
       schema:
         type: string
         format: uuid

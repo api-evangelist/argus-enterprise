@@ -39,7 +39,7 @@ tags:
   - Asset Management
   - Cash Flow Modeling
   - Commercial Real Estate
-  - Portfolio-Management
+  - Portfolio Management
   - Valuation
 tags_raw:
   - Altus Group
@@ -48,6 +48,7 @@ tags_raw:
   - Commercial Real Estate
   - Portfolio Management
   - Valuation
+  - Portfolio-Management
 url: https://raw.githubusercontent.com/api-evangelist/argus-enterprise/refs/heads/main/apis.yml
 created: '2024-01-15'
 modified: '2026-05-19'

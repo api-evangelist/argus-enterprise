@@ -113,6 +113,71 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ValuationInput:
+      type: object
+      required:
+      - valuationDate
+      - methodology
+      properties:
+        valuationDate:
+          type: string
+          format: date
+        methodology:
+          type: string
+          enum:
+          - DCF
+          - DirectCapitalization
+          - ComparableSales
+        marketValue:
+          type: number
+          format: double
+        capRate:
+          type: number
+          format: double
+        discountRate:
+          type: number
+          format: double
+        terminalCapRate:
+          type: number
+          format: double
+        analysisStartDate:
+          type: string
+          format: date
+        analysisEndDate:
+          type: string
+          format: date
+        netOperatingIncome:
+          type: number
+          format: double
+        currency:
+          type: string
+          default: USD
+        notes:
+          type: string
+    ValuationList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Valuation'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Current page number
+        pageSize:
+          type: integer
+          description: Number of items per page
+        totalItems:
+          type: integer
+          description: Total number of items
+        totalPages:
+          type: integer
+          description: Total number of pages
     Valuation:
       type: object
       properties:
@@ -186,71 +251,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-    ValuationInput:
-      type: object
-      required:
-      - valuationDate
-      - methodology
-      properties:
-        valuationDate:
-          type: string
-          format: date
-        methodology:
-          type: string
-          enum:
-          - DCF
-          - DirectCapitalization
-          - ComparableSales
-        marketValue:
-          type: number
-          format: double
-        capRate:
-          type: number
-          format: double
-        discountRate:
-          type: number
-          format: double
-        terminalCapRate:
-          type: number
-          format: double
-        analysisStartDate:
-          type: string
-          format: date
-        analysisEndDate:
-          type: string
-          format: date
-        netOperatingIncome:
-          type: number
-          format: double
-        currency:
-          type: string
-          default: USD
-        notes:
-          type: string
-    Pagination:
-      type: object
-      properties:
-        page:
-          type: integer
-          description: Current page number
-        pageSize:
-          type: integer
-          description: Number of items per page
-        totalItems:
-          type: integer
-          description: Total number of items
-        totalPages:
-          type: integer
-          description: Total number of pages
-    ValuationList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Valuation'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
   parameters:
     pageSizeParam:
       name: pageSize
@@ -261,14 +261,6 @@ components:
         minimum: 1
         maximum: 100
         default: 25
-    propertyId:
-      name: propertyId
-      in: path
-      required: true
-      description: Unique identifier of the property
-      schema:
-        type: string
-        format: uuid
     pageParam:
       name: page
       in: query
@@ -277,6 +269,14 @@ components:
         type: integer
         minimum: 1
         default: 1
+    propertyId:
+      name: propertyId
+      in: path
+      required: true
+      description: Unique identifier of the property
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     bearerAuth:
       type: http

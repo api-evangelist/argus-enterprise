@@ -226,6 +226,13 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    SubscriptionList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subscription'
     Subscription:
       type: object
       properties:
@@ -280,6 +287,21 @@ components:
         updatedAt:
           type: string
           format: date-time
+    TestResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the test event was delivered successfully
+        responseCode:
+          type: integer
+          description: HTTP response code from the endpoint
+        responseTime:
+          type: integer
+          description: Response time in milliseconds
+        errorMessage:
+          type: string
+          description: Error details if the test failed
     RetryPolicy:
       type: object
       properties:
@@ -302,28 +324,6 @@ components:
           maximum: 5.0
           default: 2.0
           description: Exponential backoff multiplier
-    TestResult:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the test event was delivered successfully
-        responseCode:
-          type: integer
-          description: HTTP response code from the endpoint
-        responseTime:
-          type: integer
-          description: Response time in milliseconds
-        errorMessage:
-          type: string
-          description: Error details if the test failed
-    SubscriptionList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Subscription'
     SubscriptionInput:
       type: object
       required:

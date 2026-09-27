@@ -145,6 +145,28 @@ components:
               type: integer
             totalPages:
               type: integer
+    DeliveryAttempt:
+      type: object
+      properties:
+        attemptNumber:
+          type: integer
+          description: Sequential attempt number
+        timestamp:
+          type: string
+          format: date-time
+          description: When the delivery was attempted
+        responseCode:
+          type: integer
+          description: HTTP response status code from the endpoint
+        responseTime:
+          type: integer
+          description: Response time in milliseconds
+        success:
+          type: boolean
+          description: Whether the delivery was successful
+        errorMessage:
+          type: string
+          description: Error message if delivery failed
     Event:
       type: object
       properties:
@@ -196,28 +218,6 @@ components:
         createdAt:
           type: string
           format: date-time
-    DeliveryAttempt:
-      type: object
-      properties:
-        attemptNumber:
-          type: integer
-          description: Sequential attempt number
-        timestamp:
-          type: string
-          format: date-time
-          description: When the delivery was attempted
-        responseCode:
-          type: integer
-          description: HTTP response status code from the endpoint
-        responseTime:
-          type: integer
-          description: Response time in milliseconds
-        success:
-          type: boolean
-          description: Whether the delivery was successful
-        errorMessage:
-          type: string
-          description: Error message if delivery failed
   parameters:
     eventId:
       name: eventId
