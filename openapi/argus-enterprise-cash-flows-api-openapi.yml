@@ -93,6 +93,37 @@ components:
           description: Individual cash flow periods
         summary:
           $ref: '#/components/schemas/CashFlowSummary'
+    CashFlowSummary:
+      type: object
+      properties:
+        totalRevenue:
+          type: number
+          format: double
+          description: Total revenue over the analysis period
+        totalExpenses:
+          type: number
+          format: double
+          description: Total expenses over the analysis period
+        totalNOI:
+          type: number
+          format: double
+          description: Total net operating income
+        totalCapEx:
+          type: number
+          format: double
+          description: Total capital expenditures
+        averageOccupancy:
+          type: number
+          format: double
+          description: Average occupancy rate (percentage)
+        irr:
+          type: number
+          format: double
+          description: Internal rate of return (percentage)
+        npv:
+          type: number
+          format: double
+          description: Net present value
     CashFlowPeriod:
       type: object
       properties:
@@ -156,37 +187,6 @@ components:
           type: number
           format: double
           description: Cash flow after debt service
-    CashFlowSummary:
-      type: object
-      properties:
-        totalRevenue:
-          type: number
-          format: double
-          description: Total revenue over the analysis period
-        totalExpenses:
-          type: number
-          format: double
-          description: Total expenses over the analysis period
-        totalNOI:
-          type: number
-          format: double
-          description: Total net operating income
-        totalCapEx:
-          type: number
-          format: double
-          description: Total capital expenditures
-        averageOccupancy:
-          type: number
-          format: double
-          description: Average occupancy rate (percentage)
-        irr:
-          type: number
-          format: double
-          description: Internal rate of return (percentage)
-        npv:
-          type: number
-          format: double
-          description: Net present value
   parameters:
     propertyId:
       name: propertyId

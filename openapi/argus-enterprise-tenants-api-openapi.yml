@@ -178,21 +178,6 @@ components:
         country:
           type: string
           description: Country code (ISO 3166-1 alpha-2)
-    Pagination:
-      type: object
-      properties:
-        page:
-          type: integer
-          description: Current page number
-        pageSize:
-          type: integer
-          description: Number of items per page
-        totalItems:
-          type: integer
-          description: Total number of items
-        totalPages:
-          type: integer
-          description: Total number of pages
     TenantInput:
       type: object
       required:
@@ -222,6 +207,21 @@ components:
             $ref: '#/components/schemas/Tenant'
         pagination:
           $ref: '#/components/schemas/Pagination'
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Current page number
+        pageSize:
+          type: integer
+          description: Number of items per page
+        totalItems:
+          type: integer
+          description: Total number of items
+        totalPages:
+          type: integer
+          description: Total number of pages
   parameters:
     pageSizeParam:
       name: pageSize

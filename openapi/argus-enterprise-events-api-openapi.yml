@@ -127,24 +127,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    EventList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
-        pagination:
-          type: object
-          properties:
-            page:
-              type: integer
-            pageSize:
-              type: integer
-            totalItems:
-              type: integer
-            totalPages:
-              type: integer
     DeliveryAttempt:
       type: object
       properties:
@@ -167,6 +149,24 @@ components:
         errorMessage:
           type: string
           description: Error message if delivery failed
+    EventList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+        pagination:
+          type: object
+          properties:
+            page:
+              type: integer
+            pageSize:
+              type: integer
+            totalItems:
+              type: integer
+            totalPages:
+              type: integer
     Event:
       type: object
       properties:
