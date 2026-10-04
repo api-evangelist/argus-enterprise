@@ -1,21 +1,19 @@
-# Kin Score artifact — argus-enterprise — 2026-08-29T230545
+# Kin Score artifact — argus-enterprise — 2026-10-03T024842
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: argus-enterprise
-  schema_version: 0.16.0
-  scored_at: '2026-08-29'
-  run_ts: 2026-08-29T230545
-  composite: 44.3
+  schema_version: 0.23.0
+  scored_at: '2026-10-03'
+  run_ts: 2026-10-03T024842
+  composite: 41.2
   band: developing
   facets:
-    discoverability: 74.1
-    contract_quality: 64.6
-    governance: 28.8
+    discoverability: 66.1
+    contract_quality: 58.8
+    contract_governance: 27.3
     operational_transparency: 7.9
-    developer_ergonomics: 54.8
-    commercial_clarity: 26.3
-    contract_governance: 28.8
+    developer_ergonomics: 51.2
     access_clarity: 26.3
   agent_readiness:
     score: 19.8
@@ -40,6 +38,12 @@ kin_score:
       protected_resource_metadata: false
       dynamic_client_registration: false
       agentic_commerce: false
+  regulatory:
+    applies: true
+    regime: Horizontal (data, software, accessibility, platform)
+    regime_id: horizontal
+    score: 20.6
+    matched_via: fallback
   provenance:
     agentic_access: derived
     contracts:
