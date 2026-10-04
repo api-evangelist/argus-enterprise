@@ -152,60 +152,7 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    pageSizeParam:
-      name: pageSize
-      in: query
-      description: Number of items per page
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 25
-    pageParam:
-      name: page
-      in: query
-      description: Page number for pagination
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    portfolioId:
-      name: portfolioId
-      in: path
-      required: true
-      description: Unique identifier of the portfolio
-      schema:
-        type: string
-        format: uuid
   schemas:
-    PropertyList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Property'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    Address:
-      type: object
-      properties:
-        street:
-          type: string
-          description: Street address
-        city:
-          type: string
-          description: City
-        state:
-          type: string
-          description: State or province
-        postalCode:
-          type: string
-          description: Postal or ZIP code
-        country:
-          type: string
-          description: Country code (ISO 3166-1 alpha-2)
     Portfolio:
       type: object
       properties:
@@ -244,15 +191,24 @@ components:
         updatedAt:
           type: string
           format: date-time
-    PortfolioList:
+    Address:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Portfolio'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+        street:
+          type: string
+          description: Street address
+        city:
+          type: string
+          description: City
+        state:
+          type: string
+          description: State or province
+        postalCode:
+          type: string
+          description: Postal or ZIP code
+        country:
+          type: string
+          description: Country code (ISO 3166-1 alpha-2)
     PortfolioInput:
       type: object
       required:
@@ -272,21 +228,24 @@ components:
         currency:
           type: string
           default: USD
-    Pagination:
+    PortfolioList:
       type: object
       properties:
-        page:
-          type: integer
-          description: Current page number
-        pageSize:
-          type: integer
-          description: Number of items per page
-        totalItems:
-          type: integer
-          description: Total number of items
-        totalPages:
-          type: integer
-          description: Total number of pages
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Portfolio'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    PropertyList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Property'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     Property:
       type: object
       properties:
@@ -360,6 +319,47 @@ components:
           type: string
           format: date-time
           description: Record last update timestamp
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Current page number
+        pageSize:
+          type: integer
+          description: Number of items per page
+        totalItems:
+          type: integer
+          description: Total number of items
+        totalPages:
+          type: integer
+          description: Total number of pages
+  parameters:
+    portfolioId:
+      name: portfolioId
+      in: path
+      required: true
+      description: Unique identifier of the portfolio
+      schema:
+        type: string
+        format: uuid
+    pageSizeParam:
+      name: pageSize
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    pageParam:
+      name: page
+      in: query
+      description: Page number for pagination
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
   securitySchemes:
     bearerAuth:
       type: http

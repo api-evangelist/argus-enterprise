@@ -225,16 +225,44 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    subscriptionId:
-      name: subscriptionId
-      in: path
-      required: true
-      description: Unique identifier of the webhook subscription
-      schema:
-        type: string
-        format: uuid
   schemas:
+    TestResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the test event was delivered successfully
+        responseCode:
+          type: integer
+          description: HTTP response code from the endpoint
+        responseTime:
+          type: integer
+          description: Response time in milliseconds
+        errorMessage:
+          type: string
+          description: Error details if the test failed
+    RetryPolicy:
+      type: object
+      properties:
+        maxRetries:
+          type: integer
+          minimum: 0
+          maximum: 10
+          default: 5
+          description: Maximum number of delivery retry attempts
+        retryIntervalSeconds:
+          type: integer
+          minimum: 10
+          maximum: 3600
+          default: 60
+          description: Initial interval between retries in seconds
+        backoffMultiplier:
+          type: number
+          format: double
+          minimum: 1.0
+          maximum: 5.0
+          default: 2.0
+          description: Exponential backoff multiplier
     SubscriptionInput:
       type: object
       required:
@@ -278,43 +306,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Subscription'
-    RetryPolicy:
-      type: object
-      properties:
-        maxRetries:
-          type: integer
-          minimum: 0
-          maximum: 10
-          default: 5
-          description: Maximum number of delivery retry attempts
-        retryIntervalSeconds:
-          type: integer
-          minimum: 10
-          maximum: 3600
-          default: 60
-          description: Initial interval between retries in seconds
-        backoffMultiplier:
-          type: number
-          format: double
-          minimum: 1.0
-          maximum: 5.0
-          default: 2.0
-          description: Exponential backoff multiplier
-    TestResult:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the test event was delivered successfully
-        responseCode:
-          type: integer
-          description: HTTP response code from the endpoint
-        responseTime:
-          type: integer
-          description: Response time in milliseconds
-        errorMessage:
-          type: string
-          description: Error details if the test failed
     Subscription:
       type: object
       properties:
@@ -369,6 +360,15 @@ components:
         updatedAt:
           type: string
           format: date-time
+  parameters:
+    subscriptionId:
+      name: subscriptionId
+      in: path
+      required: true
+      description: Unique identifier of the webhook subscription
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     bearerAuth:
       type: http

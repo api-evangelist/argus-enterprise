@@ -137,6 +137,14 @@ paths:
         dispatcher: FALLBACK
 components:
   parameters:
+    reportId:
+      name: reportId
+      in: path
+      required: true
+      description: Unique identifier of the report
+      schema:
+        type: string
+        format: uuid
     pageSizeParam:
       name: pageSize
       in: query
@@ -146,14 +154,6 @@ components:
         minimum: 1
         maximum: 100
         default: 25
-    reportId:
-      name: reportId
-      in: path
-      required: true
-      description: Unique identifier of the report
-      schema:
-        type: string
-        format: uuid
     pageParam:
       name: page
       in: query
@@ -172,6 +172,49 @@ components:
             $ref: '#/components/schemas/Report'
         pagination:
           $ref: '#/components/schemas/Pagination'
+    Report:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique report identifier
+        reportType:
+          type: string
+          enum:
+          - PropertySummary
+          - PortfolioSummary
+          - CashFlowAnalysis
+          - ValuationSummary
+          - LeaseExpiry
+          - TenantRoll
+          - CapitalExpenditure
+          description: Type of report
+        title:
+          type: string
+          description: Report title
+        status:
+          type: string
+          enum:
+          - Pending
+          - Processing
+          - Completed
+          - Failed
+          description: Report generation status
+        generatedAt:
+          type: string
+          format: date-time
+          description: Report generation timestamp
+        downloadUrl:
+          type: string
+          format: uri
+          description: URL to download the completed report
+        parameters:
+          type: object
+          description: Parameters used to generate the report
+        createdBy:
+          type: string
+          description: Username of the report creator
     ReportRequest:
       type: object
       required:
@@ -229,49 +272,6 @@ components:
         totalPages:
           type: integer
           description: Total number of pages
-    Report:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: Unique report identifier
-        reportType:
-          type: string
-          enum:
-          - PropertySummary
-          - PortfolioSummary
-          - CashFlowAnalysis
-          - ValuationSummary
-          - LeaseExpiry
-          - TenantRoll
-          - CapitalExpenditure
-          description: Type of report
-        title:
-          type: string
-          description: Report title
-        status:
-          type: string
-          enum:
-          - Pending
-          - Processing
-          - Completed
-          - Failed
-          description: Report generation status
-        generatedAt:
-          type: string
-          format: date-time
-          description: Report generation timestamp
-        downloadUrl:
-          type: string
-          format: uri
-          description: URL to download the completed report
-        parameters:
-          type: object
-          description: Parameters used to generate the report
-        createdBy:
-          type: string
-          description: Username of the report creator
   securitySchemes:
     bearerAuth:
       type: http

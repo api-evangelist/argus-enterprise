@@ -146,7 +146,134 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    leaseId:
+      name: leaseId
+      in: path
+      required: true
+      description: Unique identifier of the lease
+      schema:
+        type: string
+        format: uuid
+    propertyId:
+      name: propertyId
+      in: path
+      required: true
+      description: Unique identifier of the property
+      schema:
+        type: string
+        format: uuid
+    pageSizeParam:
+      name: pageSize
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    pageParam:
+      name: page
+      in: query
+      description: Page number for pagination
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
   schemas:
+    LeaseOption:
+      type: object
+      properties:
+        optionType:
+          type: string
+          enum:
+          - Renewal
+          - Expansion
+          - Termination
+          - PurchaseOption
+          description: Type of lease option
+        noticeDate:
+          type: string
+          format: date
+          description: Date by which notice must be given
+        exerciseDate:
+          type: string
+          format: date
+          description: Date the option can be exercised
+        termMonths:
+          type: integer
+          description: Duration of option term in months
+        rentAdjustment:
+          type: string
+          description: Description of rent adjustment terms
+    LeaseInput:
+      type: object
+      required:
+      - tenantId
+      - leaseType
+      - startDate
+      - endDate
+      - baseRent
+      properties:
+        tenantId:
+          type: string
+          format: uuid
+        unitNumber:
+          type: string
+        leaseType:
+          type: string
+          enum:
+          - Gross
+          - Net
+          - DoubleNet
+          - TripleNet
+          - ModifiedGross
+          - PercentageRent
+        status:
+          type: string
+          enum:
+          - Active
+          - Expired
+          - Pending
+          default: Active
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        leasedArea:
+          type: number
+          format: double
+        baseRent:
+          type: number
+          format: double
+        rentFrequency:
+          type: string
+          enum:
+          - Monthly
+          - Quarterly
+          - Annual
+          default: Monthly
+        escalationRate:
+          type: number
+          format: double
+        escalationType:
+          type: string
+          enum:
+          - Fixed
+          - CPI
+          - MarketReset
+          - StepUp
+        securityDeposit:
+          type: number
+          format: double
+        tenantImprovementAllowance:
+          type: number
+          format: double
+        currency:
+          type: string
+          default: USD
     Lease:
       type: object
       properties:
@@ -255,99 +382,6 @@ components:
             $ref: '#/components/schemas/Lease'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    LeaseInput:
-      type: object
-      required:
-      - tenantId
-      - leaseType
-      - startDate
-      - endDate
-      - baseRent
-      properties:
-        tenantId:
-          type: string
-          format: uuid
-        unitNumber:
-          type: string
-        leaseType:
-          type: string
-          enum:
-          - Gross
-          - Net
-          - DoubleNet
-          - TripleNet
-          - ModifiedGross
-          - PercentageRent
-        status:
-          type: string
-          enum:
-          - Active
-          - Expired
-          - Pending
-          default: Active
-        startDate:
-          type: string
-          format: date
-        endDate:
-          type: string
-          format: date
-        leasedArea:
-          type: number
-          format: double
-        baseRent:
-          type: number
-          format: double
-        rentFrequency:
-          type: string
-          enum:
-          - Monthly
-          - Quarterly
-          - Annual
-          default: Monthly
-        escalationRate:
-          type: number
-          format: double
-        escalationType:
-          type: string
-          enum:
-          - Fixed
-          - CPI
-          - MarketReset
-          - StepUp
-        securityDeposit:
-          type: number
-          format: double
-        tenantImprovementAllowance:
-          type: number
-          format: double
-        currency:
-          type: string
-          default: USD
-    LeaseOption:
-      type: object
-      properties:
-        optionType:
-          type: string
-          enum:
-          - Renewal
-          - Expansion
-          - Termination
-          - PurchaseOption
-          description: Type of lease option
-        noticeDate:
-          type: string
-          format: date
-          description: Date by which notice must be given
-        exerciseDate:
-          type: string
-          format: date
-          description: Date the option can be exercised
-        termMonths:
-          type: integer
-          description: Duration of option term in months
-        rentAdjustment:
-          type: string
-          description: Description of rent adjustment terms
     Pagination:
       type: object
       properties:
@@ -363,40 +397,6 @@ components:
         totalPages:
           type: integer
           description: Total number of pages
-  parameters:
-    leaseId:
-      name: leaseId
-      in: path
-      required: true
-      description: Unique identifier of the lease
-      schema:
-        type: string
-        format: uuid
-    pageSizeParam:
-      name: pageSize
-      in: query
-      description: Number of items per page
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 25
-    pageParam:
-      name: page
-      in: query
-      description: Page number for pagination
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    propertyId:
-      name: propertyId
-      in: path
-      required: true
-      description: Unique identifier of the property
-      schema:
-        type: string
-        format: uuid
   securitySchemes:
     bearerAuth:
       type: http

@@ -126,47 +126,16 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    eventId:
+      name: eventId
+      in: path
+      required: true
+      description: Unique identifier of the webhook event
+      schema:
+        type: string
+        format: uuid
   schemas:
-    DeliveryAttempt:
-      type: object
-      properties:
-        attemptNumber:
-          type: integer
-          description: Sequential attempt number
-        timestamp:
-          type: string
-          format: date-time
-          description: When the delivery was attempted
-        responseCode:
-          type: integer
-          description: HTTP response status code from the endpoint
-        responseTime:
-          type: integer
-          description: Response time in milliseconds
-        success:
-          type: boolean
-          description: Whether the delivery was successful
-        errorMessage:
-          type: string
-          description: Error message if delivery failed
-    EventList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
-        pagination:
-          type: object
-          properties:
-            page:
-              type: integer
-            pageSize:
-              type: integer
-            totalItems:
-              type: integer
-            totalPages:
-              type: integer
     Event:
       type: object
       properties:
@@ -218,15 +187,46 @@ components:
         createdAt:
           type: string
           format: date-time
-  parameters:
-    eventId:
-      name: eventId
-      in: path
-      required: true
-      description: Unique identifier of the webhook event
-      schema:
-        type: string
-        format: uuid
+    EventList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+        pagination:
+          type: object
+          properties:
+            page:
+              type: integer
+            pageSize:
+              type: integer
+            totalItems:
+              type: integer
+            totalPages:
+              type: integer
+    DeliveryAttempt:
+      type: object
+      properties:
+        attemptNumber:
+          type: integer
+          description: Sequential attempt number
+        timestamp:
+          type: string
+          format: date-time
+          description: When the delivery was attempted
+        responseCode:
+          type: integer
+          description: HTTP response status code from the endpoint
+        responseTime:
+          type: integer
+          description: Response time in milliseconds
+        success:
+          type: boolean
+          description: Whether the delivery was successful
+        errorMessage:
+          type: string
+          description: Error message if delivery failed
   securitySchemes:
     bearerAuth:
       type: http

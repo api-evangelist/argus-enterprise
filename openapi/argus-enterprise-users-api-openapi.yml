@@ -64,6 +64,14 @@ paths:
         dispatcher: FALLBACK
 components:
   parameters:
+    pageParam:
+      name: page
+      in: query
+      description: Page number for pagination
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
     pageSizeParam:
       name: pageSize
       in: query
@@ -73,14 +81,6 @@ components:
         minimum: 1
         maximum: 100
         default: 25
-    pageParam:
-      name: page
-      in: query
-      description: Page number for pagination
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
     userId:
       name: userId
       in: path
