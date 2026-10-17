@@ -163,6 +163,79 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Property:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique property identifier
+        name:
+          type: string
+          description: Property name
+        propertyType:
+          type: string
+          enum:
+          - Office
+          - Retail
+          - Industrial
+          - Multifamily
+          - Mixed-Use
+          - Hotel
+          - Land
+          - Other
+          description: Type of commercial real estate property
+        status:
+          type: string
+          enum:
+          - Active
+          - Pending
+          - Archived
+          description: Current property status
+        address:
+          $ref: '#/components/schemas/Address'
+        grossArea:
+          type: number
+          format: double
+          description: Gross leasable area in square feet
+        netLeasableArea:
+          type: number
+          format: double
+          description: Net leasable area in square feet
+        yearBuilt:
+          type: integer
+          description: Year the property was built
+        numberOfUnits:
+          type: integer
+          description: Number of leasable units or suites
+        purchasePrice:
+          type: number
+          format: double
+          description: Original purchase price
+        purchaseDate:
+          type: string
+          format: date
+          description: Date of property acquisition
+        currentMarketValue:
+          type: number
+          format: double
+          description: Current estimated market value
+        occupancyRate:
+          type: number
+          format: double
+          description: Current occupancy rate as a percentage
+        portfolioId:
+          type: string
+          format: uuid
+          description: Identifier of the parent portfolio
+        createdAt:
+          type: string
+          format: date-time
+          description: Record creation timestamp
+        updatedAt:
+          type: string
+          format: date-time
+          description: Record last update timestamp
     PropertyInput:
       type: object
       required:
@@ -239,79 +312,6 @@ components:
             $ref: '#/components/schemas/Property'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    Property:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: Unique property identifier
-        name:
-          type: string
-          description: Property name
-        propertyType:
-          type: string
-          enum:
-          - Office
-          - Retail
-          - Industrial
-          - Multifamily
-          - Mixed-Use
-          - Hotel
-          - Land
-          - Other
-          description: Type of commercial real estate property
-        status:
-          type: string
-          enum:
-          - Active
-          - Pending
-          - Archived
-          description: Current property status
-        address:
-          $ref: '#/components/schemas/Address'
-        grossArea:
-          type: number
-          format: double
-          description: Gross leasable area in square feet
-        netLeasableArea:
-          type: number
-          format: double
-          description: Net leasable area in square feet
-        yearBuilt:
-          type: integer
-          description: Year the property was built
-        numberOfUnits:
-          type: integer
-          description: Number of leasable units or suites
-        purchasePrice:
-          type: number
-          format: double
-          description: Original purchase price
-        purchaseDate:
-          type: string
-          format: date
-          description: Date of property acquisition
-        currentMarketValue:
-          type: number
-          format: double
-          description: Current estimated market value
-        occupancyRate:
-          type: number
-          format: double
-          description: Current occupancy rate as a percentage
-        portfolioId:
-          type: string
-          format: uuid
-          description: Identifier of the parent portfolio
-        createdAt:
-          type: string
-          format: date-time
-          description: Record creation timestamp
-        updatedAt:
-          type: string
-          format: date-time
-          description: Record last update timestamp
     Pagination:
       type: object
       properties:
@@ -328,14 +328,6 @@ components:
           type: integer
           description: Total number of pages
   parameters:
-    propertyId:
-      name: propertyId
-      in: path
-      required: true
-      description: Unique identifier of the property
-      schema:
-        type: string
-        format: uuid
     pageSizeParam:
       name: pageSize
       in: query
@@ -345,6 +337,14 @@ components:
         minimum: 1
         maximum: 100
         default: 25
+    propertyId:
+      name: propertyId
+      in: path
+      required: true
+      description: Unique identifier of the property
+      schema:
+        type: string
+        format: uuid
     pageParam:
       name: page
       in: query

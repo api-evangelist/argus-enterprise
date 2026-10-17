@@ -119,24 +119,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Address:
-      type: object
-      properties:
-        street:
-          type: string
-          description: Street address
-        city:
-          type: string
-          description: City
-        state:
-          type: string
-          description: State or province
-        postalCode:
-          type: string
-          description: Postal or ZIP code
-        country:
-          type: string
-          description: Country code (ISO 3166-1 alpha-2)
     TenantList:
       type: object
       properties:
@@ -146,41 +128,6 @@ components:
             $ref: '#/components/schemas/Tenant'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    TenantInput:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        industry:
-          type: string
-        creditRating:
-          type: string
-        contactName:
-          type: string
-        contactEmail:
-          type: string
-          format: email
-        contactPhone:
-          type: string
-        address:
-          $ref: '#/components/schemas/Address'
-    Pagination:
-      type: object
-      properties:
-        page:
-          type: integer
-          description: Current page number
-        pageSize:
-          type: integer
-          description: Number of items per page
-        totalItems:
-          type: integer
-          description: Total number of items
-        totalPages:
-          type: integer
-          description: Total number of pages
     Tenant:
       type: object
       properties:
@@ -222,15 +169,60 @@ components:
         updatedAt:
           type: string
           format: date-time
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+          description: Street address
+        city:
+          type: string
+          description: City
+        state:
+          type: string
+          description: State or province
+        postalCode:
+          type: string
+          description: Postal or ZIP code
+        country:
+          type: string
+          description: Country code (ISO 3166-1 alpha-2)
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Current page number
+        pageSize:
+          type: integer
+          description: Number of items per page
+        totalItems:
+          type: integer
+          description: Total number of items
+        totalPages:
+          type: integer
+          description: Total number of pages
+    TenantInput:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        industry:
+          type: string
+        creditRating:
+          type: string
+        contactName:
+          type: string
+        contactEmail:
+          type: string
+          format: email
+        contactPhone:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
   parameters:
-    tenantId:
-      name: tenantId
-      in: path
-      required: true
-      description: Unique identifier of the tenant
-      schema:
-        type: string
-        format: uuid
     pageSizeParam:
       name: pageSize
       in: query
@@ -248,6 +240,14 @@ components:
         type: integer
         minimum: 1
         default: 1
+    tenantId:
+      name: tenantId
+      in: path
+      required: true
+      description: Unique identifier of the tenant
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     bearerAuth:
       type: http

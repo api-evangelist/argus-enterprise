@@ -126,15 +126,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    eventId:
-      name: eventId
-      in: path
-      required: true
-      description: Unique identifier of the webhook event
-      schema:
-        type: string
-        format: uuid
   schemas:
     Event:
       type: object
@@ -187,24 +178,6 @@ components:
         createdAt:
           type: string
           format: date-time
-    EventList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
-        pagination:
-          type: object
-          properties:
-            page:
-              type: integer
-            pageSize:
-              type: integer
-            totalItems:
-              type: integer
-            totalPages:
-              type: integer
     DeliveryAttempt:
       type: object
       properties:
@@ -227,6 +200,33 @@ components:
         errorMessage:
           type: string
           description: Error message if delivery failed
+    EventList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+        pagination:
+          type: object
+          properties:
+            page:
+              type: integer
+            pageSize:
+              type: integer
+            totalItems:
+              type: integer
+            totalPages:
+              type: integer
+  parameters:
+    eventId:
+      name: eventId
+      in: path
+      required: true
+      description: Unique identifier of the webhook event
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     bearerAuth:
       type: http

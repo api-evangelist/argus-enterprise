@@ -92,38 +92,6 @@ components:
           type: number
           format: double
           description: Net present value
-    CashFlowProjection:
-      type: object
-      properties:
-        propertyId:
-          type: string
-          format: uuid
-          description: Associated property identifier
-        startDate:
-          type: string
-          format: date
-          description: Projection start date
-        endDate:
-          type: string
-          format: date
-          description: Projection end date
-        frequency:
-          type: string
-          enum:
-          - Monthly
-          - Quarterly
-          - Annual
-          description: Cash flow reporting frequency
-        currency:
-          type: string
-          description: Currency code (ISO 4217)
-        periods:
-          type: array
-          items:
-            $ref: '#/components/schemas/CashFlowPeriod'
-          description: Individual cash flow periods
-        summary:
-          $ref: '#/components/schemas/CashFlowSummary'
     CashFlowPeriod:
       type: object
       properties:
@@ -187,6 +155,38 @@ components:
           type: number
           format: double
           description: Cash flow after debt service
+    CashFlowProjection:
+      type: object
+      properties:
+        propertyId:
+          type: string
+          format: uuid
+          description: Associated property identifier
+        startDate:
+          type: string
+          format: date
+          description: Projection start date
+        endDate:
+          type: string
+          format: date
+          description: Projection end date
+        frequency:
+          type: string
+          enum:
+          - Monthly
+          - Quarterly
+          - Annual
+          description: Cash flow reporting frequency
+        currency:
+          type: string
+          description: Currency code (ISO 4217)
+        periods:
+          type: array
+          items:
+            $ref: '#/components/schemas/CashFlowPeriod'
+          description: Individual cash flow periods
+        summary:
+          $ref: '#/components/schemas/CashFlowSummary'
   parameters:
     propertyId:
       name: propertyId

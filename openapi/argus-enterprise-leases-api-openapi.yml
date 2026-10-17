@@ -146,40 +146,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    leaseId:
-      name: leaseId
-      in: path
-      required: true
-      description: Unique identifier of the lease
-      schema:
-        type: string
-        format: uuid
-    propertyId:
-      name: propertyId
-      in: path
-      required: true
-      description: Unique identifier of the property
-      schema:
-        type: string
-        format: uuid
-    pageSizeParam:
-      name: pageSize
-      in: query
-      description: Number of items per page
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 25
-    pageParam:
-      name: page
-      in: query
-      description: Page number for pagination
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
   schemas:
     LeaseOption:
       type: object
@@ -373,15 +339,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-    LeaseList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Lease'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     Pagination:
       type: object
       properties:
@@ -397,6 +354,49 @@ components:
         totalPages:
           type: integer
           description: Total number of pages
+    LeaseList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Lease'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+  parameters:
+    pageSizeParam:
+      name: pageSize
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    propertyId:
+      name: propertyId
+      in: path
+      required: true
+      description: Unique identifier of the property
+      schema:
+        type: string
+        format: uuid
+    pageParam:
+      name: page
+      in: query
+      description: Page number for pagination
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    leaseId:
+      name: leaseId
+      in: path
+      required: true
+      description: Unique identifier of the lease
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     bearerAuth:
       type: http

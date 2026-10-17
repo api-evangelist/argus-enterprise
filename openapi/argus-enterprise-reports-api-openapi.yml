@@ -136,42 +136,7 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    reportId:
-      name: reportId
-      in: path
-      required: true
-      description: Unique identifier of the report
-      schema:
-        type: string
-        format: uuid
-    pageSizeParam:
-      name: pageSize
-      in: query
-      description: Number of items per page
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 25
-    pageParam:
-      name: page
-      in: query
-      description: Page number for pagination
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
   schemas:
-    ReportList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Report'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     Report:
       type: object
       properties:
@@ -257,6 +222,15 @@ components:
           - Excel
           - CSV
           default: PDF
+    ReportList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Report'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     Pagination:
       type: object
       properties:
@@ -272,6 +246,32 @@ components:
         totalPages:
           type: integer
           description: Total number of pages
+  parameters:
+    pageSizeParam:
+      name: pageSize
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    pageParam:
+      name: page
+      in: query
+      description: Page number for pagination
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    reportId:
+      name: reportId
+      in: path
+      required: true
+      description: Unique identifier of the report
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     bearerAuth:
       type: http

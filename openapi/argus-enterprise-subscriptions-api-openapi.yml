@@ -226,43 +226,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    TestResult:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the test event was delivered successfully
-        responseCode:
-          type: integer
-          description: HTTP response code from the endpoint
-        responseTime:
-          type: integer
-          description: Response time in milliseconds
-        errorMessage:
-          type: string
-          description: Error details if the test failed
-    RetryPolicy:
-      type: object
-      properties:
-        maxRetries:
-          type: integer
-          minimum: 0
-          maximum: 10
-          default: 5
-          description: Maximum number of delivery retry attempts
-        retryIntervalSeconds:
-          type: integer
-          minimum: 10
-          maximum: 3600
-          default: 60
-          description: Initial interval between retries in seconds
-        backoffMultiplier:
-          type: number
-          format: double
-          minimum: 1.0
-          maximum: 5.0
-          default: 2.0
-          description: Exponential backoff multiplier
     SubscriptionInput:
       type: object
       required:
@@ -299,13 +262,6 @@ components:
           type: string
         retryPolicy:
           $ref: '#/components/schemas/RetryPolicy'
-    SubscriptionList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Subscription'
     Subscription:
       type: object
       properties:
@@ -360,6 +316,50 @@ components:
         updatedAt:
           type: string
           format: date-time
+    TestResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the test event was delivered successfully
+        responseCode:
+          type: integer
+          description: HTTP response code from the endpoint
+        responseTime:
+          type: integer
+          description: Response time in milliseconds
+        errorMessage:
+          type: string
+          description: Error details if the test failed
+    RetryPolicy:
+      type: object
+      properties:
+        maxRetries:
+          type: integer
+          minimum: 0
+          maximum: 10
+          default: 5
+          description: Maximum number of delivery retry attempts
+        retryIntervalSeconds:
+          type: integer
+          minimum: 10
+          maximum: 3600
+          default: 60
+          description: Initial interval between retries in seconds
+        backoffMultiplier:
+          type: number
+          format: double
+          minimum: 1.0
+          maximum: 5.0
+          default: 2.0
+          description: Exponential backoff multiplier
+    SubscriptionList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subscription'
   parameters:
     subscriptionId:
       name: subscriptionId
